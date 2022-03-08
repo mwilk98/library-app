@@ -1,3 +1,4 @@
+//model klasy ucznia
 export interface Student {
   id: string;
   name: string;
