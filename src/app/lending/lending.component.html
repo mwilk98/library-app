@@ -1,26 +1,33 @@
 <div class="container h-100 d-flex justify-content-center">
   <h1 class="text-center">Książki</h1>
+  <h2>{{message}}</h2>
   <div class="table-responsive">
     <table class="table">
       <thead>
         <tr>
           <th>#</th>
-          <th>Imie</th>
-          <th>Nazwisko</th>
-          <th>Wiek</th>
-          <th>Klasa</th>
+          <th>Id Książki</th>
+          <th>Id Ucznia</th>
+          <th>Data Wypożyczenia</th>
+          <th>Status</th>
           <th>Opcje</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let book of books">
-          <td>{{ book.id }}</td>
-          <td>{{ book.title }}</td>
-          <td>{{ book.author }}</td>
-          <td>{{ book.type }}</td>
-          <td>{{ book.releaseDate | date: "shortDate" }}</td>
+        <tr *ngFor="let lend of lending">
+          <td>{{ lend.id }}</td>
+          <td>{{ lend.idBook }}</td>
+          <td>{{ lend.idStudent }}</td>
+          <td>{{ lend.lendingDate | date: "shortDate" }}</td>
+          <td *ngIf="lend.status; else elseBlock">
+            Nie oddano
+            <button class="btn btn-success" (click)="changeStatus(lend)">
+              Oddaj
+            </button>
+          </td>
+          <ng-template #elseBlock> <td>Oddano</td></ng-template>
           <td>
-            <button class="btn btn-danger" (click)="deleteBook(book)">
+            <button class="btn btn-danger" (click)="deleteBook(lend)">
               Usuń
             </button>
             <button class="btn btn-warning">Edytuj</button>
@@ -47,49 +54,37 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-3" for="pwd">Tytuł</label>
+      <label class="control-label col-sm-3" for="pwd">Id Książki</label>
       <div class="col-sm-5">
         <input
           type="text"
           class="form-control"
-          name="title"
+          name="idBook"
           placeholder="Tytuł"
           ngModel
         />
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-3" for="pwd">Autor</label>
+      <label class="control-label col-sm-3" for="pwd">Id Ucznia</label>
       <div class="col-sm-5">
         <input
           type="text"
           class="form-control"
-          name="author"
+          name="idStudent"
           placeholder="Autor"
           ngModel
         />
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-3" for="pwd">Gatunek</label>
+      <label class="control-label col-sm-3" for="pwd">Data Wypożyczenia</label>
       <div class="col-sm-5">
         <input
           type="text"
           class="form-control"
-          name="type"
+          name="lendingDate"
           placeholder="Gatunek"
-          ngModel
-        />
-      </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-3" for="pwd">Data wydania</label>
-      <div class="col-sm-5">
-        <input
-          type="date"
-          class="form-control"
-          name="releaseDate"
-          placeholder="Data"
           ngModel
         />
       </div>

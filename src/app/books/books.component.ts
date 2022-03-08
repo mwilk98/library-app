@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { LendingService } from '../lending/lending.service';
 import { Book } from './book.model';
 
 @Component({
   selector: 'app-books',
   templateUrl: './books.component.html'
 })
-export class BooksComponent {
+export class BooksComponent implements OnInit {
+  constructor (private shared: LendingService) {}
+  
+  
+  message = 'TEST';
   public books: Array<Book> = [
     { id: '1', title: 'title 1', author: 'author 1', type: 'gatunek 1', releaseDate: new Date() },
     { id: '2', title: 'title 2', author: 'author 2', type: 'gatunek 2', releaseDate: new Date() },
@@ -20,5 +25,9 @@ export class BooksComponent {
 
   onSubmit(data: Book) {
     this.books.push(data);
+  }
+
+  ngOnInit(): void {
+    this.shared.setMessage(this.message);
   }
 }
