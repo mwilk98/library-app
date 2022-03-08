@@ -1,0 +1,104 @@
+<div class="container h-100 d-flex justify-content-center">
+  <h1 class="text-center">Książki</h1>
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Imie</th>
+          <th>Nazwisko</th>
+          <th>Wiek</th>
+          <th>Klasa</th>
+          <th>Opcje</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let book of books">
+          <td>{{ book.id }}</td>
+          <td>{{ book.title }}</td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.type }}</td>
+          <td>{{ book.releaseDate | date: 'shortDate' }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteBook(book)">
+              Usuń
+            </button>
+            <button class="btn btn-warning">Edytuj</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <form
+    class="form-horizontal"
+    #bookForm="ngForm"
+    (ngSubmit)="onSubmit(bookForm.value)"
+  >
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">ID</label>
+      <div class="col-sm-5">
+        <input
+          type="text"
+          class="form-control"
+          name="id"
+          placeholder="id"
+          ngModel
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Tytuł</label>
+      <div class="col-sm-5">
+        <input
+          type="text"
+          class="form-control"
+          name="tytul"
+          placeholder="Tytuł"
+          ngModel
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Autor</label>
+      <div class="col-sm-5">
+        <input
+          type="text"
+          class="form-control"
+          name="autor"
+          placeholder="Autor"
+          ngModel
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Gatunek</label>
+      <div class="col-sm-5">
+        <input
+          type="text"
+          class="form-control"
+          name="gatunek"
+          placeholder="Gatunek"
+          ngModel
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="pwd">Data wydania</label>
+      <div class="col-sm-5">
+        <input
+          type="date"
+          class="form-control"
+          name="data"
+          placeholder="Data"
+          ngModel
+        />
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-5">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
