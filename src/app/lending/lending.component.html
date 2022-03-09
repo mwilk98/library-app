@@ -1,6 +1,6 @@
 <div class="container h-100 d-flex justify-content-center">
   <h1 class="text-center">Wypożyczenia</h1>
-  <button class="btn btn-primary" (click)="onShowForm()">Dodaj</button>
+  <button pButton (click)="onShowForm()">Dodaj</button>
   <div class="table-responsive">
     <table class="table">
       <thead>
@@ -15,22 +15,25 @@
       </thead>
       <tbody>
         <tr *ngFor="let lend of lending">
-          <td>{{ lend.id }}</td>
-          <td>{{ lend.idBook }}</td>
-          <td>{{ lend.idStudent }}</td>
-          <td>{{ lend.lendingDate | date: "shortDate" }}</td>
+          <td *ngIf="lend.id === EditRowID"><input type="text" [(ngModel)]="lend.id"></td>
+          <td *ngIf="lend.id !== EditRowID" (click)="Edit(lend.id)"> {{ lend.id }}</td>
+          <td *ngIf="lend.id === EditRowID"><input type="text" [(ngModel)]="lend.idBook"></td>
+          <td *ngIf="lend.id !== EditRowID" (click)="Edit(lend.id)"> {{ lend.idBook }}</td>
+          <td *ngIf="lend.id === EditRowID"><input type="text" [(ngModel)]="lend.idStudent"></td>
+          <td *ngIf="lend.id !== EditRowID" (click)="Edit(lend.id)"> {{ lend.idStudent }}</td>
+          <td *ngIf="lend.id === EditRowID"><input type="date" [(ngModel)]="lend.lendingDate "></td>
+          <td *ngIf="lend.id !== EditRowID" (click)="Edit(lend.id)"> {{ lend.lendingDate | date: "shortDate" }}</td>
           <td *ngIf="lend.status; else elseBlock">
             Nie oddano
-            <button class="btn btn-success" (click)="changeStatus(lend)">
+            <button pButton class="p-button-success" (click)="changeStatus(lend)">
               Oddaj
             </button>
           </td>
           <ng-template #elseBlock> <td>Oddano</td></ng-template>
           <td>
-            <button class="btn btn-danger" (click)="deleteBook(lend)">
+            <button pButton class="p-button-danger" (click)="deleteBook(lend)">
               Usuń
             </button>
-            <button class="btn btn-warning">Edytuj</button>
           </td>
         </tr>
       </tbody>
@@ -90,7 +93,7 @@
     </div>
     <div class="form-group">
       <div class="col-sm-offset-7 col-sm-5">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button pButton class="p-button-success" type="submit" >Submit</button>
       </div>
     </div>
   </form>

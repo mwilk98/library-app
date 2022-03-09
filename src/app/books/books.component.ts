@@ -10,6 +10,7 @@ export class BooksComponent implements OnInit {
   constructor (private shared: LendingService) {}
 
   formVisible = false;
+  EditRowID: string = '';
   
   public books: Array<Book> = [
     { id: '1', title: 'title 1', author: 'author 1', type: 'gatunek 1', releaseDate: new Date() },
@@ -33,5 +34,9 @@ export class BooksComponent implements OnInit {
 
   ngOnInit(): void {
     this.shared.setBook(this.books);
+  }
+
+  Edit(val:string) {
+    this.EditRowID = val;
   }
 }

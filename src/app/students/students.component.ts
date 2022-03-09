@@ -7,10 +7,12 @@ import { Student } from './student.model';
   templateUrl: './students.component.html',
 })
 export class StudentsComponent {
-  constructor (private shared: LendingService) {}
+  constructor(private shared: LendingService) {}
 
   formVisible = false;
-  
+  ShowEditTable = false;
+  EditRowID: string = '';
+
   public students: Array<Student> = [
     { id: '1', name: 'name 1', surname: 'surname 1', age: 11, class: '1a' },
     { id: '2', name: 'name 2', surname: 'surname 2', age: 12, class: '1b' },
@@ -26,8 +28,12 @@ export class StudentsComponent {
     this.students.push(data);
   }
 
-  onShowForm(){
-    this.formVisible=!this.formVisible;
+  onShowForm() {
+    this.formVisible = !this.formVisible;
+  }
+
+  Edit(val:string) {
+    this.EditRowID = val;
   }
 
   ngOnInit(): void {

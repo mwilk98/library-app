@@ -16,6 +16,7 @@ export class LendingComponent implements OnInit {
   sharedBooks: Array<Book> = [];
   sharedStudents: Array<Student> = [];
   avalibleBooks: Array<Book> = [];
+  EditRowID: string = '';
 
   public lending: Array<Lending> = [
     { id: '1', idBook: '1', idStudent: '1', lendingDate: new Date(), status: true },
@@ -46,6 +47,10 @@ export class LendingComponent implements OnInit {
 
   onShowForm(){
     this.formVisible=!this.formVisible;
+  }
+
+  Edit(val:string) {
+    this.EditRowID = val;
   }
 
   ngOnInit(): void {

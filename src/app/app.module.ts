@@ -8,10 +8,11 @@ import { AppComponent } from './app.component';
 
 import { HeaderComponent } from './header/header.component';
 import { LendingComponent } from './lending/lending.component';
+import {ButtonModule} from 'primeng/button';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, routingComponents, LendingComponent],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ButtonModule],
   providers: [],
   bootstrap: [AppComponent],
 })
