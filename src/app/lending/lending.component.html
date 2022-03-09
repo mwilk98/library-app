@@ -57,7 +57,7 @@
       <div class="col-sm-5">
         <select name="idBook" ngModel>
           <option value="" disabled>Id ksiązki</option>
-          <option *ngFor="let state of sharedBooks" [ngValue]="state.id">
+          <option *ngFor="let state of avalibleBooks" [ngValue]="state.id">
             {{ state.id }}
           </option>
         </select>
