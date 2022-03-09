@@ -1,5 +1,6 @@
 <div class="container h-100 d-flex justify-content-center">
   <h1 class="text-center">Wypożyczenia</h1>
+  <button class="btn btn-primary" (click)="onShowForm()">Dodaj</button>
   <div class="table-responsive">
     <table class="table">
       <thead>
@@ -35,7 +36,8 @@
       </tbody>
     </table>
   </div>
-  <form
+  <div *ngIf="formVisible">
+    <form
     class="form-horizontal"
     #bookForm="ngForm"
     (ngSubmit)="onSubmit(bookForm.value)"
@@ -93,3 +95,5 @@
     </div>
   </form>
 </div>
+  </div>
+  

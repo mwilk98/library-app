@@ -8,6 +8,8 @@ import { Book } from './book.model';
 })
 export class BooksComponent implements OnInit {
   constructor (private shared: LendingService) {}
+
+  formVisible = false;
   
   public books: Array<Book> = [
     { id: '1', title: 'title 1', author: 'author 1', type: 'gatunek 1', releaseDate: new Date() },
@@ -23,6 +25,10 @@ export class BooksComponent implements OnInit {
 
   onSubmit(data: Book) {
     this.books.push(data);
+  }
+
+  onShowForm(){
+    this.formVisible=!this.formVisible;
   }
 
   ngOnInit(): void {

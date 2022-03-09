@@ -8,6 +8,8 @@ import { Student } from './student.model';
 })
 export class StudentsComponent {
   constructor (private shared: LendingService) {}
+
+  formVisible = false;
   
   public students: Array<Student> = [
     { id: '1', name: 'name 1', surname: 'surname 1', age: 11, class: '1a' },
@@ -22,6 +24,10 @@ export class StudentsComponent {
 
   onSubmit(data: Student) {
     this.students.push(data);
+  }
+
+  onShowForm(){
+    this.formVisible=!this.formVisible;
   }
 
   ngOnInit(): void {

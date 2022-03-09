@@ -1,6 +1,7 @@
 <div class="container h-100 d-flex justify-content-center">
-<h1 class="text-center">Uczniowie</h1>
-<div class="table-responsive">
+  <h1 class="text-center">Uczniowie</h1>
+  <button class="btn btn-primary" (click)="onShowForm()">Dodaj</button>
+  <div class="table-responsive">
     <table class="table">
       <thead>
         <tr>
@@ -31,76 +32,77 @@
       </tbody>
     </table>
   </div>
-
-  <form
-    class="form-horizontal"
-    #studentForm="ngForm"
-    (ngSubmit)="onSubmit(studentForm.value)"
-  >
-    <div class="form-group">
-      <label class="control-label col-sm-3" for="pwd">ID</label>
-      <div class="col-sm-5">
-        <input
-          type="text"
-          class="form-control"
-          name="id"
-          placeholder="id"
-          ngModel
-        />
+  <div *ngIf="formVisible">
+    <form
+      class="form-horizontal"
+      #studentForm="ngForm"
+      (ngSubmit)="onSubmit(studentForm.value)"
+    >
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">ID</label>
+        <div class="col-sm-5">
+          <input
+            type="text"
+            class="form-control"
+            name="id"
+            placeholder="id"
+            ngModel
+          />
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-3" for="pwd">Imie</label>
-      <div class="col-sm-5">
-        <input
-          type="text"
-          class="form-control"
-          name="name"
-          placeholder="Imie"
-          ngModel
-        />
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Imie</label>
+        <div class="col-sm-5">
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            placeholder="Imie"
+            ngModel
+          />
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-3" for="pwd">Nazwisko</label>
-      <div class="col-sm-5">
-        <input
-          type="text"
-          class="form-control"
-          name="surname"
-          placeholder="Nazwisko"
-          ngModel
-        />
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Nazwisko</label>
+        <div class="col-sm-5">
+          <input
+            type="text"
+            class="form-control"
+            name="surname"
+            placeholder="Nazwisko"
+            ngModel
+          />
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-3" for="pwd">Wiek</label>
-      <div class="col-sm-5">
-        <input
-          type="number"
-          class="form-control"
-          name="age"
-          placeholder="Wiek"
-          ngModel
-        />
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Wiek</label>
+        <div class="col-sm-5">
+          <input
+            type="number"
+            class="form-control"
+            name="age"
+            placeholder="Wiek"
+            ngModel
+          />
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-3" for="pwd">Klasa</label>
-      <div class="col-sm-5">
-        <input
-          type="text"
-          class="form-control"
-          name="class"
-          placeholder="Klasa"
-          ngModel
-        />
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Klasa</label>
+        <div class="col-sm-5">
+          <input
+            type="text"
+            class="form-control"
+            name="class"
+            placeholder="Klasa"
+            ngModel
+          />
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-7 col-sm-5">
-        <button type="submit" class="btn btn-primary">Dodaj</button>
+      <div class="form-group">
+        <div class="col-sm-offset-7 col-sm-5">
+          <button type="submit" class="btn btn-primary">Dodaj</button>
+        </div>
       </div>
-    </div>
-  </form>
-</div>  
+    </form>
+  </div>
+</div>

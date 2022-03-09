@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../books/book.model';
 import { Student } from '../students/student.model';
-import { Lending } from './lending.model';
+import { Lending } from './domain-model/lending.model';
 import { LendingService } from './lending.service';
 
 @Component({
@@ -10,6 +10,8 @@ import { LendingService } from './lending.service';
 })
 export class LendingComponent implements OnInit {
   constructor(private shared: LendingService) {}
+
+  formVisible = false;
 
   sharedBooks: Array<Book> = [];
   sharedStudents: Array<Student> = [];
@@ -40,6 +42,10 @@ export class LendingComponent implements OnInit {
         this.avalibleBooks.push(this.sharedBooks[i]);
       }
     }
+  }
+
+  onShowForm(){
+    this.formVisible=!this.formVisible;
   }
 
   ngOnInit(): void {
