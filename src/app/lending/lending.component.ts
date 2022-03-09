@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { BookStoreService } from '../books/book-store.service';
 import { Book } from '../books/book.model';
+import { StudentStoreService } from '../students/student-store.service';
 import { Student } from '../students/student.model';
 import { Lending } from './domain-model/lending.model';
 import { LendingStoreService } from './lending-store.service';
@@ -12,7 +14,9 @@ import { LendingService } from './lending.service';
 export class LendingComponent implements OnInit {
   constructor(
     private shared: LendingService,
-    private lendingStoreService: LendingStoreService
+    private lendingStoreService: LendingStoreService,
+    private studentStoreService: StudentStoreService,
+    private booksStoreService: BookStoreService
   ) {}
 
   formVisible = false;
@@ -61,10 +65,16 @@ export class LendingComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.lendingStoreService.currentLending.subscribe((lending) => (this.lending = lending));
-    
-    this.shared.sharedBooks = this.shared.getBook();
-    this.sharedStudents = this.shared.getStudent();
+    this.lendingStoreService.currentLending.subscribe(
+      (lending) => (this.lending = lending)
+    );
+    this.studentStoreService.currentStudents.subscribe(
+      (student) => (this.sharedStudents = student)
+    );
+    this.booksStoreService.currentBooks.subscribe(
+      (book) => (this.shared.sharedBooks = book)
+    );
+
     this.shared.setLending(this.lending);
 
     this.shared.sharedBooks.forEach((value: Book) => {
