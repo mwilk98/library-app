@@ -1,7 +1,7 @@
 <div class="container h-100 d-flex justify-content-center">
   <h1 class="text-center">Wypożyczenia</h1>
-  <button pButton (click)="onShowForm()">Dodaj</button>
-  <div class="table-responsive">
+  <button pButton (click)="onShowForm()">{{buttonFormText}}</button>
+  <div class="table-responsive" *ngIf="!formVisible">
     <table class="table">
       <thead>
         <tr>
@@ -31,7 +31,7 @@
           </td>
           <ng-template #elseBlock> <td>Oddano</td></ng-template>
           <td>
-            <button pButton class="p-button-danger" (click)="deleteBook(lend)">
+            <button pButton class="p-button-danger" (click)="deleteLending(lend)">
               Usuń
             </button>
           </td>

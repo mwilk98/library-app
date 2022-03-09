@@ -12,6 +12,7 @@ export class StudentsComponent {
   formVisible = false;
   ShowEditTable = false;
   EditRowID: string = '';
+  buttonFormText='Dodaj';
 
   public students: Array<Student> = [
     { id: '1', name: 'name 1', surname: 'surname 1', age: 11, class: '1a' },
@@ -21,15 +22,22 @@ export class StudentsComponent {
   ];
 
   deleteStudent(student: Student) {
-    this.students = this.students.filter((item) => item !== student);
+    
+    for (var i = 0; i < this.shared.sharedLending.length; i++) {
+      if (this.shared.sharedLending[i].id === student.id && !this.shared.sharedLending[i].status) {
+        this.students = this.students.filter((item) => item !== student);
+      }
+    }
   }
 
   onSubmit(data: Student) {
     this.students.push(data);
+    alert("Dodano ucznia");
   }
 
   onShowForm() {
     this.formVisible = !this.formVisible;
+    this.buttonFormText = this.formVisible ? 'Wróć' : 'Dodaj';
   }
 
   Edit(val:string) {
@@ -38,5 +46,6 @@ export class StudentsComponent {
 
   ngOnInit(): void {
     this.shared.setStudent(this.students);
+    this.shared.sharedLending = this.shared.getLending();
   }
 }

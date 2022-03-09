@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from '../books/book.model';
 import { Student } from '../students/student.model';
 import { Lending } from './domain-model/lending.model';
+import { LendingStoreService } from './lending-store.service';
 import { LendingService } from './lending.service';
 
 @Component({
@@ -9,60 +10,67 @@ import { LendingService } from './lending.service';
   templateUrl: './lending.component.html',
 })
 export class LendingComponent implements OnInit {
-  constructor(private shared: LendingService) {}
+  constructor(
+    private shared: LendingService,
+    private lendingStoreService: LendingStoreService
+  ) {}
 
   formVisible = false;
-
-  sharedBooks: Array<Book> = [];
   sharedStudents: Array<Student> = [];
   avalibleBooks: Array<Book> = [];
   EditRowID: string = '';
+  buttonFormText = 'Dodaj';
 
-  public lending: Array<Lending> = [
-    { id: '1', idBook: '1', idStudent: '1', lendingDate: new Date(), status: true },
-    { id: '2', idBook: '2', idStudent: '2', lendingDate: new Date(), status: true },
-    { id: '3', idBook: '3', idStudent: '3', lendingDate: new Date(), status: false },
-    { id: '4', idBook: '4', idStudent: '4', lendingDate: new Date(), status: false },
-    { id: '5', idBook: '5', idStudent: '5', lendingDate: new Date(), status: true },
-  ];
+  public lending: Array<Lending> = [];
 
-
-  deleteBook(lend: Lending) {
+  deleteLending(lend: Lending) {
+    this.changeStatus(lend);
     this.lending = this.lending.filter((item) => item !== lend);
+    this.lendingStoreService.changeLending(this.lending);
   }
 
-  onSubmit(data: Lending) {
-    data.status = true;
-    this.lending.push(data);
+  onSubmit(lend: Lending) {
+    lend.status = true;
+    this.lending.push(lend);
+    alert('Dodano wypożyczenie');
   }
 
-  changeStatus(data: Lending) {
-    data.status = !data.status;
-    for (var i = 0; i < this.sharedBooks.length; i++) {
-      if (this.sharedBooks[i].id === data.id) {
-        this.avalibleBooks.push(this.sharedBooks[i]);
+  changeStatus(lend: Lending) {
+    lend.status = !lend.status;
+    this.addAvalibleBook(lend);
+  }
+  addAvalibleBook(lend: Lending) {
+    this.shared.sharedBooks.forEach((value: Book) => {
+      if (!this.shared.checkLendingBook(value.id) && value.id === lend.idBook) {
+        this.avalibleBooks.push(value);
       }
-    }
+    });
   }
 
-  onShowForm(){
-    this.formVisible=!this.formVisible;
+  onShowForm() {
+    this.formVisible = !this.formVisible;
+    this.buttonFormText = this.formVisible ? 'Wróć' : 'Dodaj';
   }
 
-  Edit(val:string) {
+  Edit(val: string) {
     this.EditRowID = val;
   }
 
+  newMessage() {
+    this.lendingStoreService.changeLending(this.lending);
+  }
+
   ngOnInit(): void {
-    this.sharedBooks = this.shared.getBook();
+    this.lendingStoreService.currentLending.subscribe((lending) => (this.lending = lending));
+    
+    this.shared.sharedBooks = this.shared.getBook();
     this.sharedStudents = this.shared.getStudent();
-    for (var i = 0; i < this.sharedBooks.length; i++) {
-      if (
-        this.sharedBooks[i].id === this.lending[i].idBook &&
-        !this.lending[i].status
-      ) {
-        this.avalibleBooks.push(this.sharedBooks[i]);
+    this.shared.setLending(this.lending);
+
+    this.shared.sharedBooks.forEach((value: Book) => {
+      if (!this.shared.checkLendingBook(value.id)) {
+        this.avalibleBooks.push(value);
       }
-    }
+    });
   }
 }

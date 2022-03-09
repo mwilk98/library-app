@@ -7,10 +7,13 @@ import { Book } from './book.model';
   templateUrl: './books.component.html'
 })
 export class BooksComponent implements OnInit {
-  constructor (private shared: LendingService) {}
+  constructor (
+    private lendingSrv: LendingService,
+  ) {}
 
   formVisible = false;
   EditRowID: string = '';
+  buttonFormText: string = 'Dodaj'
   
   public books: Array<Book> = [
     { id: '1', title: 'title 1', author: 'author 1', type: 'gatunek 1', releaseDate: new Date() },
@@ -20,23 +23,31 @@ export class BooksComponent implements OnInit {
     { id: '5', title: 'title 5', author: 'author 5', type: 'gatunek 5', releaseDate: new Date() }
   ];
 
-  deleteBook(book: Book) {
-    this.books = this.books.filter((item) => item !== book);
+  deleteBook(bookId: string): void {
+    if (this.lendingSrv.checkLendingBook(bookId)) {
+      alert('istnieje wypożyczenie nie można usunac ksiazki');
+      return;
+    }
+    this.books = this.books.filter(book => book.id !== bookId);
   }
 
   onSubmit(data: Book) {
     this.books.push(data);
+    alert("Dodano książkę");
   }
 
-  onShowForm(){
-    this.formVisible=!this.formVisible;
+  onShowForm() {
+    this.formVisible = !this.formVisible;
+    this.buttonFormText = this.formVisible ? 'Wróć' : 'Dodaj';
   }
 
   ngOnInit(): void {
-    this.shared.setBook(this.books);
+    this.lendingSrv.setBook(this.books);
+    this.lendingSrv.sharedLending = this.lendingSrv.getLending();
   }
 
   Edit(val:string) {
     this.EditRowID = val;
+    console.log("zmieniono")
   }
 }

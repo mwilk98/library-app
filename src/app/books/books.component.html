@@ -1,9 +1,15 @@
 <div class="container h-100 d-flex justify-content-center">
   <h1 class="text-center">Książki</h1>
-  <button pButton type="button" (click)="onShowForm()">Dodaj</button>
-  <div class="table-responsive">
-    <table class="table">
-      <thead>
+  <button pButton type="button" (click)="onShowForm()">
+    {{ buttonFormText }}
+  </button>
+  <div class="table-responsive" *ngIf="!formVisible">
+    <p-table
+      [value]="books"
+      styleClass="p-datatable-lg"
+      responsiveLayout="scroll"
+    >
+      <ng-template pTemplate="header">
         <tr>
           <th>#</th>
           <th>Imie</th>
@@ -12,101 +18,164 @@
           <th>Klasa</th>
           <th>Opcje</th>
         </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let book of books">
-          <td *ngIf="book.id === EditRowID"><input type="text" [(ngModel)]="book.id"></td>
-          <td *ngIf="book.id !== EditRowID" (click)="Edit(book.id)"> {{ book.id }}</td>
-          <td *ngIf="book.id === EditRowID"><input type="text" [(ngModel)]="book.title"></td>
-          <td *ngIf="book.id !== EditRowID" (click)="Edit(book.id)"> {{ book.title }}</td>
-          <td *ngIf="book.id === EditRowID"><input type="text" [(ngModel)]="book.author"></td>
-          <td *ngIf="book.id !== EditRowID" (click)="Edit(book.id)"> {{ book.author }}</td>
-          <td *ngIf="book.id === EditRowID"><input type="text" [(ngModel)]="book.type"></td>
-          <td *ngIf="book.id !== EditRowID" (click)="Edit(book.id)"> {{ book.type }}</td>
-          <td *ngIf="book.id === EditRowID"><input type="date" [(ngModel)]="book.releaseDate"></td>
-          <td *ngIf="book.id !== EditRowID" (click)="Edit(book.id)"> {{ book.releaseDate | date: "shortDate" }}</td>
-          <td></td>
+      </ng-template>
+      <ng-template pTemplate="body" let-book>
+        <tr>
+          <td *ngIf="book.id === EditRowID">
+            <input type="text" [(ngModel)]="book.id" />
+            <button
+              pButton
+              type="button"
+              class="p-button-warning"
+              (click)="Edit(book.id)"
+            >
+              Zmień
+            </button>
+          </td>
+          <td *ngIf="book.id !== EditRowID" (click)="Edit(book.id)">
+            {{ book.id }}
+          </td>
+          <td *ngIf="book.id === EditRowID">
+            <input type="text" [(ngModel)]="book.title" />
+            <button
+              pButton
+              type="button"
+              class="p-button-warning"
+              (click)="Edit(book.id)"
+            >
+              Zmień
+            </button>
+          </td>
+          <td *ngIf="book.id !== EditRowID" (click)="Edit(book.id)">
+            {{ book.title }}
+          </td>
+          <td *ngIf="book.id === EditRowID">
+            <input type="text" [(ngModel)]="book.author" />
+            <button
+              pButton
+              type="button"
+              class="p-button-warning"
+              (click)="Edit(book.id)"
+            >
+              Zmień
+            </button>
+          </td>
+          <td *ngIf="book.id !== EditRowID" (click)="Edit(book.id)">
+            {{ book.author }}
+          </td>
+          <td *ngIf="book.id === EditRowID">
+            <input type="text" [(ngModel)]="book.type" />
+            <button
+              pButton
+              type="button"
+              class="p-button-warning"
+              (click)="Edit(book.id)"
+            >
+              Zmień
+            </button>
+          </td>
+          <td *ngIf="book.id !== EditRowID" (click)="Edit(book.id)">
+            {{ book.type }}
+          </td>
+          <td *ngIf="book.id === EditRowID">
+            <input type="date" [(ngModel)]="book.releaseDate" />
+            <button
+              pButton
+              type="button"
+              class="p-button-warning"
+              (click)="Edit(book.id)"
+            >
+              Zmień
+            </button>
+          </td>
+          <td *ngIf="book.id !== EditRowID" (click)="Edit(book.id)">
+            {{ book.releaseDate | date: "shortDate" }}
+          </td>
           <td>
-            <button pButton type="button" class="p-button-danger" (click)="deleteBook(book)">
+            <button
+              pButton
+              type="button"
+              class="p-button-danger"
+              (click)="deleteBook(book.id)"
+            >
               Usuń
             </button>
           </td>
         </tr>
-      </tbody>
-    </table>
+      </ng-template>
+    </p-table>
   </div>
-  <div *ngIf="formVisible;">
+  <div *ngIf="formVisible">
     <form
-    class="form-horizontal"
-    #bookForm="ngForm"
-    (ngSubmit)="onSubmit(bookForm.value)"
-  >
-    <div class="form-group">
-      <label class="control-label col-sm-3" for="pwd">ID</label>
-      <div class="col-sm-5">
-        <input
-          type="text"
-          class="form-control"
-          name="id"
-          placeholder="id"
-          ngModel
-        />
+      class="form-horizontal"
+      #bookForm="ngForm"
+      (ngSubmit)="onSubmit(bookForm.value)"
+    >
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">ID</label>
+        <div class="col-sm-5">
+          <input
+            type="text"
+            class="form-control"
+            name="id"
+            placeholder="id"
+            ngModel
+          />
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-3" for="pwd">Tytuł</label>
-      <div class="col-sm-5">
-        <input
-          type="text"
-          class="form-control"
-          name="title"
-          placeholder="Tytuł"
-          ngModel
-        />
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Tytuł</label>
+        <div class="col-sm-5">
+          <input
+            type="text"
+            class="form-control"
+            name="title"
+            placeholder="Tytuł"
+            ngModel
+          />
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-3" for="pwd">Autor</label>
-      <div class="col-sm-5">
-        <input
-          type="text"
-          class="form-control"
-          name="author"
-          placeholder="Autor"
-          ngModel
-        />
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Autor</label>
+        <div class="col-sm-5">
+          <input
+            type="text"
+            class="form-control"
+            name="author"
+            placeholder="Autor"
+            ngModel
+          />
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-3" for="pwd">Gatunek</label>
-      <div class="col-sm-5">
-        <input
-          type="text"
-          class="form-control"
-          name="type"
-          placeholder="Gatunek"
-          ngModel
-        />
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Gatunek</label>
+        <div class="col-sm-5">
+          <input
+            type="text"
+            class="form-control"
+            name="type"
+            placeholder="Gatunek"
+            ngModel
+          />
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-3" for="pwd">Data wydania</label>
-      <div class="col-sm-5">
-        <input
-          type="date"
-          class="form-control"
-          name="releaseDate"
-          placeholder="Data"
-          ngModel
-        />
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Data wydania</label>
+        <div class="col-sm-5">
+          <input
+            type="date"
+            class="form-control"
+            name="releaseDate"
+            placeholder="Data"
+            ngModel
+          />
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-7 col-sm-5">
-        <button pButton type="submit" class="p-button-success">Dodaj</button>
+      <div class="form-group">
+        <div class="col-sm-offset-7 col-sm-5">
+          <button pButton type="submit" class="p-button-success">Dodaj</button>
+        </div>
       </div>
-    </div>
-  </form>
-</div>
-
+    </form>
   </div>
+</div>
