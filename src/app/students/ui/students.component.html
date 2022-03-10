@@ -76,9 +76,6 @@
     <form class="form-horizontal" #studentEditForm="ngForm"(ngSubmit)="onEdit(studentEdited,studentEditForm.value)">
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">ID: {{studentEdited.id}}</label>
-        <div class="col-sm-5">
-          <input type="text" class="form-control" name="id" placeholder="id" ngModel/>
-        </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Imie: {{studentEdited.name}}</label>
@@ -106,7 +103,7 @@
       </div>
       <div class="form-group">
         <div class="col-sm-offset-7 col-sm-5">
-          <button pButton type="submit" class="p-button-success">Dodaj</button>
+          <button pButton type="submit" class="p-button-success">Edytuj</button>
           <button pButton class="p-button-danger" (click)="onShowEdit(studentEdited)">Wróć</button>
         </div>
       </div>

@@ -29,6 +29,7 @@ export class LendingStoreService {
     }
 
     updateLending(idLending: string, newLending: Lending): Lending {
+        newLending.id=idLending;
         this.lendings[idLending] = newLending;
         alert('Zaktualizowano wypożyczenie');
         return newLending;

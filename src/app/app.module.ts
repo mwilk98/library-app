@@ -7,7 +7,7 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HeaderComponent } from './header/header.component';
-import { LendingComponent } from './lending/lending.component';
+import { LendingComponent } from './lending/components/lending.component';
 import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
 
