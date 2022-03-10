@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Student, StudentStore } from '../domain-models/student.model';
 @Injectable({ providedIn: 'root' })
 export class StudentStoreService {
-  private students : StudentStore ={
+  private students : StudentStore = {
     '0': { id: '0', name: 'name 1', surname: 'surname 1', age: 11, class: '1a' },
     '1': { id: '1', name: 'name 2', surname: 'surname 2', age: 12, class: '1b' },
     '2': { id: '2', name: 'name 3', surname: 'surname 3', age: 13, class: '1c' },

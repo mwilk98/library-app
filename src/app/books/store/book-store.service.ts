@@ -10,6 +10,14 @@ export class BookStoreService {
         '4': { id: '4', title: 'title 5', author: 'author 5', type: 'gatunek 5', releaseDate: new Date() }
     };
 
+    getBook(bookId: string): Book {
+        const bookObj = Object.values(this.books).find((book) => book.id === bookId);
+        if(bookObj === undefined){
+            throw new Error(`Nie znaleziono wypożyczenia o podanym id: ${bookId}`);
+        }
+        return bookObj;
+    }
+
     getBooks(): Array<Book> {
         return Object.values(this.books);
     }

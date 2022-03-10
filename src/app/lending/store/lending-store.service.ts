@@ -12,7 +12,7 @@ export class LendingStoreService {
     getLending(lendingId: string): Lending {
         const lendingObj = Object.values(this.lendings).find((lending) => lending.id === lendingId);
         if(lendingObj === undefined){
-            throw new Error('Nie znaleziono lendingu o podanym id : ' + lendingId);
+            throw new Error(`Nie znaleziono wypożyczenia o podanym id: ${lendingId}`);
         }
         return lendingObj;
     }

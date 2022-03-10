@@ -1,12 +1,11 @@
 import { Component} from '@angular/core';
-import { BookStoreService } from './store/book-store.service';
-import { Book } from './domain-model/book.model';
-import { LendingStoreService } from '../lending/store/lending-store.service';
-import { LendingService } from '../services/lending.service';
+import { BookStoreService } from '../store/book-store.service';
+import { Book } from '../domain-model/book.model';
+import { LendingService } from '../../lending/services/lending.service';
 
 @Component({
   selector: 'app-books',
-  templateUrl: './books.component.html',
+  templateUrl: '../ui/books.component.html',
 })
 export class BooksComponent{
   constructor(
@@ -15,8 +14,10 @@ export class BooksComponent{
   ) {
   }
 
-  formVisible = false;
+  formAddVisible = false;
+  formEditVisible = false;
   EditRowID: string = '';
+  bookEditId: string = '';
   buttonFormText: string = 'Dodaj';
 
   deleteBook(bookId: string): void {
@@ -31,9 +32,18 @@ export class BooksComponent{
     this.bookStoreSrv.addBook(data);
   }
 
+  onEdit(book: Book, data: Book): void {
+    this.bookStoreSrv.updateBook(book.id, data);
+  }
+  
+  onShowEdit(book: Book): void {
+    this.bookEditId = book.id;
+    this.formEditVisible = !this.formEditVisible;
+  }
+
   onShowForm(): void {
-    this.formVisible = !this.formVisible;
-    this.buttonFormText = this.formVisible ? 'Wróć' : 'Dodaj';
+    this.formAddVisible = !this.formAddVisible;
+    this.buttonFormText = this.formAddVisible ? 'Wróć' : 'Dodaj';
   }
 
   edit(val: string) {

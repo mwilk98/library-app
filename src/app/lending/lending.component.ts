@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { BookStoreService } from '../books/store/book-store.service';
-import { LendingService } from '../services/lending.service';
+import { LendingService } from './services/lending.service';
 import { StudentStoreService } from '../students/store/student-store.service';
 import { Lending } from './domain-model/lending.model';
 import { LendingStoreService } from './store/lending-store.service';
