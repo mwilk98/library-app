@@ -12,7 +12,7 @@
   </button>
   <div class="table-responsive" *ngIf="!formVisible">
     <p-table
-      [value]="lending"
+      [value]="this.lendingStoreSrv.getLending()"
       styleClass="p-datatable-lg"
       responsiveLayout="scroll"
     >
@@ -26,70 +26,70 @@
           <th>Opcje</th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-lend>
+      <ng-template pTemplate="body" let-lending>
         <tr>
-          <td *ngIf="lend.id === EditRowID">
-            <input type="text" [(ngModel)]="lend.id" />
+          <td *ngIf="lending.id === EditRowID">
+            <input type="text" [(ngModel)]="lending.id" />
             <button
               pButton
               type="button"
               class="p-button-warning"
-              (click)="Edit(lend.id)"
+              (click)="Edit(lending.id)"
             >
               Zmień
             </button>
           </td>
-          <td *ngIf="lend.id !== EditRowID" (click)="Edit(lend.id)">
-            {{ lend.id }}
+          <td *ngIf="lending.id !== EditRowID" (click)="Edit(lending.id)">
+            {{ lending.id }}
           </td>
-          <td *ngIf="lend.id === EditRowID">
-            <input type="text" [(ngModel)]="lend.idBook" />
+          <td *ngIf="lending.id === EditRowID">
+            <input type="text" [(ngModel)]="lending.idBook" />
             <button
               pButton
               type="button"
               class="p-button-warning"
-              (click)="Edit(lend.id)"
+              (click)="Edit(lending.id)"
             >
               Zmień
             </button>
           </td>
-          <td *ngIf="lend.id !== EditRowID" (click)="Edit(lend.id)">
-            {{ lend.idBook }}
+          <td *ngIf="lending.id !== EditRowID" (click)="Edit(lending.id)">
+            {{ lending.idBook }}
           </td>
-          <td *ngIf="lend.id === EditRowID">
-            <input type="text" [(ngModel)]="lend.idStudent" />
+          <td *ngIf="lending.id === EditRowID">
+            <input type="text" [(ngModel)]="lending.idStudent" />
             <button
               pButton
               type="button"
               class="p-button-warning"
-              (click)="Edit(lend.id)"
+              (click)="Edit(lending.id)"
             >
               Zmień
             </button>
           </td>
-          <td *ngIf="lend.id !== EditRowID" (click)="Edit(lend.id)">
-            {{ lend.idStudent }}
+          <td *ngIf="lending.id !== EditRowID" (click)="Edit(lending.id)">
+            {{ lending.idStudent }}
           </td>
-          <td *ngIf="lend.id === EditRowID">
-            <input type="date" [(ngModel)]="lend.lendingDate" />
+          <td *ngIf="lending.id === EditRowID">
+            <input type="date" [(ngModel)]="lending.lendingDate" />
             <button
               pButton
               type="button"
               class="p-button-warning"
-              (click)="Edit(lend.id)"
+              (click)="Edit(lending.id)"
             >
               Zmień
             </button>
           </td>
-          <td *ngIf="lend.id !== EditRowID" (click)="Edit(lend.id)">
-            {{ lend.lendingDate | date: "shortDate" }}
+          <td *ngIf="lending.id !== EditRowID" (click)="Edit(lending.id)">
+            {{ lending.lendingDate | date: "shortDate" }}
           </td>
-          <td *ngIf="lend.status; else elseBlock">
+          <td *ngIf="lending.status; else elseBlock">
             Nie oddano
             <button
               pButton
               class="p-button-success"
-              (click)="changeStatus(lend)"
+              (click)="this.lendingStoreSrv.changeLendingStatus(lending)"
             >
               Oddaj
             </button>
@@ -99,7 +99,7 @@
             <button
               pButton
               class="p-button-danger"
-              (click)="deleteLending(lend)"
+              (click)="deleteLending(lending.id)"
             >
               Usuń
             </button>
@@ -131,8 +131,8 @@
         <div class="col-sm-5">
           <select name="idBook" ngModel>
             <option value="" disabled>Id ksiązki</option>
-            <option *ngFor="let state of avalibleBooks" [ngValue]="state.id">
-              {{ state.id }}
+            <option *ngFor="let book of this.bookStoreSrv.getBooks()" [ngValue]="book.id">
+              {{ book.id }}
             </option>
           </select>
         </div>
@@ -142,8 +142,8 @@
         <div class="col-sm-5">
           <select name="idStudent" ngModel>
             <option value="" disabled>Id Ucznia</option>
-            <option *ngFor="let state of sharedStudents" [ngValue]="state.id">
-              {{ state.id }}
+            <option *ngFor="let student of this.studentStoreSrv.getStudents()" [ngValue]="student.id">
+              {{ student.id }}
             </option>
           </select>
         </div>
@@ -156,7 +156,7 @@
           <input
             type="date"
             class="form-control"
-            name="lendingDate"
+            name="lendingingDate"
             placeholder="Gatunek"
             ngModel
           />

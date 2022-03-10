@@ -10,11 +10,11 @@
     (click)="onCancelEdit()"
     *ngIf="EditRowID !== ''"
   >
-    anuluj
+    anulujF
   </button>
   <div class="table-responsive" *ngIf="!formVisible">
     <p-table
-      [value]="books"
+      [value]="this.bookStoreSrv.getBooks()"
       styleClass="p-datatable-lg"
       responsiveLayout="scroll"
     >
@@ -36,12 +36,12 @@
               pButton
               type="button"
               class="p-button-warning"
-              (click)="Edit(book.id)"
+              (click)="edit(book.id)"
             >
               Zmień
             </button>
           </td>
-          <td *ngIf="book.id !== EditRowID" (click)="Edit(book.id)">
+          <td *ngIf="book.id !== EditRowID" (click)="edit(book.id)">
             {{ book.id }}
           </td>
           <td *ngIf="book.id === EditRowID">
@@ -50,12 +50,12 @@
               pButton
               type="button"
               class="p-button-warning"
-              (click)="Edit(book.id)"
+              (click)="edit(book.id)"
             >
               Zmień
             </button>
           </td>
-          <td *ngIf="book.id !== EditRowID" (click)="Edit(book.id)">
+          <td *ngIf="book.id !== EditRowID" (click)="edit(book.id)">
             {{ book.title }}
           </td>
           <td *ngIf="book.id === EditRowID">
@@ -64,12 +64,12 @@
               pButton
               type="button"
               class="p-button-warning"
-              (click)="Edit(book.id)"
+              (click)="edit(book.id)"
             >
               Zmień
             </button>
           </td>
-          <td *ngIf="book.id !== EditRowID" (click)="Edit(book.id)">
+          <td *ngIf="book.id !== EditRowID" (click)="edit(book.id)">
             {{ book.author }}
           </td>
           <td *ngIf="book.id === EditRowID">
@@ -78,12 +78,12 @@
               pButton
               type="button"
               class="p-button-warning"
-              (click)="Edit(book.id)"
+              (click)="edit(book.id)"
             >
               Zmień
             </button>
           </td>
-          <td *ngIf="book.id !== EditRowID" (click)="Edit(book.id)">
+          <td *ngIf="book.id !== EditRowID" (click)="edit(book.id)">
             {{ book.type }}
           </td>
           <td *ngIf="book.id === EditRowID">
@@ -92,12 +92,12 @@
               pButton
               type="button"
               class="p-button-warning"
-              (click)="Edit(book.id)"
+              (click)="edit(book.id)"
             >
               Zmień
             </button>
           </td>
-          <td *ngIf="book.id !== EditRowID" (click)="Edit(book.id)">
+          <td *ngIf="book.id !== EditRowID" (click)="edit(book.id)">
             {{ book.releaseDate | date: "shortDate" }}
           </td>
           <td>

@@ -5,7 +5,7 @@
   </button>
   <div class="table-responsive" *ngIf="!formVisible">
     <p-table
-      [value]="students"
+      [value]="this.studentStoreSrv.getStudents()"
       styleClass="p-datatable-lg"
       responsiveLayout="scroll"
     >
@@ -96,7 +96,7 @@
               pButton
               type="button"
               class="p-button-danger"
-              (click)="deleteStudent(student)"
+              (click)="deleteStudent(student.id)"
             >
               Usuń
             </button>
