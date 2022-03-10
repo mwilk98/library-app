@@ -7,14 +7,14 @@ export class LendingService {
   constructor(readonly lendingStoreSrv: LendingStoreService) {}
 
   changeLendingStatus(lendingId: string, statusValue: boolean): void {
-      // pobierz lending po id
-      // zmień status na statusValue
-      // zaaktualizuj w store ten lending
+      const lendingObj = this.lendingStoreSrv.getLending(lendingId);
+      lendingObj.status = statusValue;
+      this.lendingStoreSrv.updateLending(lendingId, lendingObj);
   }
 
   checkBookIfLent(bookId: string): boolean {
-    return Object.values(this.lendingStoreSrv.getLendings())
+    return this.lendingStoreSrv.getLendings()
       .filter((lending) => lending.idBook === bookId)
-      .find((lend) => lend.status)? true : false;
+      .some((lend) => lend.status);
   }
 }

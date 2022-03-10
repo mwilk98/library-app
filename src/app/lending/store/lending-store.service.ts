@@ -9,6 +9,14 @@ export class LendingStoreService {
     '3': { id: '3', idBook: '3', idStudent: '3', lendingDate: new Date(), status: false },
     '4': { id: '4', idBook: '4', idStudent: '4', lendingDate: new Date(), status: true }
 }
+    getLending(lendingId: string): Lending {
+        const lendingObj = Object.values(this.lendings).find((lending) => lending.id === lendingId);
+        if(lendingObj === undefined){
+            throw new Error('Nie znaleziono lendingu o podanym id : ' + lendingId);
+        }
+        return lendingObj;
+    }
+
     getLendings(): Array<Lending> {
         return Object.values(this.lendings);
     }
