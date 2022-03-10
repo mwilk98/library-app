@@ -6,3 +6,7 @@ export interface Student {
   age: number;
   class: string;
 }
+
+export interface StudentStore {
+  [key: string]: Student;
+}

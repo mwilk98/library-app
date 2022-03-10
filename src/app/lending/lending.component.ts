@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BookStoreService } from '../books/store/book-store.service';
+import { LendingService } from '../services/lending.service';
 import { StudentStoreService } from '../students/store/student-store.service';
 import { Lending } from './domain-model/lending.model';
 import { LendingStoreService } from './store/lending-store.service';
@@ -10,6 +11,7 @@ import { LendingStoreService } from './store/lending-store.service';
 })
 export class LendingComponent{
   constructor(
+    readonly lendingSrv: LendingService,
     readonly lendingStoreSrv: LendingStoreService,
     readonly studentStoreSrv: StudentStoreService,
     readonly bookStoreSrv: BookStoreService

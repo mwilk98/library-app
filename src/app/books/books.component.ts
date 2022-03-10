@@ -1,7 +1,8 @@
 import { Component} from '@angular/core';
 import { BookStoreService } from './store/book-store.service';
-import { Book } from './book.model';
+import { Book } from './domain-model/book.model';
 import { LendingStoreService } from '../lending/store/lending-store.service';
+import { LendingService } from '../services/lending.service';
 
 @Component({
   selector: 'app-books',
@@ -9,7 +10,7 @@ import { LendingStoreService } from '../lending/store/lending-store.service';
 })
 export class BooksComponent{
   constructor(
-    private readonly lendingSrv: LendingStoreService,
+    private readonly lendingSrv: LendingService,
     readonly bookStoreSrv: BookStoreService
   ) {
   }

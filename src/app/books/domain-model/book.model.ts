@@ -6,3 +6,7 @@ export interface Book {
   type: string;
   releaseDate: Date;
 }
+
+export interface BooksStore {
+    [key: string]: Book;
+}

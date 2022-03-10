@@ -6,4 +6,8 @@ export interface Lending {
     lendingDate: Date;
     status: boolean;
   }
+
+export interface LendingStore {
+    [key: string]: Lending;
+  }
   

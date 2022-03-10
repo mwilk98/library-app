@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { StudentStoreService } from './store/student-store.service';
-import { Student } from './student.model';
+import { Student } from './domain-models/student.model';
 
 @Component({
   selector: 'app-students',

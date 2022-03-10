@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Book } from '../book.model';
-
-interface BooksStore {
-    [key: string]: Book;
-}
-
+import { Book, BooksStore } from '../domain-model/book.model';
 @Injectable({ providedIn: 'root' })
 export class BookStoreService {
     private books: BooksStore = {
