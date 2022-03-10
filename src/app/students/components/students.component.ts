@@ -35,17 +35,8 @@ export class StudentsComponent {
     this.formEditVisible = !this.formEditVisible;
   }
 
-
   onShowForm() {
     this.formAddVisible = !this.formAddVisible;
     this.buttonFormText = this.formAddVisible ? 'Wróć' : 'Dodaj';
   } 
-
-  Edit(val: string) {
-    this.EditRowID = val;
-  }
-
-  onCancelEdit() {
-    this.EditRowID = '';
-  }
 }
