@@ -43,6 +43,7 @@ export class LendingComponent implements OnInit {
     lend.status = !lend.status;
     this.addAvalibleBook(lend);
   }
+
   addAvalibleBook(lend: Lending) {
     this.shared.sharedBooks.forEach((value: Book) => {
       if (!this.shared.checkLendingBook(value.id) && value.id === lend.idBook) {
@@ -62,6 +63,10 @@ export class LendingComponent implements OnInit {
 
   newMessage() {
     this.lendingStoreService.changeLending(this.lending);
+  }
+
+  onCancelEdit() {
+    this.EditRowID = '';
   }
 
   ngOnInit(): void {

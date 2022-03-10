@@ -39,6 +39,10 @@ export class StudentsComponent {
     this.EditRowID = val;
   }
 
+  onCancelEdit() {
+    this.EditRowID = '';
+  }
+
   ngOnInit(): void {
     this.studentStoreService.currentStudents.subscribe(
       (student) => (this.students = student)

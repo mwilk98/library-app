@@ -28,12 +28,12 @@ export class BooksComponent implements OnInit {
     this.bookStoreService.changeBooks(this.books);
   }
 
-  onSubmit(data: Book) {
+  onSubmit(data: Book): void {
     this.books.push(data);
     alert('Dodano książkę');
   }
 
-  onShowForm() {
+  onShowForm(): void {
     this.formVisible = !this.formVisible;
     this.buttonFormText = this.formVisible ? 'Wróć' : 'Dodaj';
   }
@@ -45,5 +45,9 @@ export class BooksComponent implements OnInit {
 
   Edit(val: string) {
     this.EditRowID = val;
+  }
+
+  onCancelEdit(){
+    this.EditRowID = '';
   }
 }

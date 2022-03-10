@@ -3,6 +3,15 @@
   <button pButton type="button" (click)="onShowForm()">
     {{ buttonFormText }}
   </button>
+  <button
+    pButton
+    type="button"
+    class="p-button-warning"
+    (click)="onCancelEdit()"
+    *ngIf="EditRowID !== ''"
+  >
+    anuluj
+  </button>
   <div class="table-responsive" *ngIf="!formVisible">
     <p-table
       [value]="books"

@@ -1,9 +1,22 @@
 <div class="container h-100 d-flex justify-content-center">
   <h1 class="text-center">Wypożyczenia</h1>
-  <button pButton (click)="onShowForm()">{{buttonFormText}}</button>
+  <button pButton (click)="onShowForm()">{{ buttonFormText }}</button>
+  <button
+    pButton
+    type="button"
+    class="p-button-warning"
+    (click)="onCancelEdit()"
+    *ngIf="EditRowID !== ''"
+  >
+    anuluj
+  </button>
   <div class="table-responsive" *ngIf="!formVisible">
-    <table class="table">
-      <thead>
+    <p-table
+      [value]="lending"
+      styleClass="p-datatable-lg"
+      responsiveLayout="scroll"
+    >
+      <ng-template pTemplate="header">
         <tr>
           <th>#</th>
           <th>Id Książki</th>
@@ -12,91 +25,148 @@
           <th>Status</th>
           <th>Opcje</th>
         </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let lend of lending">
-          <td *ngIf="lend.id === EditRowID"><input type="text" [(ngModel)]="lend.id"></td>
-          <td *ngIf="lend.id !== EditRowID" (click)="Edit(lend.id)"> {{ lend.id }}</td>
-          <td *ngIf="lend.id === EditRowID"><input type="text" [(ngModel)]="lend.idBook"></td>
-          <td *ngIf="lend.id !== EditRowID" (click)="Edit(lend.id)"> {{ lend.idBook }}</td>
-          <td *ngIf="lend.id === EditRowID"><input type="text" [(ngModel)]="lend.idStudent"></td>
-          <td *ngIf="lend.id !== EditRowID" (click)="Edit(lend.id)"> {{ lend.idStudent }}</td>
-          <td *ngIf="lend.id === EditRowID"><input type="date" [(ngModel)]="lend.lendingDate "></td>
-          <td *ngIf="lend.id !== EditRowID" (click)="Edit(lend.id)"> {{ lend.lendingDate | date: "shortDate" }}</td>
+      </ng-template>
+      <ng-template pTemplate="body" let-lend>
+        <tr>
+          <td *ngIf="lend.id === EditRowID">
+            <input type="text" [(ngModel)]="lend.id" />
+            <button
+              pButton
+              type="button"
+              class="p-button-warning"
+              (click)="Edit(lend.id)"
+            >
+              Zmień
+            </button>
+          </td>
+          <td *ngIf="lend.id !== EditRowID" (click)="Edit(lend.id)">
+            {{ lend.id }}
+          </td>
+          <td *ngIf="lend.id === EditRowID">
+            <input type="text" [(ngModel)]="lend.idBook" />
+            <button
+              pButton
+              type="button"
+              class="p-button-warning"
+              (click)="Edit(lend.id)"
+            >
+              Zmień
+            </button>
+          </td>
+          <td *ngIf="lend.id !== EditRowID" (click)="Edit(lend.id)">
+            {{ lend.idBook }}
+          </td>
+          <td *ngIf="lend.id === EditRowID">
+            <input type="text" [(ngModel)]="lend.idStudent" />
+            <button
+              pButton
+              type="button"
+              class="p-button-warning"
+              (click)="Edit(lend.id)"
+            >
+              Zmień
+            </button>
+          </td>
+          <td *ngIf="lend.id !== EditRowID" (click)="Edit(lend.id)">
+            {{ lend.idStudent }}
+          </td>
+          <td *ngIf="lend.id === EditRowID">
+            <input type="date" [(ngModel)]="lend.lendingDate" />
+            <button
+              pButton
+              type="button"
+              class="p-button-warning"
+              (click)="Edit(lend.id)"
+            >
+              Zmień
+            </button>
+          </td>
+          <td *ngIf="lend.id !== EditRowID" (click)="Edit(lend.id)">
+            {{ lend.lendingDate | date: "shortDate" }}
+          </td>
           <td *ngIf="lend.status; else elseBlock">
             Nie oddano
-            <button pButton class="p-button-success" (click)="changeStatus(lend)">
+            <button
+              pButton
+              class="p-button-success"
+              (click)="changeStatus(lend)"
+            >
               Oddaj
             </button>
           </td>
           <ng-template #elseBlock> <td>Oddano</td></ng-template>
           <td>
-            <button pButton class="p-button-danger" (click)="deleteLending(lend)">
+            <button
+              pButton
+              class="p-button-danger"
+              (click)="deleteLending(lend)"
+            >
               Usuń
             </button>
           </td>
         </tr>
-      </tbody>
-    </table>
+      </ng-template>
+    </p-table>
   </div>
   <div *ngIf="formVisible">
     <form
-    class="form-horizontal"
-    #bookForm="ngForm"
-    (ngSubmit)="onSubmit(bookForm.value)"
-  >
-    <div class="form-group">
-      <label class="control-label col-sm-3" for="pwd">ID</label>
-      <div class="col-sm-5">
-        <input
-          type="text"
-          class="form-control"
-          name="id"
-          placeholder="id"
-          ngModel
-        />
+      class="form-horizontal"
+      #bookForm="ngForm"
+      (ngSubmit)="onSubmit(bookForm.value)"
+    >
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">ID</label>
+        <div class="col-sm-5">
+          <input
+            type="text"
+            class="form-control"
+            name="id"
+            placeholder="id"
+            ngModel
+          />
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-3" for="pwd">Id Książki</label>
-      <div class="col-sm-5">
-        <select name="idBook" ngModel>
-          <option value="" disabled>Id ksiązki</option>
-          <option *ngFor="let state of avalibleBooks" [ngValue]="state.id">
-            {{ state.id }}
-          </option>
-        </select>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Id Książki</label>
+        <div class="col-sm-5">
+          <select name="idBook" ngModel>
+            <option value="" disabled>Id ksiązki</option>
+            <option *ngFor="let state of avalibleBooks" [ngValue]="state.id">
+              {{ state.id }}
+            </option>
+          </select>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-3" for="pwd">Id Ucznia</label>
-      <div class="col-sm-5">
-        <select name="idStudent" ngModel>
-          <option value="" disabled>Id Ucznia</option>
-          <option *ngFor="let state of sharedStudents" [ngValue]="state.id">
-            {{ state.id }}
-          </option>
-        </select>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Id Ucznia</label>
+        <div class="col-sm-5">
+          <select name="idStudent" ngModel>
+            <option value="" disabled>Id Ucznia</option>
+            <option *ngFor="let state of sharedStudents" [ngValue]="state.id">
+              {{ state.id }}
+            </option>
+          </select>
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-3" for="pwd">Data Wypożyczenia</label>
-      <div class="col-sm-5">
-        <input
-          type="date"
-          class="form-control"
-          name="lendingDate"
-          placeholder="Gatunek"
-          ngModel
-        />
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd"
+          >Data Wypożyczenia</label
+        >
+        <div class="col-sm-5">
+          <input
+            type="date"
+            class="form-control"
+            name="lendingDate"
+            placeholder="Gatunek"
+            ngModel
+          />
+        </div>
       </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-7 col-sm-5">
-        <button pButton class="p-button-success" type="submit" >Submit</button>
+      <div class="form-group">
+        <div class="col-sm-offset-7 col-sm-5">
+          <button pButton class="p-button-success" type="submit">Submit</button>
+        </div>
       </div>
-    </div>
-  </form>
-</div>
+    </form>
   </div>
-  
+</div>
