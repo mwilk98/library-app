@@ -16,8 +16,7 @@ export class BooksComponent{
 
   formAddVisible = false;
   formEditVisible = false;
-  EditRowID: string = '';
-  bookEditId: string = '';
+  bookEdited!: Book;
   buttonFormText: string = 'Dodaj';
 
   deleteBook(bookId: string): void {
@@ -33,24 +32,17 @@ export class BooksComponent{
   }
 
   onEdit(book: Book, data: Book): void {
+    this.formEditVisible = !this.formEditVisible;
     this.bookStoreSrv.updateBook(book.id, data);
   }
   
   onShowEdit(book: Book): void {
-    this.bookEditId = book.id;
+    this.bookEdited = book;
     this.formEditVisible = !this.formEditVisible;
   }
 
   onShowForm(): void {
     this.formAddVisible = !this.formAddVisible;
     this.buttonFormText = this.formAddVisible ? 'Wróć' : 'Dodaj';
-  }
-
-  edit(val: string) {
-    this.EditRowID = val;
-  }
-
-  onCancelEdit(){
-    this.EditRowID = '';
   }
 }

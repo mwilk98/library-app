@@ -1,7 +1,8 @@
 <div class="container h-100 d-flex justify-content-center">
+
   <h1 class="text-center">Książki</h1>
   <button pButton (click)="onShowForm()">{{ buttonFormText }}</button>
-  <button pButton type="button" class="p-button-warning" (click)="onCancelEdit()" *ngIf="EditRowID !== ''">anuluj</button>
+
   <div class="table-responsive" *ngIf="!formAddVisible && !formEditVisible">
     <p-table [value]="this.bookStoreSrv.getBooks()" styleClass="p-datatable-lg" responsiveLayout="scroll">
       <ng-template pTemplate="header">
@@ -16,155 +17,49 @@
       </ng-template>
       <ng-template pTemplate="body" let-book>
         <tr>
-          <td *ngIf="book.id === EditRowID">
-            <input type="text" [(ngModel)]="book.id" />
-            <button pButton type="button" class="p-button-warning" (click)="edit(book.id)">Zmień</button>
-          </td>
-          <td *ngIf="book.id !== EditRowID" (click)="edit(book.id)">
-            {{ book.id }}
-          </td>
-          <td *ngIf="book.id === EditRowID">
-            <input type="text" [(ngModel)]="book.title" />
-            <button
-              pButton
-              type="button"
-              class="p-button-warning"
-              (click)="edit(book.id)"
-            >
-              Zmień
-            </button>
-          </td>
-          <td *ngIf="book.id !== EditRowID" (click)="edit(book.id)">
-            {{ book.title }}
-          </td>
-          <td *ngIf="book.id === EditRowID">
-            <input type="text" [(ngModel)]="book.author" />
-            <button
-              pButton
-              type="button"
-              class="p-button-warning"
-              (click)="edit(book.id)"
-            >
-              Zmień
-            </button>
-          </td>
-          <td *ngIf="book.id !== EditRowID" (click)="edit(book.id)">
-            {{ book.author }}
-          </td>
-          <td *ngIf="book.id === EditRowID">
-            <input type="text" [(ngModel)]="book.type" />
-            <button
-              pButton
-              type="button"
-              class="p-button-warning"
-              (click)="edit(book.id)"
-            >
-              Zmień
-            </button>
-          </td>
-          <td *ngIf="book.id !== EditRowID" (click)="edit(book.id)">
-            {{ book.type }}
-          </td>
-          <td *ngIf="book.id === EditRowID">
-            <input type="date" [(ngModel)]="book.releaseDate" />
-            <button
-              pButton
-              type="button"
-              class="p-button-warning"
-              (click)="edit(book.id)"
-            >
-              Zmień
-            </button>
-          </td>
-          <td *ngIf="book.id !== EditRowID" (click)="edit(book.id)">
-            {{ book.releaseDate | date: "shortDate" }}
-          </td>
+          <td>{{ book.id }}</td>
+          <td>{{ book.title }}</td>
+          <td>{{ book.author }}</td>
+          <td>{{ book.type }}</td>
+          <td>{{ book.releaseDate | date: "shortDate" }}</td>
           <td>
-            <button
-              pButton
-              type="button"
-              class="p-button-danger"
-              (click)="deleteBook(book.id)"
-            >
-              Usuń
-            </button>
-            <button
-              pButton
-              type="button"
-              class="p-button-danger"
-              (click)="onShowEdit(book.id)"
-            >
-              Edytuj
-            </button>
+            <button pButton class="p-button-danger" (click)="deleteBook(book.id)">Usuń</button>
+            <button pButton type="button" class="p-button-warning"(click)="onShowEdit(book)">Edytuj</button>
           </td>
         </tr>
       </ng-template>
     </p-table>
   </div>
+
   <div *ngIf="formAddVisible">
-    <form
-      class="form-horizontal"
-      #bookForm="ngForm"
-      (ngSubmit)="onSubmit(bookForm.value)"
-    >
+    <form class="form-horizontal" #bookForm="ngForm" (ngSubmit)="onSubmit(bookForm.value)">
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">ID</label>
         <div class="col-sm-5">
-          <input
-            type="text"
-            class="form-control"
-            name="id"
-            placeholder="id"
-            ngModel
-          />
+          <input type="text" class="form-control" name="id" placeholder="id" ngModel/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Tytuł</label>
         <div class="col-sm-5">
-          <input
-            type="text"
-            class="form-control"
-            name="title"
-            placeholder="Tytuł"
-            ngModel
-          />
+          <input type="text" class="form-control" name="title" placeholder="Tytuł" ngModel/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Autor</label>
         <div class="col-sm-5">
-          <input
-            type="text"
-            class="form-control"
-            name="author"
-            placeholder="Autor"
-            ngModel
-          />
+          <input type="text" class="form-control" name="author" placeholder="Autor" ngModel/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Gatunek</label>
         <div class="col-sm-5">
-          <input
-            type="text"
-            class="form-control"
-            name="type"
-            placeholder="Gatunek"
-            ngModel
-          />
+          <input type="text" class="form-control" name="type" placeholder="Gatunek" ngModel/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Data wydania</label>
-        <div class="col-sm-5">
-          <input
-            type="date"
-            class="form-control"
-            name="releaseDate"
-            placeholder="Data"
-            ngModel
-          />
+        <div class="col-sm-5"><input type="date" class="form-control" name="releaseDate" placeholder="Data" ngModel/>
         </div>
       </div>
       <div class="form-group">
@@ -174,65 +69,40 @@
       </div>
     </form>
   </div>
+
   <div *ngIf="formEditVisible">
-    <form class="form-horizontal" #bookFormEdit="ngForm">
+    <form class="form-horizontal" #bookFormEdit="ngForm" (ngSubmit)="onEdit(bookEdited,bookFormEdit.value)">
       <div class="form-group">
-        <label class="control-label col-sm-3" for="pwd"
-          >ID: {{ bookEditId }}</label
-        >
+        <label class="control-label col-sm-3" for="pwd">ID: {{ bookEdited.id }}</label>
       </div>
       <div class="form-group">
-        <label class="control-label col-sm-3" for="pwd">Tytuł</label>
+        <label class="control-label col-sm-3" for="pwd">Tytuł: {{ bookEdited.title }}</label>
         <div class="col-sm-5">
-          <input
-            type="text"
-            class="form-control"
-            name="title"
-            placeholder="Tytuł"
-            ngModel
-          />
+          <input type="text" class="form-control" name="title" placeholder="Tytuł" ngModel/>
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-sm-3" for="pwd">Autor</label>
+        <label class="control-label col-sm-3" for="pwd">Autor: {{ bookEdited.author }}</label>
         <div class="col-sm-5">
-          <input
-            type="text"
-            class="form-control"
-            name="author"
-            placeholder="Autor"
-            ngModel
-          />
+          <input type="text" class="form-control" name="author" placeholder="Autor" ngModel/>
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-sm-3" for="pwd">Gatunek</label>
+        <label class="control-label col-sm-3" for="pwd">Gatunek: {{ bookEdited.type }}</label>
         <div class="col-sm-5">
-          <input
-            type="text"
-            class="form-control"
-            name="type"
-            placeholder="Gatunek"
-            ngModel
-          />
+          <input type="text" class="form-control" name="type" placeholder="Gatunek" ngModel/>
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-sm-3" for="pwd">Data wydania</label>
+        <label class="control-label col-sm-3" for="pwd">Data wydania : {{ bookEdited.releaseDate | date: "shortDate" }}</label>
         <div class="col-sm-5">
-          <input
-            type="date"
-            class="form-control"
-            name="releaseDate"
-            placeholder="Data"
-            ngModel
-          />
+          <input type="date" class="form-control" name="releaseDate" placeholder="Data" ngModel/>
         </div>
       </div>
       <div class="form-group">
         <div class="col-sm-offset-7 col-sm-5">
           <button pButton type="submit" class="p-button-success">Dodaj</button>
-          <button pButton class="p-button-danger">Wróć</button>
+          <button pButton class="p-button-danger" (click)="onShowEdit(bookEdited)">Wróć</button>
         </div>
       </div>
     </form>

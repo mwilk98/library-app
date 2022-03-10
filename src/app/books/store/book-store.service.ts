@@ -29,6 +29,7 @@ export class BookStoreService {
     }
 
     updateBook(idBook: string, newBook: Book): Book {
+        newBook.id=idBook;
         this.books[idBook] = newBook;
         alert('Zakutaliozwano książkę');
         return newBook;
