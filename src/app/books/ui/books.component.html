@@ -8,10 +8,10 @@
       <ng-template pTemplate="header">
         <tr>
           <th>#</th>
-          <th>Imie</th>
-          <th>Nazwisko</th>
-          <th>Wiek</th>
-          <th>Klasa</th>
+          <th>Tytuł</th>
+          <th>Autor</th>
+          <th>Gatunek</th>
+          <th>Data wydania</th>
           <th>Opcje</th>
         </tr>
       </ng-template>
@@ -32,7 +32,7 @@
   </div>
 
   <div *ngIf="formAddVisible">
-    <form class="form-horizontal" #bookForm="ngForm" (ngSubmit)="onSubmit(bookForm.value)">
+    <form class="form-horizontal" #bookAddForm="ngForm" (ngSubmit)="onSubmit(bookAddForm.value)">
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">ID</label>
         <div class="col-sm-5">

@@ -21,6 +21,7 @@ export class StudentStoreService {
   }
 
   updateStudent(idStudent: string, newStudent: Student): Student {
+    newStudent.id=idStudent
     this.students[idStudent] = newStudent;
     alert('Zaktualizowano ucznia');
     return newStudent;

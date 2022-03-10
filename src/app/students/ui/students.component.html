@@ -1,0 +1,115 @@
+<div class="container h-100 d-flex justify-content-center">
+
+  <h1 class="text-center">Uczniowie</h1>
+  <button pButton type="button" (click)="onShowForm()">{{ buttonFormText }}</button>
+
+  <div class="table-responsive" *ngIf="!formAddVisible && !formEditVisible">
+    <p-table [value]="this.studentStoreSrv.getStudents()" styleClass="p-datatable-lg" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>#</th>
+          <th>Imie</th>
+          <th>Nazwisko</th>
+          <th>Wiek</th>
+          <th>Klasa</th>
+          <th>Opcje</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-student>
+        <tr>
+          <td>{{ student.id }}</td>
+          <td>{{ student.name }}</td>
+          <td>{{ student.surname }}</td>
+          <td>{{ student.age }}</td>
+          <td>{{ student.class }}</td>
+          <td>
+            <button pButton type="button"class="p-button-danger" (click)="deleteStudent(student.id)">Usuń</button>
+            <button pButton type="button" class="p-button-warning"(click)="onShowEdit(student)">Edytuj</button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <div *ngIf="formAddVisible">
+    <form class="form-horizontal" #studentAddForm="ngForm"(ngSubmit)="onSubmit(studentAddForm.value)">
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">ID</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" name="id" placeholder="id" ngModel/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Imie</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" name="name" placeholder="Imie" ngModel/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Nazwisko</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" name="surname" placeholder="Nazwisko"ngModel/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Wiek</label>
+        <div class="col-sm-5">
+          <input type="number" class="form-control" name="age" placeholder="Wiek" ngModel/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Klasa</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" name="class" placeholder="Klasa" ngModel />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-7 col-sm-5">
+          <button pButton type="submit" class="p-button-success">Dodaj</button>
+          <button pButton class="p-button-danger" (click)="onShowEdit(studentEdited)">Wróć</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="formEditVisible">
+    <form class="form-horizontal" #studentEditForm="ngForm"(ngSubmit)="onEdit(studentEdited,studentEditForm.value)">
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">ID: {{studentEdited.id}}</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" name="id" placeholder="id" ngModel/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Imie: {{studentEdited.name}}</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" name="name" placeholder="Imie" ngModel/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Nazwisko: {{studentEdited.surname}}</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" name="surname" placeholder="Nazwisko"ngModel/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Wiek: {{studentEdited.age}}</label>
+        <div class="col-sm-5">
+          <input type="number" class="form-control" name="age" placeholder="Wiek" ngModel/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Klasa: {{studentEdited.class}}</label>
+        <div class="col-sm-5">
+          <input type="text" class="form-control" name="class" placeholder="Klasa" ngModel />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-7 col-sm-5">
+          <button pButton type="submit" class="p-button-success">Dodaj</button>
+          <button pButton class="p-button-danger" (click)="onShowEdit(studentEdited)">Wróć</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
