@@ -1,7 +1,7 @@
 <div class="container h-100 d-flex justify-content-center">
 
   <h1 class="text-center">Książki</h1>
-  <button pButton (click)="onShowForm()">{{ buttonFormText }}</button>
+  <p-button [routerLink]="'/add-book'" icon="pi pi-plus"></p-button>
 
   <div class="table-responsive" *ngIf="!formAddVisible && !formEditVisible">
     <p-table [value]="this.bookStoreSrv.getBooks()" styleClass="p-datatable-lg" responsiveLayout="scroll">
@@ -30,46 +30,6 @@
       </ng-template>
     </p-table>
   </div>
-
-  <div *ngIf="formAddVisible">
-    <form class="form-horizontal" #bookAddForm="ngForm" (ngSubmit)="onSubmit(bookAddForm.value)" ngNativeValidate>
-      <div class="form-group">
-        <label class="control-label col-sm-3" for="pwd">ID</label>
-        <div class="col-sm-5">
-          <input type="text" class="form-control" name="id" placeholder="id" ngModel required/>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-3" for="pwd">Tytuł</label>
-        <div class="col-sm-5">
-          <input type="text" class="form-control" name="title" placeholder="Tytuł" ngModel required/>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-3" for="pwd">Autor</label>
-        <div class="col-sm-5">
-          <input type="text" class="form-control" name="author" placeholder="Autor" ngModel required/>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-3" for="pwd">Gatunek</label>
-        <div class="col-sm-5">
-          <input type="text" class="form-control" name="type" placeholder="Gatunek" ngModel required/>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-3" for="pwd">Data wydania</label>
-        <div class="col-sm-5"><input type="date" class="form-control" name="releaseDate" placeholder="Data" ngModel required/>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-sm-offset-7 col-sm-5">
-          <button pButton type="submit" class="p-button-success">Dodaj</button>
-        </div>
-      </div>
-    </form>
-  </div>
-
   <div *ngIf="formEditVisible">
     <form class="form-horizontal" #bookFormEdit="ngForm" (ngSubmit)="onEdit(bookEdited,bookFormEdit.value)" ngNativeValidate>
       <div class="form-group">

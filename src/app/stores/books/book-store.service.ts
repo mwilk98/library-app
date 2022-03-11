@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Book, BooksStore } from '../domain-model/book.model';
+import { Book, BooksStore } from '../../books/domain-model/book.model';
 @Injectable({ providedIn: 'root' })
 export class BookStoreService {
     private books: BooksStore = {
@@ -43,6 +43,7 @@ export class BookStoreService {
             newBooks[this.generateKey(book)] = book;
         });
         this.books = newBooks;
+        alert(`Usunięto książkę ${idBook}`)
     }
 
     private generateKey(book: Book): string {

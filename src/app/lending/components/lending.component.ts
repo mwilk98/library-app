@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { BookStoreService } from '../../books/store/book-store.service';
+import { Component, Input } from '@angular/core';
+import { BookStoreService } from '../../stores/books/book-store.service';
 import { LendingService } from '../services/lending.service';
-import { StudentStoreService } from '../../students/store/student-store.service';
+import { StudentStoreService } from '../../stores/students/student-store.service';
 import { Lending } from '../domain-model/lending.model';
-import { LendingStoreService } from '../store/lending-store.service';
+import { LendingStoreService } from '../../stores/lendings/lending-store.service';
 
 @Component({
   selector: 'app-books',
@@ -21,6 +21,10 @@ export class LendingComponent{
   formEditVisible = false;
   buttonFormText = 'Dodaj'
   lendingEdited!: Lending;
+
+  // onInit() {
+  //   this.myStudents = this.lendingSrv.getStudent();
+  // }
 
   deleteLending(lendingId: string) {
     this.lendingStoreSrv.deleteLending(lendingId);

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Lending, LendingStore } from '../domain-model/lending.model';
+import { Lending, LendingStore } from '../../lending/domain-model/lending.model';
 @Injectable({ providedIn: 'root' })
 export class LendingStoreService {
   private lendings: LendingStore = {
@@ -44,6 +44,7 @@ export class LendingStoreService {
             newLendings[this.generateKey(lending)] = lending;
         });
         this.lendings = newLendings;
+        alert(`Usunięto wypożyczenie o id ${idLending}`)
     }
 
     private generateKey(book: Lending): string {

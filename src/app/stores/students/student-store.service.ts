@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Student, StudentStore } from '../domain-models/student.model';
+import { Student, StudentStore } from '../../students/domain-models/student.model';
 @Injectable({ providedIn: 'root' })
 export class StudentStoreService {
   private students : StudentStore = {
@@ -35,6 +35,7 @@ export class StudentStoreService {
           newStudents[this.generateKey(student)] = student;
       })  
       this.students = newStudents;
+      alert(`Usunięto ucznia o id ${idStudent}`)
   }
 
   private generateKey(book: Student): string {

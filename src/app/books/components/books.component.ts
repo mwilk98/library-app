@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { BookStoreService } from '../store/book-store.service';
+import { BookStoreService } from '../../stores/books/book-store.service';
 import { Book } from '../domain-model/book.model';
 import { LendingService } from '../../lending/services/lending.service';
 

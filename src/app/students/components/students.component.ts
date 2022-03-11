@@ -1,41 +1,21 @@
-import { Component } from '@angular/core';
-import { StudentStoreService } from '../store/student-store.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { Student } from '../domain-models/student.model';
+import { StudentService } from '../services/students.service';
 
 @Component({
   selector: 'app-students',
   templateUrl: '../ui/students.component.html',
 })
-export class StudentsComponent {
-  constructor(readonly studentStoreSrv: StudentStoreService) {}
+export class StudentsComponent implements OnInit {
+  constructor(readonly studentSrv: StudentService) {}
 
-  formAddVisible = false;
-  formEditVisible = false;
-  buttonFormText = 'Dodaj';
-  // todo: raczej nie powinno być z !, musi być jakiś lepszy sposób
-  studentEdited!: Student;
+  students: Array<Student> = [];
+
+  ngOnInit(): void {
+    this.students = this.studentSrv.getStudents()
+  }
 
   deleteStudent(studentId: string) {
-    this.studentStoreSrv.deleteStudent(studentId);
+    this.studentSrv.deleteStudent(studentId);
   }
-
-  onSubmit(data: Student) {
-    this.onShowForm();
-    this.studentStoreSrv.addStudent(data);
-  }
-
-  onEdit(student: Student, data: Student): void {
-    this.formEditVisible = !this.formEditVisible;
-    this.studentStoreSrv.updateStudent(student.id, data);
-  }
-  
-  onShowEdit(student: Student): void {
-    this.studentEdited = student;
-    this.formEditVisible = !this.formEditVisible;
-  }
-
-  onShowForm() {
-    this.formAddVisible = !this.formAddVisible;
-    this.buttonFormText = this.formAddVisible ? 'Wróć' : 'Dodaj';
-  } 
 }
