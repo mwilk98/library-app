@@ -7,14 +7,12 @@ import { Student } from '../domain-models/student.model';
   templateUrl: '../ui/students.component.html',
 })
 export class StudentsComponent {
-  constructor(
-    readonly studentStoreSrv: StudentStoreService
-  ) {}
+  constructor(readonly studentStoreSrv: StudentStoreService) {}
 
   formAddVisible = false;
   formEditVisible = false;
-  EditRowID: string = '';
   buttonFormText = 'Dodaj';
+  // todo: raczej nie powinno być z !, musi być jakiś lepszy sposób
   studentEdited!: Student;
 
   deleteStudent(studentId: string) {

@@ -14,8 +14,8 @@ export class BooksComponent{
   ) {
   }
 
-  formAddVisible = false;
-  formEditVisible = false;
+  formAddVisible: boolean = false;
+  formEditVisible: boolean = false;
   bookEdited!: Book;
   buttonFormText: string = 'Dodaj';
 

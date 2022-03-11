@@ -35,17 +35,17 @@
   </div>
 
   <div *ngIf="formAddVisible">
-    <form class="form-horizontal" #lendingAddForm="ngForm"(ngSubmit)="onSubmit(lendingAddForm.value)">
+    <form class="form-horizontal" #lendingAddForm="ngForm"(ngSubmit)="onSubmit(lendingAddForm.value)" ngNativeValidate>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">ID</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" name="id" placeholder="id" ngModel/>
+          <input type="text" class="form-control" name="id" placeholder="id" ngModel required/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Id Książki</label>
         <div class="col-sm-5">
-          <select name="idBook" ngModel>
+          <select name="idBook" ngModel required>
             <option value="" disabled>Id ksiązki</option>
             <option *ngFor="let book of this.bookStoreSrv.getBooks()" [ngValue]="book.id">
               {{ book.id }}
@@ -56,7 +56,7 @@
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Id Ucznia</label>
         <div class="col-sm-5">
-          <select name="idStudent" ngModel>
+          <select name="idStudent" ngModel required>
             <option value="" disabled>Id Ucznia</option>
             <option *ngFor="let student of this.studentStoreSrv.getStudents()" [ngValue]="student.id">
               {{ student.id }}
@@ -67,7 +67,7 @@
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Data Wypożyczenia</label>
         <div class="col-sm-5">
-          <input type="date" class="form-control" name="lendingingDate" placeholder="Gatunek" ngModel/>
+          <input type="date" class="form-control" name="lendingingDate" placeholder="Gatunek" ngModel required/>
         </div>
       </div>
       <div class="form-group">
@@ -79,17 +79,17 @@
   </div>
 
   <div *ngIf="formEditVisible">
-    <form class="form-horizontal" #lendingEditForm="ngForm"(ngSubmit)="onEdit(lendingEdited,lendingEditForm.value)">
+    <form class="form-horizontal" #lendingEditForm="ngForm"(ngSubmit)="onEdit(lendingEdited,lendingEditForm.value)" ngNativeValidate>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">ID</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" name="id" placeholder="id" ngModel/>
+          <input type="text" class="form-control" name="id" placeholder="id" ngModel required/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Id Książki</label>
         <div class="col-sm-5">
-          <select name="idBook" ngModel>
+          <select name="idBook" ngModel required>
             <option value="" disabled>Id ksiązki</option>
             <option *ngFor="let book of this.bookStoreSrv.getBooks()" [ngValue]="book.id">
               {{ book.id }}
@@ -100,7 +100,7 @@
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Id Ucznia</label>
         <div class="col-sm-5">
-          <select name="idStudent" ngModel>
+          <select name="idStudent" ngModel required>
             <option value="" disabled>Id Ucznia</option>
             <option *ngFor="let student of this.studentStoreSrv.getStudents()" [ngValue]="student.id">
               {{ student.id }}
@@ -111,7 +111,7 @@
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Data Wypożyczenia</label>
         <div class="col-sm-5">
-          <input type="date" class="form-control" name="lendingingDate" placeholder="Gatunek" ngModel/>
+          <input type="date" class="form-control" name="lendingDate" placeholder="Data" ngModel required/>
         </div>
       </div>
       <div class="form-group">

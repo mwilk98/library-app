@@ -1,13 +1,13 @@
 // model klasy wypożyczenia
 export interface Lending {
-    id: string;
-    idBook: string;
-    idStudent: string;
-    lendingDate: Date;
-    status: boolean;
-  }
+  id: string;
+  idBook: string;
+  idStudent: string;
+  lendingDate: Date;
+  status: boolean;
+}
 
 export interface LendingStore {
-    [key: string]: Lending;
-  }
+  [key: string]: Lending;
+}
   

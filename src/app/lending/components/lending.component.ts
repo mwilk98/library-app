@@ -19,7 +19,6 @@ export class LendingComponent{
 
   formAddVisible = false;
   formEditVisible = false;
-  EditRowID: string = '';
   buttonFormText = 'Dodaj'
   lendingEdited!: Lending;
 

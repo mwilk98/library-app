@@ -32,35 +32,35 @@
   </div>
 
   <div *ngIf="formAddVisible">
-    <form class="form-horizontal" #studentAddForm="ngForm"(ngSubmit)="onSubmit(studentAddForm.value)">
+    <form class="form-horizontal" #studentAddForm="ngForm"(ngSubmit)="onSubmit(studentAddForm.value)" ngNativeValidate>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">ID</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" name="id" placeholder="id" ngModel/>
+          <input type="text" class="form-control" name="id" placeholder="id" ngModel required/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Imie</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" name="name" placeholder="Imie" ngModel/>
+          <input type="text" class="form-control" name="name" placeholder="Imie" ngModel required/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Nazwisko</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" name="surname" placeholder="Nazwisko"ngModel/>
+          <input type="text" class="form-control" name="surname" placeholder="Nazwisko"ngModel required/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Wiek</label>
         <div class="col-sm-5">
-          <input type="number" class="form-control" name="age" placeholder="Wiek" ngModel/>
+          <input type="number" class="form-control" name="age" placeholder="Wiek" ngModel required/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Klasa</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" name="class" placeholder="Klasa" ngModel />
+          <input type="text" class="form-control" name="class" placeholder="Klasa" ngModel required/>
         </div>
       </div>
       <div class="form-group">
@@ -72,32 +72,32 @@
   </div>
 
   <div *ngIf="formEditVisible">
-    <form class="form-horizontal" #studentEditForm="ngForm"(ngSubmit)="onEdit(studentEdited,studentEditForm.value)">
+    <form class="form-horizontal" #studentEditForm="ngForm"(ngSubmit)="onEdit(studentEdited,studentEditForm.value)" ngNativeValidate>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">ID: {{studentEdited.id}}</label>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Imie: {{studentEdited.name}}</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" name="name" placeholder="Imie" ngModel/>
+          <input type="text" class="form-control" name="name" placeholder="Imie" ngModel required/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Nazwisko: {{studentEdited.surname}}</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" name="surname" placeholder="Nazwisko"ngModel/>
+          <input type="text" class="form-control" name="surname" placeholder="Nazwisko"ngModel required/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Wiek: {{studentEdited.age}}</label>
         <div class="col-sm-5">
-          <input type="number" class="form-control" name="age" placeholder="Wiek" ngModel/>
+          <input type="number" class="form-control" name="age" placeholder="Wiek" ngModel required/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Klasa: {{studentEdited.class}}</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" name="class" placeholder="Klasa" ngModel />
+          <input type="text" class="form-control" name="class" placeholder="Klasa" ngModel required/>
         </div>
       </div>
       <div class="form-group">

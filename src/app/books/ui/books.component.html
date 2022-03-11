@@ -32,34 +32,34 @@
   </div>
 
   <div *ngIf="formAddVisible">
-    <form class="form-horizontal" #bookAddForm="ngForm" (ngSubmit)="onSubmit(bookAddForm.value)">
+    <form class="form-horizontal" #bookAddForm="ngForm" (ngSubmit)="onSubmit(bookAddForm.value)" ngNativeValidate>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">ID</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" name="id" placeholder="id" ngModel/>
+          <input type="text" class="form-control" name="id" placeholder="id" ngModel required/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Tytuł</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" name="title" placeholder="Tytuł" ngModel/>
+          <input type="text" class="form-control" name="title" placeholder="Tytuł" ngModel required/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Autor</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" name="author" placeholder="Autor" ngModel/>
+          <input type="text" class="form-control" name="author" placeholder="Autor" ngModel required/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Gatunek</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" name="type" placeholder="Gatunek" ngModel/>
+          <input type="text" class="form-control" name="type" placeholder="Gatunek" ngModel required/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Data wydania</label>
-        <div class="col-sm-5"><input type="date" class="form-control" name="releaseDate" placeholder="Data" ngModel/>
+        <div class="col-sm-5"><input type="date" class="form-control" name="releaseDate" placeholder="Data" ngModel required/>
         </div>
       </div>
       <div class="form-group">
@@ -71,32 +71,32 @@
   </div>
 
   <div *ngIf="formEditVisible">
-    <form class="form-horizontal" #bookFormEdit="ngForm" (ngSubmit)="onEdit(bookEdited,bookFormEdit.value)">
+    <form class="form-horizontal" #bookFormEdit="ngForm" (ngSubmit)="onEdit(bookEdited,bookFormEdit.value)" ngNativeValidate>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">ID: {{ bookEdited.id }}</label>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Tytuł: {{ bookEdited.title }}</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" name="title" placeholder="Tytuł" ngModel/>
+          <input type="text" class="form-control" name="title" placeholder="Tytuł" ngModel required/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Autor: {{ bookEdited.author }}</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" name="author" placeholder="Autor" ngModel/>
+          <input type="text" class="form-control" name="author" placeholder="Autor" ngModel required/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Gatunek: {{ bookEdited.type }}</label>
         <div class="col-sm-5">
-          <input type="text" class="form-control" name="type" placeholder="Gatunek" ngModel/>
+          <input type="text" class="form-control" name="type" placeholder="Gatunek" ngModel required/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-3" for="pwd">Data wydania : {{ bookEdited.releaseDate | date: "shortDate" }}</label>
         <div class="col-sm-5">
-          <input type="date" class="form-control" name="releaseDate" placeholder="Data" ngModel/>
+          <input type="date" class="form-control" name="releaseDate" placeholder="Data" ngModel required/>
         </div>
       </div>
       <div class="form-group">
