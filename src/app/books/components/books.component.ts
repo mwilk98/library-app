@@ -28,6 +28,7 @@ export class BooksComponent{
   }
 
   onSubmit(data: Book): void {
+    this.onShowForm();
     this.bookStoreSrv.addBook(data);
   }
 

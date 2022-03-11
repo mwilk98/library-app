@@ -22,6 +22,7 @@ export class StudentsComponent {
   }
 
   onSubmit(data: Student) {
+    this.onShowForm();
     this.studentStoreSrv.addStudent(data);
   }
 

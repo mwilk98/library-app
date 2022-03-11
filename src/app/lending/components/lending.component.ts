@@ -20,7 +20,7 @@ export class LendingComponent{
   formAddVisible = false;
   formEditVisible = false;
   EditRowID: string = '';
-  buttonFormText = 'Dodaj';
+  buttonFormText = 'Dodaj'
   lendingEdited!: Lending;
 
   deleteLending(lendingId: string) {
@@ -28,6 +28,7 @@ export class LendingComponent{
   }
 
   onSubmit(data: Lending) {
+    this.onShowForm();
     this.lendingStoreSrv.addLending(data)
   }
 
@@ -45,5 +46,4 @@ export class LendingComponent{
     this.lendingEdited = lending;
     this.formEditVisible = !this.formEditVisible;
   }
-
 }
