@@ -1,7 +1,7 @@
 import { Component} from '@angular/core';
-import { BookStoreService } from '../../stores/books/book-store.service';
 import { Book } from '../domain-model/book.model';
-import { LendingService } from '../../lending/services/lending.service';
+import { BookService } from '../services/book.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-books',
@@ -9,41 +9,23 @@ import { LendingService } from '../../lending/services/lending.service';
 })
 export class BooksComponent{
   constructor(
-    private readonly lendingSrv: LendingService,
-    readonly bookStoreSrv: BookStoreService
+    readonly bookSrv:BookService,
+    private _router: Router
   ) {
   }
 
-  formAddVisible: boolean = false;
-  formEditVisible: boolean = false;
-  bookEdited!: Book;
-  buttonFormText: string = 'Dodaj';
+  books: Array<Book> = []
+
+  ngOnInit(): void {
+    this.books = this.bookSrv.getBooks();    
+  }
 
   deleteBook(bookId: string): void {
-    if (this.lendingSrv.checkBookIfLent(bookId)) {
-      alert('istnieje wypożyczenie nie można usunac ksiazki');
-      return;
-    }
-    this.bookStoreSrv.deleteBook(bookId);
+    this.bookSrv.deleteBook(bookId);
+    this.books = this.bookSrv.getBooks();
   }
 
-  onSubmit(data: Book): void {
-    this.onShowForm();
-    this.bookStoreSrv.addBook(data);
-  }
-
-  onEdit(book: Book, data: Book): void {
-    this.formEditVisible = !this.formEditVisible;
-    this.bookStoreSrv.updateBook(book.id, data);
-  }
-  
-  onShowEdit(book: Book): void {
-    this.bookEdited = book;
-    this.formEditVisible = !this.formEditVisible;
-  }
-
-  onShowForm(): void {
-    this.formAddVisible = !this.formAddVisible;
-    this.buttonFormText = this.formAddVisible ? 'Wróć' : 'Dodaj';
+  editBook(bookId: string) {
+    this._router.navigate(['/edit-book',bookId])
   }
 }

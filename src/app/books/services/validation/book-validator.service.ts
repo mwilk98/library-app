@@ -1,0 +1,37 @@
+import { Injectable } from "@angular/core";
+import { BookStoreService } from "src/app/stores/books/book-store.service";
+import { StudentStoreService } from "../../../stores/students/student-store.service";
+import { Book } from "../../domain-model/book.model";
+
+@Injectable({ providedIn: 'root' })
+export class BookValidatorService {
+    constructor(private readonly bookStoreSrv: BookStoreService) {
+    }
+
+    baseValidation<TValue>(value: TValue): boolean {
+        if (value === undefined) { return false; }
+        return true;
+    }
+
+    /* Sprawdza poprawność i unikalność podanego id dla studentów */
+    idValidation(idBook: string): boolean {
+        const baseValidation: boolean = this.baseValidation<string>(idBook);
+        const students: Array<Book> = this.bookStoreSrv.getBooks().filter(book => book.id === idBook);
+        
+        if (!baseValidation) { return false; }
+        if (idBook === '') { return false; }
+        if (students.length !== 0 ) { return false; }
+
+        return true;
+    }
+    dataValidation(book: string): boolean {
+        const baseValidation: boolean = this.baseValidation<string>(book);
+        const nameValidation = new RegExp("^[a-zA-Z][a-zA-Z .,'-]*$");
+        
+        if (!baseValidation) { return false; }
+        if (book === '') { return false; }
+        if (!nameValidation.test(book)) { return false; }
+        
+        return true;
+    }
+}

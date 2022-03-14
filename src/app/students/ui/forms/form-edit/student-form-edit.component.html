@@ -3,30 +3,30 @@
       <div class="form-group">
         <label class="control-label col-sm-5" for="pwd">ID</label>
         <div class="col-sm-2">
-          <input type="text" class="form-control" name="id" placeholder="id" ngModel required/>
+          <input type="text" class="form-control" name="id" placeholder="id" [(ngModel)]="student.id" required/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-5" for="pwd">Imie</label>
         <div class="col-sm-2">
-          <input type="text" class="form-control" name="name" placeholder="Imie" ngModel required/>
+          <input type="text" class="form-control" name="name" placeholder="Imie" [(ngModel)]="student.name" required/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-5" for="pwd">Nazwisko</label>
         <div class="col-sm-2">
-          <input type="text" class="form-control" name="surname" placeholder="Nazwisko" ngModel required/>
+          <input type="text" class="form-control" name="surname" placeholder="Nazwisko" [(ngModel)]="student.surname" required/>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-5" for="pwd">Wiek</label>
         <div class="col-sm-2">
-          <input type="text" class="form-control" name="age" placeholder="Wiek" ngModel required/>
+          <input type="text" class="form-control" name="age" placeholder="Wiek" [(ngModel)]="student.age" required/>
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-sm-5" for="pwd">Data wydania</label>
-        <div class="col-sm-2"><input type="text" class="form-control" name="class" placeholder="Klasa" ngModel required/>
+        <label class="control-label col-sm-5" for="pwd">Klasa</label>
+        <div class="col-sm-2"><input type="text" class="form-control" name="class" placeholder="Klasa" [(ngModel)]="student.class" required/>
         </div>
       </div>
       <div class="form-group">

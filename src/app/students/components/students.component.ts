@@ -9,15 +9,16 @@ import { StudentService } from '../services/students.service';
 })
 export class StudentsComponent implements OnInit {
   constructor(readonly studentSrv: StudentService,
-              readonly _router: Router) {}
+              private _router: Router
+  ) {}
 
   students: Array<Student> = [];
 
   ngOnInit(): void {
-    this.students = this.studentSrv.getStudents();
+    this.students = this.studentSrv.getStudents();    
   }
 
-  deleteStudent(studentId: string) {
+  deleteStudent(studentId: string): void {
     this.studentSrv.deleteStudent(studentId);
     this.students = this.studentSrv.getStudents();
   }

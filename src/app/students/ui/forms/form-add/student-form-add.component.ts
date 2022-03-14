@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Student } from 'src/app/students/domain-models/student.model';
 import { StudentService } from 'src/app/students/services/students.service';
 import { StudentValidatorService } from 'src/app/students/services/validation/students-validator.service';
 
 @Component({
-  selector: 'app-form-add',
-  templateUrl: './form-add.component.html',
+  selector: 'app-student-form-add',
+  templateUrl: './student-form-add.component.html',
 })
-export class FormAddComponent implements OnInit {
+export class StudentFormAddComponent implements OnInit {
 
   constructor(readonly studentSrv: StudentService,
-              readonly studentValidateSrv: StudentValidatorService) {}
+              readonly studentValidateSrv: StudentValidatorService,
+              private _router: Router
+  ) {}
 
   idError: boolean = true;
   nameError: boolean = true;
@@ -30,6 +33,7 @@ export class FormAddComponent implements OnInit {
 
     if(this.idError && this.nameError && this.surnameError && this.ageError && this.classError) {
       this.studentSrv.addStudent(data);
+      this._router.navigate(['/students'])
     }    
   }
 }
