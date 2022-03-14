@@ -1,0 +1,39 @@
+<div>
+    <form class="form-horizontal" #editStudentForm="ngForm" (ngSubmit)="onSubmit(editStudentForm.value)" ngNativeValidate>
+      <div class="form-group">
+        <label class="control-label col-sm-5" for="pwd">ID</label>
+        <div class="col-sm-2">
+          <input type="text" class="form-control" name="id" placeholder="id" ngModel required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-5" for="pwd">Imie</label>
+        <div class="col-sm-2">
+          <input type="text" class="form-control" name="name" placeholder="Imie" ngModel required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-5" for="pwd">Nazwisko</label>
+        <div class="col-sm-2">
+          <input type="text" class="form-control" name="surname" placeholder="Nazwisko" ngModel required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-5" for="pwd">Wiek</label>
+        <div class="col-sm-2">
+          <input type="text" class="form-control" name="age" placeholder="Wiek" ngModel required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-5" for="pwd">Data wydania</label>
+        <div class="col-sm-2"><input type="text" class="form-control" name="class" placeholder="Klasa" ngModel required/>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-7 col-sm-5">
+          <button pButton type="submit" class="p-button-success">Zapisz</button>
+          <p-button [routerLink]="'/students'">Anuluj</p-button>
+        </div>
+      </div>
+    </form>
+  </div>

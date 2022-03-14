@@ -1,7 +1,7 @@
 <div class="container h-100 d-flex justify-content-center">
 
   <h1 class="text-center">Uczniowie</h1>
-  <p-button [routerLink]="'/add-book'" icon="pi pi-plus"></p-button>
+  <p-button [routerLink]="'/add-student'" icon="pi pi-plus"></p-button>
 
   <div class="table-responsive">
     <p-table [value]="students" styleClass="p-datatable-lg" responsiveLayout="scroll">
@@ -23,8 +23,8 @@
           <td>{{ student.age }}</td>
           <td>{{ student.class }}</td>
           <td>
-            <button pButton type="button"class="p-button-danger" (click)="deleteStudent(student.id)">Usuń</button>
-            <p-button [routerLink]="'/add-book'" icon="pi pi-plus"></p-button>
+            <button pButton type="button"class="p-button-danger" icon="pi pi-ban"(click)="deleteStudent(student.id)"></button>
+            <p-button icon="pi pi-user-edit" (click)="editStudent(student.id)"></p-button>
           </td>
         </tr>
       </ng-template>

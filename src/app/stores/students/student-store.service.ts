@@ -10,6 +10,14 @@ export class StudentStoreService {
     '4': { id: '4', name: 'name 5', surname: 'surname 5', age: 14, class: '1e' }
    }
 
+  getStudent(studentId: string): Student {
+    const studentObj = Object.values(this.students).find((student) => student.id === studentId);
+    if(studentObj === undefined){
+        throw new Error(`Nie znaleziono ucznia o podanym id: ${studentId}`);
+    }
+    return studentObj;
+  }
+
   getStudents(): Array<Student> {
     return Object.values(this.students);
   }
