@@ -7,33 +7,33 @@
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-sm-5" for="pwd">Imie</label>
+        <label class="control-label col-sm-5" for="pwd">Tytuł</label>
         <div class="col-sm-2">
-          <input type="text" class="form-control" name="name" placeholder="Imie" [(ngModel)]="book.title" required/>
+          <input type="text" class="form-control" name="title" placeholder="Imie" [(ngModel)]="book.title" required/>
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-sm-5" for="pwd">Nazwisko</label>
+        <label class="control-label col-sm-5" for="pwd">Autor</label>
         <div class="col-sm-2">
-          <input type="text" class="form-control" name="surname" placeholder="Nazwisko" [(ngModel)]="book.author" required/>
+          <input type="text" class="form-control" name="author" placeholder="Nazwisko" [(ngModel)]="book.author" required/>
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-sm-5" for="pwd">Wiek</label>
+        <label class="control-label col-sm-5" for="pwd">Gatunek</label>
         <div class="col-sm-2">
-          <input type="text" class="form-control" name="age" placeholder="Wiek" [(ngModel)]="book.type" required/>
+          <input type="text" class="form-control" name="type" placeholder="Wiek" [(ngModel)]="book.type" required/>
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-sm-5" for="pwd">Klasa</label>
+        <label class="control-label col-sm-5" for="pwd">Data Wydania</label>
         <div class="col-sm-2">
-            <input type="date" class="form-control" name="class" placeholder="Klasa" [(ngModel)]="book.releaseDate" required/>
+            <input type="date" class="form-control" name="releaseDate" placeholder="Klasa" [(ngModel)]="date" />
         </div>
       </div>
       <div class="form-group">
         <div class="col-sm-offset-7 col-sm-5">
           <button pButton type="submit" class="p-button-success">Zapisz</button>
-          <p-button [routerLink]="'/students'">Anuluj</p-button>
+          <p-button [routerLink]="'/books'">Anuluj</p-button>
         </div>
       </div>
     </form>

@@ -36,14 +36,17 @@ export class StudentStoreService {
   }
 
   deleteStudent(idStudent: string): void{
-    const newStudents: StudentStore = {};
-    Object.values(this.students)
-      .filter(student => student.id !== idStudent)
-      .forEach(student => {
-          newStudents[this.generateKey(student)] = student;
-      })  
-      this.students = newStudents;
-      alert(`Usunięto ucznia o id ${idStudent}`)
+    if(confirm(`Czy na pewno chcesz usunąć ucznia o id ${idStudent}`)){
+      const newStudents: StudentStore = {};
+      Object.values(this.students)
+        .filter(student => student.id !== idStudent)
+        .forEach(student => {
+            newStudents[this.generateKey(student)] = student;
+        })  
+        this.students = newStudents;
+        
+        alert(`Usunięto ucznia o id ${idStudent}`)
+    }
   }
 
   private generateKey(book: Student): string {
