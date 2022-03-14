@@ -1,52 +1,44 @@
-import { Component, Input } from '@angular/core';
-import { BookStoreService } from '../../stores/books/book-store.service';
+import { Component, OnInit } from '@angular/core';
 import { LendingService } from '../services/lending.service';
-import { StudentStoreService } from '../../stores/students/student-store.service';
 import { Lending } from '../domain-model/lending.model';
-import { LendingStoreService } from '../../stores/lendings/lending-store.service';
+import { Router } from '@angular/router';
+import { Student } from 'src/app/students/domain-models/student.model';
+import { Book } from 'src/app/books/domain-model/book.model';
+import { BookService } from 'src/app/books/services/book.service';
+import { StudentService } from 'src/app/students/services/students.service';
 
 @Component({
   selector: 'app-books',
   templateUrl: '../ui/lending.component.html',
 })
-export class LendingComponent{
+export class LendingComponent implements OnInit{
   constructor(
     readonly lendingSrv: LendingService,
-    readonly lendingStoreSrv: LendingStoreService,
-    readonly bookStoreSrv: BookStoreService,
-    readonly studentStoreSrv: StudentStoreService
+    private bookSrv: BookService,
+    readonly studentSrv: StudentService,
+    private _router: Router
   ) {}
 
-  formAddVisible = false;
-  formEditVisible = false;
-  buttonFormText = 'Dodaj'
-  lendingEdited!: Lending;
+  lendings: Array<Lending> = [];
+  students: Array<Student> = [];
+  books: Array<Book> = [];
 
-  // onInit() {
-  //   this.myStudents = this.lendingSrv.getStudent();
-  // }
+  ngOnInit(): void {
+    this.lendings = this.lendingSrv.getLendings();
+    this.students = this.studentSrv.getStudents();    
+    this.books = this.bookSrv.getBooks();  
+  }
 
   deleteLending(lendingId: string) {
-    this.lendingStoreSrv.deleteLending(lendingId);
+    this.lendingSrv.deleteLending(lendingId);
   }
 
   onSubmit(data: Lending) {
-    this.onShowForm();
-    this.lendingStoreSrv.addLending(data)
+    this.lendingSrv.addLending(data);
   }
 
-  onShowForm() {
-    this.formAddVisible = !this.formAddVisible;
-    this.buttonFormText = this.formAddVisible ? 'Wróć' : 'Dodaj';
+  editLending(lendingId: string) {
+    this._router.navigate(['/edit-lending',lendingId])
   }
 
-  onEdit(lending: Lending, data: Lending): void {
-    this.formEditVisible = !this.formEditVisible;
-    this.lendingStoreSrv.updateLending(lending.id, data);
-  }
-  
-  onShowEdit(lending: Lending): void {
-    this.lendingEdited = lending;
-    this.formEditVisible = !this.formEditVisible;
-  }
 }
