@@ -19,6 +19,7 @@ export class BookFormAddComponent implements OnInit {
   titleError: boolean = true;
   authorError: boolean = true;
   typeError: boolean = true;
+  dateError: boolean = true;
 
   ngOnInit(): void {
   }
@@ -28,8 +29,9 @@ export class BookFormAddComponent implements OnInit {
     this.titleError = this.bookValidateSrv.dataValidation(data.title);
     this.authorError = this.bookValidateSrv.dataValidation(data.author);
     this.typeError = this.bookValidateSrv.dataValidation(data.type);
+    this.dateError = this.bookValidateSrv.dateValidation(data.releaseDate);
 
-    if(this.idError && this.titleError && this.authorError && this.typeError) {
+    if(this.idError && this.titleError && this.authorError && this.typeError && this.dateError) {
       this.bookSrv.addBook(data);
       this._router.navigate(['/books'])
     }    

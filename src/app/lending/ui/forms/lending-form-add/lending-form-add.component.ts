@@ -24,12 +24,9 @@ export class LendingFormAddComponent implements OnInit {
 ) {}
 
 idError: boolean = true;
-id: string = '';
-lending!: Lending;
-student!: Student;
-book!: Book;
-date: string = '';
-bookStatus: string = '';
+bookIdError: boolean = true;
+studentIdError: boolean = true;
+dateError: boolean = true;
 books: Array<Book> = [];
 students: Array<Student> = [];
 
@@ -40,8 +37,11 @@ ngOnInit(): void {
 
 onSubmit(data: Lending): void {
   this.idError = this.lendingValidationSrv.idValidation(data.id);
+  this.bookIdError =this.lendingValidationSrv.emptyStringValidation(data.idBook);
+  this.studentIdError = this.lendingValidationSrv.emptyStringValidation(data.idStudent);
+  this.dateError = this.lendingValidationSrv.dateValidation(data.lendingDate);
 
-  if(this.idError) {
+  if(this.idError && this.bookIdError && this.studentIdError && this.dateError) {
     this.lendingSrv.addLending(data);
     this._router.navigate(['/lendings'])
   }    

@@ -32,6 +32,7 @@
       <label class="control-label col-sm-5" for="pwd">Data Wydania</label>
       <div class="col-sm-2">
         <input id="releaseDate" type="date" aria-describedby="releaseDate-help" class="ng-invalid ng-dirty" pInputText name="releaseDate" placeholder="data" ngModel/>
+        <small *ngIf="!dateError" id="id-help" class="p-error block">Nie wybrano daty.</small> 
       </div>
     </div>
     <div class="form-group">

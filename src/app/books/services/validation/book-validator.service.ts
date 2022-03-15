@@ -24,6 +24,12 @@ export class BookValidatorService {
 
         return true;
     }
+
+    dateValidation(value: Date): boolean {
+        if (Object.keys(value).length === 0) { return false; }
+        return true;
+    }
+
     dataValidation(book: string): boolean {
         const baseValidation: boolean = this.baseValidation<string>(book);
         const nameValidation = new RegExp("^[a-zA-Z][a-zA-Z .,'-]*$");
