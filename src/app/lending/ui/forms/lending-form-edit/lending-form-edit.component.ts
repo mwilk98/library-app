@@ -5,6 +5,7 @@ import { Book } from 'src/app/books/domain-model/book.model';
 import { BookService } from 'src/app/books/services/book.service';
 import { Lending } from 'src/app/lending/domain-model/lending.model';
 import { LendingService } from 'src/app/lending/services/lending.service';
+import { LendingValidatorService } from 'src/app/lending/services/validation/lendings-validator.service';
 import { Student } from 'src/app/students/domain-models/student.model';
 import { StudentService } from 'src/app/students/services/students.service';
 
@@ -15,6 +16,7 @@ import { StudentService } from 'src/app/students/services/students.service';
 export class LendingFormEditComponent implements OnInit {
 
   constructor(readonly lendingSrv: LendingService,
+              readonly lendingValidationSrv: LendingValidatorService,
               private bookSrv: BookService,
               private studentSrv: StudentService,
               private _route: ActivatedRoute,
@@ -30,6 +32,10 @@ export class LendingFormEditComponent implements OnInit {
   students: Array<Student> = [];
   date: string = '';
   bookStatus: string = '';
+  idError: boolean = true;
+  bookIdError: boolean = true;
+  studentIdError: boolean = true;
+  dateError: boolean = true;
 
   ngOnInit(): void {
     this.id = this._route.snapshot.params['id'];
@@ -43,8 +49,15 @@ export class LendingFormEditComponent implements OnInit {
   }
 
   onSubmit(data: Lending): void {
-    this.lendingSrv.updateLending(data.id,data);
-    this._router.navigate(['/lendings'])
+    //this.idError = this.lendingValidationSrv.idValidation(data.id);
+    this.bookIdError =this.lendingValidationSrv.emptyStringValidation(data.idBook);
+    this.studentIdError = this.lendingValidationSrv.emptyStringValidation(data.idStudent);
+    this.dateError = this.lendingValidationSrv.dateValidation(data.lendingDate);
+
+    if(this.idError && this.bookIdError && this.studentIdError && this.dateError) {
+      this.lendingSrv.updateLending(data.id,data);
+      this._router.navigate(['/lendings'])
+    }    
   }
 
 }
