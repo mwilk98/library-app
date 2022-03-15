@@ -23,36 +23,34 @@ export class LendingFormAddComponent implements OnInit {
     private studentSrv: StudentService,
     private confirmationService: ConfirmationService,
     private _router: Router
-) {}
+  ) {}
 
-idError: boolean = true;
-bookIdError: boolean = true;
-studentIdError: boolean = true;
-dateError: boolean = true;
-books: Array<Book> = [];
-students: Array<Student> = [];
+  books: Array<Book> = [];
+  students: Array<Student> = [];
+  validate: boolean = true;
 
-ngOnInit(): void {
-  this.books = this.bookSrv.getBooks();  
-  this.students = this.studentSrv.getStudents();  
-}
+  ngOnInit(): void {
+    this.books = this.bookSrv.getBooks();  
+    this.students = this.studentSrv.getStudents();  
+  }
 
-onSubmit(data: Lending): void {
-  this.idError = this.lendingValidationSrv.idValidation(data.id);
-  this.bookIdError =this.lendingValidationSrv.emptyStringValidation(data.idBook);
-  this.studentIdError = this.lendingValidationSrv.emptyStringValidation(data.idStudent);
-  this.dateError = this.lendingValidationSrv.dateValidation(data.lendingDate);
+  onSubmit(data: Lending): void {
+    
+    this.validate = this.lendingValidationSrv.idValidation(data.id);
+    this.validate =this.lendingValidationSrv.emptyStringValidation(data.idBook);
+    this.validate = this.lendingValidationSrv.emptyStringValidation(data.idStudent);
+    this.validate = this.lendingValidationSrv.dateValidation(data.lendingDate);
 
-  if(this.idError && this.bookIdError && this.studentIdError && this.dateError) {
-    this.lendingSrv.addLending(data);
-    this.confirmationService.confirm({
+    if(this.validate) {
+      this.lendingSrv.addLending(data);
+      this.confirmationService.confirm({
         message: `Dodano wypożyczenie`,
         accept: () => {
           this._router.navigate(['/lendings'])
         }
-    }); 
-  }    
-}
+      }); 
+    }    
+  }
 
 }
 

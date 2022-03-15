@@ -1,0 +1,8 @@
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text" acceptLabel="Tak" rejectLabel="Nie"></p-confirmDialog>
+
+<p-dialog header="Błąd" [(visible)]="displayFail" [style]="{width: '50vw'}">
+    <p>{{errorMessage}}</p>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="closeAlert(false)" label="Ok" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>

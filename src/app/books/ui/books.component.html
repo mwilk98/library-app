@@ -1,20 +1,8 @@
 <div class="container h-100 d-flex justify-content-center ">
-
   <h1 class="text-center">Książki</h1>
   <p-button [routerLink]="'/add-book'" icon="pi pi-plus"></p-button>
-  <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text" acceptLabel="Tak" rejectLabel="Nie"></p-confirmDialog>
-  <p-dialog header="Usunięto" [(visible)]="displayBasic" [style]="{width: '50vw'}">
-    <p>Usunięto książkę</p>
-    <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
-    </ng-template>
-  </p-dialog>
-  <p-dialog header="Błąd" [(visible)]="displayFail" [style]="{width: '50vw'}">
-    <p>Nie można usunąć książki - istnieje wypożyczenie</p>
-    <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="displayFail=false" label="Ok" styleClass="p-button-text"></p-button>
-    </ng-template>
-  </p-dialog>
+
+  <app-messages [displayFail]="displayFail" [errorMessage]="errorMessage" (newItemEvent)="closeAlert($event)"></app-messages>
 
   <div class="table-responsive">
     <p-table [value]="books" styleClass="p-datatable-lg" responsiveLayout="scroll">

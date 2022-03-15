@@ -17,6 +17,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {DialogModule} from 'primeng/dialog';
+import { MessagesComponent } from './messages/messages.component';
+import { TableComponent } from './books/ui/table/table.component';
 
 
 @NgModule({
@@ -30,7 +32,7 @@ import {DialogModule} from 'primeng/dialog';
                   BookFormAddComponent, 
                   BookFormEditComponent, 
                   LendingFormEditComponent, 
-                  LendingFormAddComponent
+                  LendingFormAddComponent, MessagesComponent, TableComponent
                 ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, ButtonModule, TableModule, ConfirmDialogModule, BrowserAnimationsModule, DialogModule],
   providers: [ConfirmationService, MessageService],

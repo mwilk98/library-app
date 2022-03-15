@@ -17,11 +17,15 @@ export class BooksComponent{
   }
 
   books: Array<Book> = []
-  displayBasic: boolean = false;
   displayFail: boolean = false;
+
+  errorMessage: string = ''
   
   ngOnInit(): void {
     this.books = this.bookSrv.getBooks();    
+  }
+  closeAlert(alert: boolean) {
+    this.displayFail = alert;
   }
 
   deleteBook(bookId: string): void {
@@ -29,9 +33,11 @@ export class BooksComponent{
       message: `Czy na pewno chcesz usunąć książke o id: ${bookId}?`,
       accept: () => {
         this.displayFail = this.bookSrv.deleteBook(bookId)
+        this.errorMessage = 'Nie można usunąć książki - istnieje wypożyczenie';
         if(!this.displayFail){
           this.books = this.bookSrv.getBooks();
-          this.displayBasic = true; 
+          this.displayFail = true;
+          this.errorMessage = 'Usunięto książkę'; 
         } 
       }
     }); 
