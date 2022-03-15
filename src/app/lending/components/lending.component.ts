@@ -31,14 +31,11 @@ export class LendingComponent implements OnInit{
 
   deleteLending(lendingId: string) {
     this.lendingSrv.deleteLending(lendingId);
-  }
-
-  onSubmit(data: Lending) {
-    this.lendingSrv.addLending(data);
+    this.lendings = this.lendingSrv.getLendings();
   }
 
   editLending(lendingId: string) {
-    this._router.navigate(['/edit-lending',lendingId])
+    this._router.navigate(['/edit-lending', lendingId])
   }
 
 }

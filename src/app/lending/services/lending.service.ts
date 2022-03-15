@@ -10,8 +10,8 @@ export class LendingService {
               readonly studentSrv: StudentService
   ) {}
 
-  getLending(lendingId: string) : void {
-    this.lendingStoreSrv.getLending(lendingId);
+  getLending(lendingId: string) : Lending {
+    return this.lendingStoreSrv.getLending(lendingId);
   }
 
   getLendings() {
@@ -34,6 +34,10 @@ export class LendingService {
       const lendingObj = this.lendingStoreSrv.getLending(lendingId);
       lendingObj.status = statusValue;
       this.lendingStoreSrv.updateLending(lendingId, lendingObj);
+  }
+
+  bookStatusName(bookStatus: boolean) {
+      return bookStatus ? "Wypożyczona" : "Oddana";
   }
 
   checkBookIfLent(bookId: string): boolean {
