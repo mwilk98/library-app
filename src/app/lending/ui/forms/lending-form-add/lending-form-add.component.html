@@ -13,7 +13,7 @@
             <select name="idBook" ngModel>
                 <option value="" disabled>Książka</option>
                 <option *ngFor="let book of books" [ngValue]="book.id">
-                  {{ book.id }} {{ book.title }} {{ book.author }}
+                  {{ book.id }}; {{ book.title }} {{ book.author }}
                 </option> 
               </select> 
               <small *ngIf="!bookIdError" id="id-help" class="p-error block">Nie wybrano ksiązki.</small> 
@@ -25,7 +25,7 @@
             <select name="idStudent" ngModel>
                 <option value="" disabled>Student</option>
                 <option *ngFor="let student of students" [ngValue]="student.id">
-                  {{ student.id }} {{ student.name }} {{ student.surname }}
+                  {{ student.id }}; {{ student.name }} {{ student.surname }}
                 </option>
               </select> 
               <small *ngIf="!studentIdError" id="id-help" class="p-error block">Nie wybrano ucznia.</small>  
