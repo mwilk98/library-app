@@ -25,13 +25,11 @@ export class LendingStoreService {
     addLending(newLending: Lending): Lending {
         newLending.status = true;
         this.lendings[this.generateKey(newLending)] = newLending;
-        alert('Dodano wypożyczenie');
         return newLending;
     }
 
     updateLending(idLending: string, newLending: Lending): Lending {
         this.lendings[idLending] = newLending;
-        alert('Zaktualizowano wypożyczenie');
         return newLending;
     }
 
@@ -43,7 +41,6 @@ export class LendingStoreService {
             newLendings[this.generateKey(lending)] = lending;
         });
         this.lendings = newLendings;
-        alert(`Usunięto wypożyczenie o id ${idLending}`)
     }
 
     private generateKey(book: Lending): string {

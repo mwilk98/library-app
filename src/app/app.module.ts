@@ -13,6 +13,11 @@ import { BookFormAddComponent } from './books/ui/forms/form-add/book-form-add.co
 import { BookFormEditComponent } from './books/ui/forms/form-edit/book-form-edit.component';
 import { LendingFormEditComponent } from './lending/ui/forms/lending-form-edit/lending-form-edit.component';
 import { LendingFormAddComponent } from './lending/ui/forms/lending-form-add/lending-form-add.component';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {DialogModule} from 'primeng/dialog';
+
 
 @NgModule({
   declarations: [
@@ -27,8 +32,8 @@ import { LendingFormAddComponent } from './lending/ui/forms/lending-form-add/len
                   LendingFormEditComponent, 
                   LendingFormAddComponent
                 ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ButtonModule, TableModule],
-  providers: [],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ButtonModule, TableModule, ConfirmDialogModule, BrowserAnimationsModule, DialogModule],
+  providers: [ConfirmationService, MessageService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

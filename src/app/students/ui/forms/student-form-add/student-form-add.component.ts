@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
 import { Student } from 'src/app/students/domain-models/student.model';
 import { StudentService } from 'src/app/students/services/students.service';
 import { StudentValidatorService } from 'src/app/students/services/validation/students-validator.service';
@@ -12,6 +13,7 @@ export class StudentFormAddComponent implements OnInit {
 
   constructor(readonly studentSrv: StudentService,
               readonly studentValidateSrv: StudentValidatorService,
+              private confirmationService: ConfirmationService,
               private _router: Router
   ) {}
 
@@ -20,6 +22,7 @@ export class StudentFormAddComponent implements OnInit {
   surnameError: boolean = true;
   ageError: boolean = true;
   classError: boolean = true;
+  displayBasic: boolean = false;
 
   ngOnInit(): void {
   }
@@ -33,7 +36,12 @@ export class StudentFormAddComponent implements OnInit {
 
     if(this.idError && this.nameError && this.surnameError && this.ageError && this.classError) {
       this.studentSrv.addStudent(data);
-      this._router.navigate(['/students'])
+      this.confirmationService.confirm({
+        message: `Dodano studenta`,
+        accept: () => {
+          this._router.navigate(['/students'])
+        }
+    }); 
     }    
   }
 }

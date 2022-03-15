@@ -2,6 +2,13 @@
 
   <h1 class="text-center">Uczniowie</h1>
   <p-button [routerLink]="'/add-student'" icon="pi pi-plus"></p-button>
+  <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text" acceptLabel="Tak" rejectLabel="Nie"></p-confirmDialog>
+  <p-dialog header="Usunięto" [(visible)]="displayBasic" [style]="{width: '50vw'}">
+    <p>Usunięto ucznia</p>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>
 
   <div class="table-responsive">
     <p-table [value]="students" styleClass="p-datatable-lg" responsiveLayout="scroll">

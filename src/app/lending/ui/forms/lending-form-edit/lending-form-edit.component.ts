@@ -1,6 +1,7 @@
 import { formatDate } from '@angular/common';
 import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
 import { Book } from 'src/app/books/domain-model/book.model';
 import { BookService } from 'src/app/books/services/book.service';
 import { Lending } from 'src/app/lending/domain-model/lending.model';
@@ -19,6 +20,7 @@ export class LendingFormEditComponent implements OnInit {
               readonly lendingValidationSrv: LendingValidatorService,
               private bookSrv: BookService,
               private studentSrv: StudentService,
+              private confirmationService: ConfirmationService,
               private _route: ActivatedRoute,
               private _router: Router,
               @Inject(LOCALE_ID) private locale: string
@@ -56,7 +58,12 @@ export class LendingFormEditComponent implements OnInit {
 
     if(this.idError && this.bookIdError && this.studentIdError && this.dateError) {
       this.lendingSrv.updateLending(data.id,data);
-      this._router.navigate(['/lendings'])
+      this.confirmationService.confirm({
+        message: `Zaktualizowano wypożyczenie`,
+        accept: () => {
+          this._router.navigate(['/lendings'])
+        }
+    }); 
     }    
   }
 

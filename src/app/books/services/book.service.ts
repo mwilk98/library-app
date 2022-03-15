@@ -17,13 +17,12 @@ export class BookService{
         return this.bookStoreSrv.getBooks();
     }
 
-    deleteBook(bookId:string): void {
+    deleteBook(bookId:string): boolean {
         if (this.lendingSrv.checkBookIfLent(bookId)) {
-            alert('istnieje wypożyczenie nie można usunac ksiazki');
-            return;
-          }
+            return true;
+        }
           this.bookStoreSrv.deleteBook(bookId);
-      
+          return false;
     }
     
     addBook(newBook: Book): void {

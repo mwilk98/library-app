@@ -6,6 +6,7 @@ import { Student } from 'src/app/students/domain-models/student.model';
 import { Book } from 'src/app/books/domain-model/book.model';
 import { BookService } from 'src/app/books/services/book.service';
 import { StudentService } from 'src/app/students/services/students.service';
+import { ConfirmationService } from 'primeng/api';
 
 @Component({
   selector: 'app-books',
@@ -16,12 +17,15 @@ export class LendingComponent implements OnInit{
     readonly lendingSrv: LendingService,
     private bookSrv: BookService,
     readonly studentSrv: StudentService,
+    private confirmationService: ConfirmationService,
     private _router: Router
   ) {}
 
   lendings: Array<Lending> = [];
   students: Array<Student> = [];
   books: Array<Book> = [];
+  displayBasic: boolean = false;
+  displayStatusChange: boolean = false;
 
   ngOnInit(): void {
     this.lendings = this.lendingSrv.getLendings();
@@ -29,9 +33,25 @@ export class LendingComponent implements OnInit{
     this.books = this.bookSrv.getBooks();  
   }
 
+  changeLendingStatus(lendingId: string) {
+    this.confirmationService.confirm({
+      message: `Czy na pewno chcesz zmienić status wypożyczenia o id: ${lendingId}?`,
+      accept: () => {
+        this.lendingSrv.changeLendingStatus(lendingId, false)
+        this.displayStatusChange = true; 
+      }
+  });
+  }
+
   deleteLending(lendingId: string) {
-    this.lendingSrv.deleteLending(lendingId);
-    this.lendings = this.lendingSrv.getLendings();
+    this.confirmationService.confirm({
+      message: `Czy na pewno chcesz usunąć wypożyczenie o id: ${lendingId}?`,
+      accept: () => {
+        this.lendingSrv.deleteLending(lendingId);
+        this.lendings = this.lendingSrv.getLendings();
+        this.displayBasic = true; 
+      }
+  });
   }
 
   editLending(lendingId: string) {

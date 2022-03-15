@@ -24,14 +24,12 @@ export class BookStoreService {
 
     addBook(newBook: Book): Book {
         this.books[this.generateKey(newBook)] = newBook;
-        alert('Dodano książkę');
         return newBook;
     }
 
     updateBook(idBook: string, newBook: Book): Book {
         newBook.id=idBook;
         this.books[idBook] = newBook;
-        alert('Zakutaliozwano książkę');
         return newBook;
     }
 
@@ -43,7 +41,6 @@ export class BookStoreService {
             newBooks[this.generateKey(book)] = book;
         });
         this.books = newBooks;
-        alert(`Usunięto książkę ${idBook}`)
     }
 
     private generateKey(book: Book): string {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
 import { Student } from 'src/app/students/domain-models/student.model';
 import { StudentService } from 'src/app/students/services/students.service';
 import { StudentValidatorService } from 'src/app/students/services/validation/students-validator.service';
@@ -12,6 +13,7 @@ export class StudentFormEditComponent implements OnInit {
 
   constructor(readonly studentSrv: StudentService,
               private studentValidateSrv: StudentValidatorService,
+              private confirmationService: ConfirmationService,
               private _route: ActivatedRoute,
               private _router: Router
   ) {}
@@ -38,7 +40,12 @@ export class StudentFormEditComponent implements OnInit {
 
     if(this.idError && this.nameError && this.surnameError && this.ageError && this.classError) {
       this.studentSrv.updateStudent(data.id,data);
-      this._router.navigate(['/students'])
+      this.confirmationService.confirm({
+        message: `Zaktualizowano studenta o id ${data.id}`,
+        accept: () => {
+          this._router.navigate(['/students'])
+        }
+    }); 
     }    
   }
 }

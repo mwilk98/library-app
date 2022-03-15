@@ -2,6 +2,19 @@
 
   <h1 class="text-center">Wypożyczenia</h1>
   <p-button [routerLink]="'/add-lending'" icon="pi pi-plus"></p-button>
+  <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text" acceptLabel="Tak" rejectLabel="Nie"></p-confirmDialog>
+  <p-dialog header="Usunięto" [(visible)]="displayBasic" [style]="{width: '50vw'}">
+    <p>Usunięto wypożyczenie</p>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
+    </ng-template>
+  </p-dialog>
+  <p-dialog header="Zmieniono status" [(visible)]="displayStatusChange" [style]="{width: '50vw'}">
+    <p>Zmieniono status wypożyczenia</p>
+  <ng-template pTemplate="footer">
+      <p-button icon="pi pi-check" (click)="displayStatusChange=false" label="Ok" styleClass="p-button-text"></p-button>
+  </ng-template>
+  </p-dialog>
 
   <div class="table-responsive">
     <p-table [value]="lendings" styleClass="p-datatable-lg" responsiveLayout="scroll">
@@ -22,7 +35,7 @@
           <td>{{students[lending.idStudent].name}} {{students[lending.idStudent].surname}}</td>
           <td>{{ lending.lendingDate | date: 'dd/MM/yyyy' }}</td>
           <td *ngIf="lending.status; else elseBlock">
-          <button pButton class="p-button-success" (click)="this.lendingSrv.changeLendingStatus(lending.id, false)">Oddaj</button>
+          <button pButton class="p-button-success" (click)="changeLendingStatus(lending.id)">Oddaj</button>
           </td>
           <ng-template #elseBlock> <td>Oddano</td></ng-template>
 

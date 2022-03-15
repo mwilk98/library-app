@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConfirmationService } from 'primeng/api';
 import { Book } from 'src/app/books/domain-model/book.model';
 import { BookService } from 'src/app/books/services/book.service';
 import { Lending } from 'src/app/lending/domain-model/lending.model';
@@ -20,6 +21,7 @@ export class LendingFormAddComponent implements OnInit {
     readonly lendingValidationSrv: LendingValidatorService,
     private bookSrv: BookService,
     private studentSrv: StudentService,
+    private confirmationService: ConfirmationService,
     private _router: Router
 ) {}
 
@@ -43,7 +45,12 @@ onSubmit(data: Lending): void {
 
   if(this.idError && this.bookIdError && this.studentIdError && this.dateError) {
     this.lendingSrv.addLending(data);
-    this._router.navigate(['/lendings'])
+    this.confirmationService.confirm({
+        message: `Dodano wypożyczenie`,
+        accept: () => {
+          this._router.navigate(['/lendings'])
+        }
+    }); 
   }    
 }
 

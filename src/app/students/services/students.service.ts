@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
+import { ConfirmationService, ConfirmEventType, MessageService } from 'primeng/api';
 import { StudentStoreService } from '../../stores/students/student-store.service';
 import { Student } from '../domain-models/student.model';
 import { StudentValidatorService } from './validation/students-validator.service';
 
 @Injectable({ providedIn: 'root' })
 export class StudentService{
-    constructor(readonly studentStoreSrv: StudentStoreService) {}
-
+    constructor(readonly studentStoreSrv: StudentStoreService,
+                private confirmationService: ConfirmationService,
+            private messageService: MessageService
+    ) {}
     getStudent(studentId: string): Student {
         return this.studentStoreSrv.getStudent(studentId);
     }
@@ -16,7 +19,7 @@ export class StudentService{
     }
 
     deleteStudent(studentId:string): void {
-        this.studentStoreSrv.deleteStudent(studentId);
+          this.studentStoreSrv.deleteStudent(studentId);   
     }
     
     addStudent(newStudent: Student): void {

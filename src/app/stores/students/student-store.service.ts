@@ -24,29 +24,23 @@ export class StudentStoreService {
 
   addStudent(newStudent: Student): Student {
     this.students[this.generateKey(newStudent)] = newStudent;
-    alert('Dodano ucznia');
     return newStudent;
   }
 
   updateStudent(idStudent: string, newStudent: Student): Student {
     newStudent.id=idStudent
     this.students[idStudent] = newStudent;
-    alert('Zaktualizowano ucznia');
     return newStudent;
   }
 
   deleteStudent(idStudent: string): void{
-    if(confirm(`Czy na pewno chcesz usunąć ucznia o id ${idStudent}`)){
       const newStudents: StudentStore = {};
       Object.values(this.students)
         .filter(student => student.id !== idStudent)
         .forEach(student => {
             newStudents[this.generateKey(student)] = student;
         })  
-        this.students = newStudents;
-        
-        alert(`Usunięto ucznia o id ${idStudent}`)
-    }
+        this.students = newStudents;    
   }
 
   private generateKey(book: Student): string {
