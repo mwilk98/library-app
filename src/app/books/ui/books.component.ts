@@ -24,6 +24,7 @@ export class BooksComponent{
   ngOnInit(): void {
     this.books = this.bookSrv.getBooks();    
   }
+  
   closeAlert(alert: boolean) {
     this.displayFail = alert;
   }

@@ -1,33 +1,11 @@
 <div class="container h-100 d-flex justify-content-center ">
+
   <h1 class="text-center">Książki</h1>
+  
   <p-button [routerLink]="'/add-book'" icon="pi pi-plus"></p-button>
 
   <app-messages [displayFail]="displayFail" [errorMessage]="errorMessage" (newItemEvent)="closeAlert($event)"></app-messages>
 
-  <div class="table-responsive">
-    <p-table [value]="books" styleClass="p-datatable-lg" responsiveLayout="scroll">
-      <ng-template pTemplate="header">
-        <tr>
-          <th>#</th>
-          <th>Tytuł</th>
-          <th>Autor</th>
-          <th>Gatunek</th>
-          <th>Data Wydania</th>
-          <th>Opcje</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-book>
-        <tr>
-          <td>{{ book.id }}</td>
-          <td>{{ book.title }}</td>
-          <td>{{ book.author }}</td>
-          <td>{{ book.type }}</td>
-          <td>{{ book.releaseDate | date: 'dd/MM/yyyy' }}</td>
-          <td>
-            <button pButton type="button"class="p-button-danger" icon="pi pi-ban"(click)="deleteBook(book.id)"></button>
-            <p-button icon="pi pi-user-edit" (click)="editBook(book.id)"></p-button>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </div>
+  <app-table [books]="books" (deleteBookEvent)="deleteBook($event)" (editBookEvent)="editBook($event)"></app-table>
+
+
