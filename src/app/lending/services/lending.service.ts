@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BookService } from 'src/app/books/services/book.service';
-import { StudentService } from 'src/app/students/services/students.service';
-import { LendingStoreService } from '../../stores/lendings/lending-store.service';
+import { StudentFindService } from 'src/app/students/services/finder/student-find.service';
+import { LendingStoreService } from '../../stores/lending-store.service';
 import { Lending } from '../domain-model/lending.model';
 
 @Injectable({ providedIn: 'root' })
 export class LendingService {
   constructor(readonly lendingStoreSrv: LendingStoreService,
-              readonly studentSrv: StudentService
+              readonly studentFindSrv: StudentFindService
   ) {}
 
   getLending(lendingId: string) : Lending {

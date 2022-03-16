@@ -1,43 +1,45 @@
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text" acceptLabel="Ok" [rejectVisible]="false"></p-confirmDialog>
+<h1 style="margin-left: 41%;">Dodaj ucznia</h1>
 <div>
-    <form class="form-horizontal" #editStudentForm="ngForm" (ngSubmit)="onSubmit(editStudentForm.value)" ngNativeValidate>
+    <form class="form-horizontal" #studentAddForm="ngForm" (ngSubmit)="onSubmit(studentAddForm.value)" ngNativeValidate>
       <div class="form-group">
-        <label class="control-label col-sm-5" for="pwd">ID</label>
+        <label class="control-label col-sm-5" for="pwd">Id</label>
         <div class="col-sm-2">
-          <input type="text" class="form-control" name="id" placeholder="id" [(ngModel)]="student.id" required/>
+          <input id="id" type="id" aria-describedby="Id-help" class="ng-invalid ng-dirty" pInputText name="id" placeholder="id" ngModel/>
           <small *ngIf="!idError" id="id-help" class="p-error block">Id niedostępne.</small>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-5" for="pwd">Imie</label>
         <div class="col-sm-2">
-          <input type="text" class="form-control" name="name" placeholder="Imie" [(ngModel)]="student.name"/>
+          <input id="name" type="name" aria-describedby="name-help" class="ng-invalid ng-dirty" pInputText name="name" placeholder="imie" ngModel/>
           <small *ngIf="!nameError" id="name-help" class="p-error block">Imie nieprawidłowe.</small>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-5" for="pwd">Nazwisko</label>
         <div class="col-sm-2">
-          <input type="text" class="form-control" name="surname" placeholder="Nazwisko" [(ngModel)]="student.surname"/>
+          <input id="surname" type="surname" aria-describedby="surname-help" class="ng-invalid ng-dirty" pInputText name="surname" placeholder="nazwisko" ngModel/>
           <small *ngIf="!surnameError" id="surname-help" class="p-error block">Nazwisko nieprawidłowe.</small>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-5" for="pwd">Wiek</label>
         <div class="col-sm-2">
-          <input type="text" class="form-control" name="age" placeholder="Wiek" [(ngModel)]="student.age"/>
+          <input id="age" type="number" aria-describedby="age-help" class="ng-invalid ng-dirty" pInputText name="age" placeholder="wiek" ngModel/>
           <small *ngIf="!ageError" id="age-help" class="p-error block">Wiek niepoprawny</small>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-5" for="pwd">Klasa</label>
-        <div class="col-sm-2"><input type="text" class="form-control" name="class" placeholder="Klasa" [(ngModel)]="student.class"/>
+        <div class="col-sm-2">
+          <input id="class" type="class" aria-describedby="class-help" class="ng-invalid ng-dirty" pInputText name="class" placeholder="klasa" ngModel/>
           <small *ngIf="!classError" id="class-help" class="p-error block">Nieprawidłowy format klasy.</small>
         </div>
       </div>
       <div class="form-group">
-        <div class="col-sm-offset-7 col-sm-5">
-          <button pButton type="submit" class="p-button-success">Zapisz</button>
+        <div class="col-sm-offset-5 col-sm-5">
+          <button pButton type="submit" class="p-button-success">Dodaj</button>
           <p-button [routerLink]="'/students'">Anuluj</p-button>
         </div>
       </div>

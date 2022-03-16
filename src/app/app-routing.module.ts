@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BooksComponent } from './books/ui/books.component';
-import { StudentFormAddComponent } from './students/ui/forms/student-form-add/student-form-add.component';
-import { StudentFormEditComponent } from './students/ui/forms/student-form-edit/student-form-edit.component';
+import { BooksComponent } from './books/components/books.component';
+import { StudentFormAddComponent } from './forms/student-form-add/student-form-add.component';
+import { StudentFormEditComponent } from './forms/student-form-edit/student-form-edit.component';
 import { LendingComponent } from './lending/components/lending.component';
 import { StudentsComponent } from './students/components/students.component';
-import { BookFormAddComponent } from './books/ui/forms/form-add/book-form-add.component';
-import { BookFormEditComponent } from './books/ui/forms/form-edit/book-form-edit.component';
+import { BookFormAddComponent } from './forms/book-form-add/book-form-add.component';
+import { BookFormEditComponent } from './forms/book-form-edit/book-form-edit.component';
 import { LendingFormAddComponent } from './lending/ui/forms/lending-form-add/lending-form-add.component';
 import { LendingFormEditComponent } from './lending/ui/forms/lending-form-edit/lending-form-edit.component';
 

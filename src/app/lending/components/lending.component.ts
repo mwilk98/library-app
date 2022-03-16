@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import { Student } from 'src/app/students/domain-models/student.model';
 import { Book } from 'src/app/books/domain-model/book.model';
 import { BookService } from 'src/app/books/services/book.service';
-import { StudentService } from 'src/app/students/services/students.service';
 import { ConfirmationService } from 'primeng/api';
+import { StudentFindService } from 'src/app/students/services/finder/student-find.service';
 
 @Component({
   selector: 'app-books',
@@ -16,7 +16,7 @@ export class LendingComponent implements OnInit{
   constructor(
     readonly lendingSrv: LendingService,
     private bookSrv: BookService,
-    readonly studentSrv: StudentService,
+    readonly studentFindSrv: StudentFindService,
     private confirmationService: ConfirmationService,
     private _router: Router
   ) {}
@@ -29,7 +29,7 @@ export class LendingComponent implements OnInit{
 
   ngOnInit(): void {
     this.lendings = this.lendingSrv.getLendings();
-    this.students = this.studentSrv.getStudents();    
+    this.students = this.studentFindSrv.getStudents();    
     this.books = this.bookSrv.getBooks();  
   }
 

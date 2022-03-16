@@ -1,5 +1,5 @@
 import { Inject, Injectable, LOCALE_ID } from "@angular/core";
-import { LendingStoreService } from "src/app/stores/lendings/lending-store.service";
+import { LendingStoreService } from "../../../stores/lending-store.service";
 import { Lending } from "../../domain-model/lending.model";
 
 @Injectable({ providedIn: 'root' })

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Lending, LendingStore } from '../../lending/domain-model/lending.model';
+import { Lending, LendingStore } from '../lending/domain-model/lending.model';
 @Injectable({ providedIn: 'root' })
 export class LendingStoreService {
   private lendings: LendingStore = {
@@ -11,7 +11,7 @@ export class LendingStoreService {
     }
     
     getLending(lendingId: string): Lending {
-        const lendingObj = Object.values(this.lendings).find((lending) => lending.id === lendingId);
+        const lendingObj = Object.values(this.lendings).find((lending: Lending) => lending.id === lendingId);
         if(lendingObj === undefined){
             throw new Error(`Nie znaleziono wypożyczenia o podanym id: ${lendingId}`);
         }
@@ -36,7 +36,7 @@ export class LendingStoreService {
     deleteLending(idLending: string): void {
         const newLendings: LendingStore = {};
         Object.values(this.lendings)
-        .filter((lending) => lending.id !== idLending)
+        .filter((lending: Lending) => lending.id !== idLending)
         .forEach((lending) => {
             newLendings[this.generateKey(lending)] = lending;
         });

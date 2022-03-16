@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { BookStoreService } from "src/app/stores/books/book-store.service";
-import { StudentStoreService } from "../../../stores/students/student-store.service";
+import { BookStoreService } from "src/app/stores/book-store.service";
+import { StudentStoreService } from "../../../stores/student-store.service";
 import { Book } from "../../domain-model/book.model";
 
 @Injectable({ providedIn: 'root' })

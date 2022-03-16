@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Book } from '../../domain-model/book.model';
+import { Book } from '../books/domain-model/book.model';
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html'
+  selector: 'app-table-book',
+  templateUrl: './table-book.component.html'
 })
-export class TableComponent implements OnInit {
+export class TableBookComponent implements OnInit {
 
   @Input() books: Array<Book> = []
   @Output() deleteBookEvent = new EventEmitter<string>();

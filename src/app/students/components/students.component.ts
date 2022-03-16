@@ -1,35 +1,45 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { Student } from '../domain-models/student.model';
-import { StudentService } from '../services/students.service';
+import { StudentFindService } from '../services/finder/student-find.service';
+import { StudentUtilityService } from '../services/utils/student-utility.service';
 
 @Component({
   selector: 'app-students',
   templateUrl: '../ui/students.component.html',
 })
 export class StudentsComponent implements OnInit {
-  constructor(readonly studentSrv: StudentService,
-              private confirmationService: ConfirmationService,
-              private _router: Router
-  ) {}
+
+  constructor(
+    private studentUtilSrv: StudentUtilityService,
+    private studentFindSrv: StudentFindService,
+    private confirmationService: ConfirmationService,
+    private _router: Router
+  ) { }
 
   students: Array<Student> = [];
-  displayBasic: boolean = false;
+  displayFail: boolean = false;
+  errorMessage: string = ''
 
   ngOnInit(): void {
-    this.students = this.studentSrv.getStudents();    
+    this.students = this.studentFindSrv.getStudents();    
+  }
+
+  closeAlert(alert: boolean) {
+    this.displayFail = alert;
   }
 
   deleteStudent(studentId: string): void {
     this.confirmationService.confirm({
       message: `Czy na pewno chcesz usunąć studenta o id: ${studentId}?`,
       accept: () => {
-        this.studentSrv.deleteStudent(studentId);
-        this.students = this.studentSrv.getStudents();
-        this.displayBasic = true; 
+        this.studentUtilSrv.deleteStudent(studentId);
+        this.students = this.studentFindSrv.getStudents();
+        this.displayFail = true; 
+        this.errorMessage = 'Usunięto ucznia'; 
       }
-  }); 
+    }); 
   }
 
   editStudent(studentId: string) {

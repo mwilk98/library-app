@@ -1,39 +1,7 @@
 <div class="container h-100 d-flex justify-content-center">
-
+  <app-messages [displayFail]="displayFail" [errorMessage]="errorMessage" (newItemEvent)="closeAlert($event)"></app-messages>
   <h1 class="text-center">Uczniowie</h1>
   <p-button [routerLink]="'/add-student'" icon="pi pi-plus"></p-button>
-  <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text" acceptLabel="Tak" rejectLabel="Nie"></p-confirmDialog>
-  <p-dialog header="Usunięto" [(visible)]="displayBasic" [style]="{width: '50vw'}">
-    <p>Usunięto ucznia</p>
-    <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
-    </ng-template>
-</p-dialog>
-
-  <div class="table-responsive">
-    <p-table [value]="students" styleClass="p-datatable-lg" responsiveLayout="scroll">
-      <ng-template pTemplate="header">
-        <tr>
-          <th>#</th>
-          <th>Imie</th>
-          <th>Nazwisko</th>
-          <th>Wiek</th>
-          <th>Klasa</th>
-          <th>Opcje</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-student>
-        <tr>
-          <td>{{ student.id }}</td>
-          <td>{{ student.name }}</td>
-          <td>{{ student.surname }}</td>
-          <td>{{ student.age }}</td>
-          <td>{{ student.class }}</td>
-          <td>
-            <button pButton type="button"class="p-button-danger" icon="pi pi-ban"(click)="deleteStudent(student.id)"></button>
-            <p-button icon="pi pi-user-edit" (click)="editStudent(student.id)"></p-button>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </div>
+  <app-table-students [students]="students" (deleteStudentEvent)="deleteStudent($event)" (editStudentEvent)="editStudent($event)">
+  </app-table-students>
+</div>

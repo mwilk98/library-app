@@ -7,7 +7,7 @@ import { Lending } from 'src/app/lending/domain-model/lending.model';
 import { LendingService } from 'src/app/lending/services/lending.service';
 import { LendingValidatorService } from 'src/app/lending/services/validation/lendings-validator.service';
 import { Student } from 'src/app/students/domain-models/student.model';
-import { StudentService } from 'src/app/students/services/students.service';
+import { StudentFindService } from 'src/app/students/services/finder/student-find.service';
 
 type NewType = Book;
 
@@ -20,7 +20,7 @@ export class LendingFormAddComponent implements OnInit {
   constructor(readonly lendingSrv: LendingService,
     readonly lendingValidationSrv: LendingValidatorService,
     private bookSrv: BookService,
-    private studentSrv: StudentService,
+    private studentFindSrv: StudentFindService,
     private confirmationService: ConfirmationService,
     private _router: Router
   ) {}
@@ -31,7 +31,7 @@ export class LendingFormAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.books = this.bookSrv.getBooks();  
-    this.students = this.studentSrv.getStudents();  
+    this.students = this.studentFindSrv.getStudents();  
   }
 
   onSubmit(data: Lending): void {

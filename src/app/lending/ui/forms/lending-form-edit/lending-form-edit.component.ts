@@ -8,7 +8,7 @@ import { Lending } from 'src/app/lending/domain-model/lending.model';
 import { LendingService } from 'src/app/lending/services/lending.service';
 import { LendingValidatorService } from 'src/app/lending/services/validation/lendings-validator.service';
 import { Student } from 'src/app/students/domain-models/student.model';
-import { StudentService } from 'src/app/students/services/students.service';
+import { StudentFindService } from 'src/app/students/services/finder/student-find.service';
 
 @Component({
   selector: 'app-student-form-edit',
@@ -19,7 +19,7 @@ export class LendingFormEditComponent implements OnInit {
   constructor(readonly lendingSrv: LendingService,
               readonly lendingValidationSrv: LendingValidatorService,
               private bookSrv: BookService,
-              private studentSrv: StudentService,
+              private studentFindSrv: StudentFindService,
               private confirmationService: ConfirmationService,
               private _route: ActivatedRoute,
               private _router: Router,
@@ -42,10 +42,10 @@ export class LendingFormEditComponent implements OnInit {
   ngOnInit(): void {
     this.id = this._route.snapshot.params['id'];
     this.books = this.bookSrv.getBooks();  
-    this.students = this.studentSrv.getStudents();   
+    this.students = this.studentFindSrv.getStudents();   
     this.lending = this.lendingSrv.getLending(this.id);
     this.date = formatDate(this.lending.lendingDate,'yyyy-MM-dd',this.locale);
-    this.student = this.studentSrv.getStudent(this.lending.idStudent);
+    this.student = this.studentFindSrv.getStudent(this.lending.idStudent);
     this.book = this.bookSrv.getBook(this.lending.idBook);
     this.bookStatus = this.lendingSrv.bookStatusName(this.lending.status);
   }

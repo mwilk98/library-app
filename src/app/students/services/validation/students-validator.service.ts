@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core";
-import { StudentStoreService } from "../../../stores/students/student-store.service";
+import { StudentStoreService } from "../../../stores/student-store.service";
 import { Student } from "../../domain-models/student.model";
 
 @Injectable({ providedIn: 'root' })
 export class StudentValidatorService {
-    constructor(private readonly studentStoreSrv: StudentStoreService) {
+    constructor(private studentStoreSrv: StudentStoreService) {
     }
 
+    /* Sprawdza czy wartość nie jest undefined */
     baseValidation<TValue>(value: TValue): boolean {
         if (value === undefined) { return false; }
         return true;
@@ -15,7 +16,7 @@ export class StudentValidatorService {
     /* Sprawdza poprawność i unikalność podanego id dla studentów */
     idValidation(idStudent: string): boolean {
         const baseValidation: boolean = this.baseValidation<string>(idStudent);
-        const students: Array<Student> = this.studentStoreSrv.getStudents().filter(student => student.id === idStudent);
+        const students: Array<Student> = this.studentStoreSrv.getStudents().filter((student: Student) => student.id === idStudent);
         
         if (!baseValidation) { return false; }
         if (idStudent === '') { return false; }
@@ -23,6 +24,8 @@ export class StudentValidatorService {
 
         return true;
     }
+
+    /* Sprawdza poprawność podanego imienia dla studenta */
     nameValidation(nameStudent: string): boolean {
         const baseValidation: boolean = this.baseValidation<string>(nameStudent);
         const nameValidation = new RegExp("^[A-Za-z]+$");
@@ -33,16 +36,19 @@ export class StudentValidatorService {
         
         return true;
     }
+    
+    /* Sprawdza poprawność podanego nazwiska dla studenta */
     surnameValidation(surnameStudent: string): boolean {
         const baseValidation: boolean = this.baseValidation<string>(surnameStudent);
         const nameValidation = new RegExp("^[a-zA-Z][a-zA-Z .,'-]*$");
-        
         if (!baseValidation) { return false; }
         if (surnameStudent === '') { return false; }
         if (!nameValidation.test(surnameStudent)) { return false; }
         
         return true;
     }
+
+    /* Sprawdza poprawność podanego wieku dla studenta */
     ageValidation(ageStudent: number): boolean {
         const baseValidation: boolean = this.baseValidation<number>(ageStudent);
         
@@ -52,6 +58,8 @@ export class StudentValidatorService {
         
         return true;
     }
+
+    /* Sprawdza poprawność podanej klasy dla studenta */
     classValidation(classStudent: string): boolean {
         const baseValidation: boolean = this.baseValidation<string>(classStudent);
         
