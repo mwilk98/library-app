@@ -11,43 +11,38 @@ import { StudentValidatorService } from 'src/app/students/services/validation/st
   templateUrl: './student-form-edit.component.html',
 })
 export class StudentFormEditComponent implements OnInit {
-
-  constructor(readonly studentFindSrv: StudentFindService,
-              readonly studentUtilSrv: StudentUtilityService,
-              private studentValidateSrv: StudentValidatorService,
-              private confirmationService: ConfirmationService,
-              private _route: ActivatedRoute,
-              private _router: Router
+  constructor(
+    private readonly findSrv: StudentFindService,
+    private readonly utilSrv: StudentUtilityService,
+    private readonly validateSrv: StudentValidatorService,
+    private readonly confirmationSrv: ConfirmationService,
+    private readonly _route: ActivatedRoute,
+    private readonly _router: Router
   ) {}
 
   id: string = '';
   student!: Student;
-  idError: boolean = true;
-  nameError: boolean = true;
-  surnameError: boolean = true;
-  ageError: boolean = true;
-  classError: boolean = true;
+  validate: boolean = true;
 
   ngOnInit(): void {
     this.id = this._route.snapshot.params['id'];
-    this.student = this.studentFindSrv.getStudent(this.id);
+    this.student = this.findSrv.getStudent(this.id);
   }
 
   onSubmit(data: Student): void {
-    //this.idError = this.studentValidateSrv.idValidation(data.id);
-    this.nameError = this.studentValidateSrv.nameValidation(data.name);
-    this.surnameError = this.studentValidateSrv.surnameValidation(data.surname);
-    this.ageError = this.studentValidateSrv.ageValidation(data.age);
-    this.classError = this.studentValidateSrv.classValidation(data.class);
+    this.validate = this.validateSrv.nameValidation(data.name);
+    this.validate = this.validateSrv.surnameValidation(data.surname);
+    this.validate = this.validateSrv.ageValidation(data.age);
+    this.validate = this.validateSrv.classValidation(data.class);
 
-    if(this.idError && this.nameError && this.surnameError && this.ageError && this.classError) {
-      this.studentUtilSrv.updateStudent(data.id,data);
-      this.confirmationService.confirm({
+    if (this.validate) {
+      this.utilSrv.updateStudent(data.id, data);
+      this.confirmationSrv.confirm({
         message: `Zaktualizowano studenta o id ${data.id}`,
         accept: () => {
-          this._router.navigate(['/students'])
-        }
-    }); 
-    }    
+          this._router.navigate(['/students']);
+        },
+      });
+    }
   }
 }

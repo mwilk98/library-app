@@ -1,13 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Student } from '../students/domain-models/student.model';
 
 @Component({
   selector: 'app-table-students',
-  templateUrl: './table-student.component.html'
+  templateUrl: './table-student.component.html',
 })
 export class TableStudentComponent {
-
-  @Input() students: Array<Student> = []
+  @Input() students: Array<Student> = [];
   @Output() deleteStudentEvent = new EventEmitter<string>();
   @Output() editStudentEvent = new EventEmitter<string>();
 
@@ -18,5 +17,4 @@ export class TableStudentComponent {
   editStudent(studentId: string) {
     this.editStudentEvent.emit(studentId);
   }
-
 }

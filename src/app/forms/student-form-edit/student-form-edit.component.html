@@ -6,34 +6,34 @@
         <label class="control-label col-sm-5" for="pwd">ID</label>
         <div class="col-sm-2">
           <input type="text" class="form-control" name="id" placeholder="id" [(ngModel)]="student.id" required/>
-          <small *ngIf="!idError" id="id-help" class="p-error block">Id niedostępne.</small>
+          <small *ngIf="!validate" id="id-help" class="p-error block">Id niedostępne.</small>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-5" for="pwd">Imie</label>
         <div class="col-sm-2">
           <input type="text" class="form-control" name="name" placeholder="Imie" [(ngModel)]="student.name"/>
-          <small *ngIf="!nameError" id="name-help" class="p-error block">Imie nieprawidłowe.</small>
+          <small *ngIf="!validate" id="name-help" class="p-error block">Imie nieprawidłowe.</small>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-5" for="pwd">Nazwisko</label>
         <div class="col-sm-2">
           <input type="text" class="form-control" name="surname" placeholder="Nazwisko" [(ngModel)]="student.surname"/>
-          <small *ngIf="!surnameError" id="surname-help" class="p-error block">Nazwisko nieprawidłowe.</small>
+          <small *ngIf="!validate" id="surname-help" class="p-error block">Nazwisko nieprawidłowe.</small>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-5" for="pwd">Wiek</label>
         <div class="col-sm-2">
           <input type="text" class="form-control" name="age" placeholder="Wiek" [(ngModel)]="student.age"/>
-          <small *ngIf="!ageError" id="age-help" class="p-error block">Wiek niepoprawny</small>
+          <small *ngIf="!validate" id="age-help" class="p-error block">Wiek niepoprawny</small>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-5" for="pwd">Klasa</label>
         <div class="col-sm-2"><input type="text" class="form-control" name="class" placeholder="Klasa" [(ngModel)]="student.class"/>
-          <small *ngIf="!classError" id="class-help" class="p-error block">Nieprawidłowy format klasy.</small>
+          <small *ngIf="!validate" id="class-help" class="p-error block">Nieprawidłowy format klasy.</small>
         </div>
       </div>
       <div class="form-group">

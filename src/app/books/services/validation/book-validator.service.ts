@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 import { BookStoreService } from "src/app/stores/book-store.service";
-import { StudentStoreService } from "../../../stores/student-store.service";
 import { Book } from "../../domain-model/book.model";
 
+/* serwis do obsługi walidacji danych książki */
 @Injectable({ providedIn: 'root' })
 export class BookValidatorService {
-    constructor(private readonly bookStoreSrv: BookStoreService) {}
+    constructor(private readonly storeSrv: BookStoreService) {}
 
     baseValidation<TValue>(value: TValue): boolean {
         if (value === undefined) { return false; }
@@ -15,7 +15,7 @@ export class BookValidatorService {
     /* Sprawdza poprawność i unikalność podanego id dla studentów */
     idValidation(idBook: string): boolean {
         const baseValidation: boolean = this.baseValidation<string>(idBook);
-        const students: Array<Book> = this.bookStoreSrv.getBooks().filter(book => book.id === idBook);
+        const students: Array<Book> = this.storeSrv.getBooks().filter(book => book.id === idBook);
         
         if (!baseValidation) { return false; }
         if (idBook === '') { return false; }

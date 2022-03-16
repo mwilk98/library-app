@@ -21,6 +21,7 @@ import { MessagesComponent } from './messages/messages.component';
 import { TableBookComponent } from './table/table-book.component';
 import { TableStudentComponent } from './table/table-student.component';
 import {CascadeSelectModule} from 'primeng/cascadeselect';
+import { TableLendingComponent } from './table/table-lending.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import {CascadeSelectModule} from 'primeng/cascadeselect';
     LendingFormAddComponent,
     MessagesComponent,
     TableBookComponent,
-    TableStudentComponent
+    TableStudentComponent,
+    TableLendingComponent
   ],
   imports: [
     BrowserModule, 

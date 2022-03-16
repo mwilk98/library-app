@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { Book } from '../domain-model/book.model';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
@@ -9,43 +9,42 @@ import { BookUtilityService } from '../services/utils/book-utility.service';
   selector: 'app-books',
   templateUrl: '../ui/books.component.html',
 })
-export class BooksComponent{
+export class BooksComponent {
   constructor(
-    readonly bookFindSrv: BookFindService,
-    readonly bookUtilSrv: BookUtilityService,
-    private confirmationService: ConfirmationService,
-    private _router: Router
-  ) {
+    private readonly findSrv: BookFindService,
+    private readonly utilSrv: BookUtilityService,
+    private readonly confirmationSrv: ConfirmationService,
+    private readonly _router: Router
+  ) {}
+
+  books: Array<Book> = [];
+  displayFail: boolean = false;
+  errorMessage: string = '';
+
+  ngOnInit(): void {
+    this.books = this.findSrv.getBooks();
   }
 
-  books: Array<Book> = []
-  displayFail: boolean = false;
-  errorMessage: string = ''
-  
-  ngOnInit(): void {
-    this.books = this.bookFindSrv.getBooks();    
-  }
-  
   closeAlert(alert: boolean) {
     this.displayFail = alert;
   }
 
   deleteBook(bookId: string): void {
-    this.confirmationService.confirm({
+    this.confirmationSrv.confirm({
       message: `Czy na pewno chcesz usunąć książke o id: ${bookId}?`,
       accept: () => {
-        this.displayFail = this.bookUtilSrv.deleteBook(bookId)
+        this.displayFail = this.utilSrv.deleteBook(bookId);
         this.errorMessage = 'Nie można usunąć książki - istnieje wypożyczenie';
-        if(!this.displayFail){
-          this.books = this.bookFindSrv.getBooks();
+        if (!this.displayFail) {
+          this.books = this.findSrv.getBooks();
           this.displayFail = true;
-          this.errorMessage = 'Usunięto książkę'; 
-        } 
-      }
-    }); 
+          this.errorMessage = 'Usunięto książkę';
+        }
+      },
+    });
   }
-  
+
   editBook(bookId: string) {
-    this._router.navigate(['/edit-book',bookId])
+    this._router.navigate(['/edit-book', bookId]);
   }
 }

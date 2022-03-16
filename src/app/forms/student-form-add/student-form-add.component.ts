@@ -10,38 +10,33 @@ import { StudentValidatorService } from 'src/app/students/services/validation/st
   templateUrl: './student-form-add.component.html',
 })
 export class StudentFormAddComponent implements OnInit {
-
-  constructor(readonly studentUtilSrv: StudentUtilityService,
-              readonly studentValidateSrv: StudentValidatorService,
-              private confirmationService: ConfirmationService,
-              private _router: Router
+  constructor(
+    private readonly utilSrv: StudentUtilityService,
+    private readonly validateSrv: StudentValidatorService,
+    private readonly confirmationSrv: ConfirmationService,
+    private readonly _router: Router
   ) {}
 
-  idError: boolean = true;
-  nameError: boolean = true;
-  surnameError: boolean = true;
-  ageError: boolean = true;
-  classError: boolean = true;
+  validate: boolean = true;
   displayBasic: boolean = false;
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit(data: Student): void {
-    this.idError = this.studentValidateSrv.idValidation(data.id);
-    this.nameError = this.studentValidateSrv.nameValidation(data.name);
-    this.surnameError = this.studentValidateSrv.surnameValidation(data.surname);
-    this.ageError = this.studentValidateSrv.ageValidation(data.age);
-    this.classError = this.studentValidateSrv.classValidation(data.class);
+    this.validate = this.validateSrv.idValidation(data.id);
+    this.validate = this.validateSrv.nameValidation(data.name);
+    this.validate = this.validateSrv.surnameValidation(data.surname);
+    this.validate = this.validateSrv.ageValidation(data.age);
+    this.validate = this.validateSrv.classValidation(data.class);
 
-    if(this.idError && this.nameError && this.surnameError && this.ageError && this.classError) {
-      this.studentUtilSrv.addStudent(data);
-      this.confirmationService.confirm({
+    if (this.validate) {
+      this.utilSrv.addStudent(data);
+      this.confirmationSrv.confirm({
         message: `Dodano studenta`,
         accept: () => {
-          this._router.navigate(['/students'])
-        }
-    }); 
-    }    
+          this._router.navigate(['/students']);
+        },
+      });
+    }
   }
 }

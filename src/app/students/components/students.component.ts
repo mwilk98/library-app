@@ -10,9 +10,8 @@ import { StudentUtilityService } from '../services/utils/student-utility.service
   templateUrl: '../ui/students.component.html',
 })
 export class StudentsComponent implements OnInit {
-
   constructor(
-    private studentUtilSrv: StudentUtilityService,
+    private readonly studentUtilSrv: StudentUtilityService,
     private studentFindSrv: StudentFindService,
     private confirmationService: ConfirmationService,
     private _router: Router
@@ -20,13 +19,13 @@ export class StudentsComponent implements OnInit {
 
   students: Array<Student> = [];
   displayFail: boolean = false;
-  errorMessage: string = ''
+  errorMessage: string = '';
 
   ngOnInit(): void {
-    this.students = this.studentFindSrv.getStudents();    
+    this.students = this.studentFindSrv.getStudents();
   }
 
-  closeAlert(alert: boolean) {
+  closeAlert(alert: boolean): void {
     this.displayFail = alert;
   }
 
@@ -36,13 +35,13 @@ export class StudentsComponent implements OnInit {
       accept: () => {
         this.studentUtilSrv.deleteStudent(studentId);
         this.students = this.studentFindSrv.getStudents();
-        this.displayFail = true; 
-        this.errorMessage = 'Usunięto ucznia'; 
-      }
-    }); 
+        this.displayFail = true;
+        this.errorMessage = 'Usunięto ucznia';
+      },
+    });
   }
 
   editStudent(studentId: string) {
-    this._router.navigate(['/edit-student', studentId])
+    this._router.navigate(['/edit-student', studentId]);
   }
 }

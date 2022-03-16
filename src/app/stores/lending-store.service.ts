@@ -8,42 +8,44 @@ export class LendingStoreService {
     '2': { id: '2', idBook: '2', idStudent: '2', lendingDate: new Date(), status: false },
     '3': { id: '3', idBook: '3', idStudent: '3', lendingDate: new Date(), status: false },
     '4': { id: '4', idBook: '4', idStudent: '4', lendingDate: new Date(), status: true }
-    }
-    
-    getLending(lendingId: string): Lending {
-        const lendingObj = Object.values(this.lendings).find((lending: Lending) => lending.id === lendingId);
-        if(lendingObj === undefined){
-            throw new Error(`Nie znaleziono wypożyczenia o podanym id: ${lendingId}`);
-        }
-        return lendingObj;
-    }
+  };
 
-    getLendings(): Array<Lending> {
-        return Object.values(this.lendings);
+  getLending(lendingId: string): Lending {
+    const lendingObj = Object.values(this.lendings).find(
+      (lending: Lending) => lending.id === lendingId
+    );
+    if (lendingObj === undefined) {
+      throw new Error(`Nie znaleziono wypożyczenia o podanym id: ${lendingId}`);
     }
+    return lendingObj;
+  }
 
-    addLending(newLending: Lending): Lending {
-        newLending.status = true;
-        this.lendings[this.generateKey(newLending)] = newLending;
-        return newLending;
-    }
+  getLendings(): Array<Lending> {
+    return Object.values(this.lendings);
+  }
 
-    updateLending(idLending: string, newLending: Lending): Lending {
-        this.lendings[idLending] = newLending;
-        return newLending;
-    }
+  addLending(newLending: Lending): Lending {
+    newLending.status = true;
+    this.lendings[this.generateKey(newLending)] = newLending;
+    return newLending;
+  }
 
-    deleteLending(idLending: string): void {
-        const newLendings: LendingStore = {};
-        Object.values(this.lendings)
-        .filter((lending: Lending) => lending.id !== idLending)
-        .forEach((lending) => {
-            newLendings[this.generateKey(lending)] = lending;
-        });
-        this.lendings = newLendings;
-    }
+  updateLending(idLending: string, newLending: Lending): Lending {
+    this.lendings[idLending] = newLending;
+    return newLending;
+  }
 
-    private generateKey(book: Lending): string {
-        return Object.values(book).join('-');
-    }
+  deleteLending(idLending: string): void {
+    const newLendings: LendingStore = {};
+    Object.values(this.lendings)
+      .filter((lending: Lending) => lending.id !== idLending)
+      .forEach((lending) => {
+        newLendings[this.generateKey(lending)] = lending;
+      });
+    this.lendings = newLendings;
+  }
+
+  private generateKey(book: Lending): string {
+    return Object.values(book).join('-');
+  }
 }

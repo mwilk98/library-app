@@ -5,7 +5,8 @@ import { ConfirmationService } from 'primeng/api';
 import { Book } from 'src/app/books/domain-model/book.model';
 import { BookFindService } from 'src/app/books/services/finder/book-find.service';
 import { Lending } from 'src/app/lending/domain-model/lending.model';
-import { LendingService } from 'src/app/lending/services/lending.service';
+import { LendingFindService } from 'src/app/lending/services/finder/lending-find.service';
+import { LendingUtilityService } from 'src/app/lending/services/utils/lending-utility.service';
 import { LendingValidatorService } from 'src/app/lending/services/validation/lendings-validator.service';
 import { Student } from 'src/app/students/domain-models/student.model';
 import { StudentFindService } from 'src/app/students/services/finder/student-find.service';
@@ -15,15 +16,16 @@ import { StudentFindService } from 'src/app/students/services/finder/student-fin
   templateUrl: './lending-form-edit.component.html',
 })
 export class LendingFormEditComponent implements OnInit {
-
-  constructor(readonly lendingSrv: LendingService,
-              readonly lendingValidationSrv: LendingValidatorService,
-              private bookFindSrv: BookFindService,
-              private studentFindSrv: StudentFindService,
-              private confirmationService: ConfirmationService,
-              private _route: ActivatedRoute,
-              private _router: Router,
-              @Inject(LOCALE_ID) private locale: string
+  constructor(
+    private readonly lendingFindSrv: LendingFindService,
+    private readonly lendingUtilSrv: LendingUtilityService,
+    private readonly validationSrv: LendingValidatorService,
+    private readonly bookFindSrv: BookFindService,
+    private readonly studentFindSrv: StudentFindService,
+    private readonly confirmationService: ConfirmationService,
+    private readonly _route: ActivatedRoute,
+    private readonly _router: Router,
+    @Inject(LOCALE_ID) private readonly locale: string
   ) {}
 
   id: string = '';
@@ -34,37 +36,32 @@ export class LendingFormEditComponent implements OnInit {
   students: Array<Student> = [];
   date: string = '';
   bookStatus: string = '';
-  idError: boolean = true;
-  bookIdError: boolean = true;
-  studentIdError: boolean = true;
-  dateError: boolean = true;
+  validate: boolean = true;
 
   ngOnInit(): void {
     this.id = this._route.snapshot.params['id'];
-    this.books = this.bookFindSrv.getBooks();  
-    this.students = this.studentFindSrv.getStudents();   
-    this.lending = this.lendingSrv.getLending(this.id);
-    this.date = formatDate(this.lending.lendingDate,'yyyy-MM-dd',this.locale);
+    this.books = this.bookFindSrv.getBooks();
+    this.students = this.studentFindSrv.getStudents();
+    this.lending = this.lendingFindSrv.getLending(this.id);
+    this.date = formatDate(this.lending.lendingDate, 'yyyy-MM-dd', this.locale);
     this.student = this.studentFindSrv.getStudent(this.lending.idStudent);
     this.book = this.bookFindSrv.getBook(this.lending.idBook);
-    this.bookStatus = this.lendingSrv.bookStatusName(this.lending.status);
+    this.bookStatus = this.lendingUtilSrv.bookStatusName(this.lending.status);
   }
 
   onSubmit(data: Lending): void {
-    //this.idError = this.lendingValidationSrv.idValidation(data.id);
-    this.bookIdError =this.lendingValidationSrv.emptyStringValidation(data.idBook);
-    this.studentIdError = this.lendingValidationSrv.emptyStringValidation(data.idStudent);
-    this.dateError = this.lendingValidationSrv.dateValidation(data.lendingDate);
+    this.validate = this.validationSrv.emptyStringValidation(data.idBook);
+    this.validate = this.validationSrv.emptyStringValidation(data.idStudent);
+    this.validate = this.validationSrv.dateValidation(data.lendingDate);
 
-    if(this.idError && this.bookIdError && this.studentIdError && this.dateError) {
-      this.lendingSrv.updateLending(data.id,data);
+    if (this.validate) {
+      this.lendingUtilSrv.updateLending(data.id, data);
       this.confirmationService.confirm({
         message: `Zaktualizowano wypożyczenie`,
         accept: () => {
-          this._router.navigate(['/lendings'])
-        }
-    }); 
-    }    
+          this._router.navigate(['/lendings']);
+        },
+      });
+    }
   }
-
 }

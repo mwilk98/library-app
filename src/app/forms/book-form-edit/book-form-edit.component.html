@@ -8,35 +8,35 @@
         <label class="control-label col-sm-5" for="pwd">ID</label>
         <div class="col-sm-2">
           <input type="text" class="form-control" name="id" placeholder="id" [(ngModel)]="book.id"/>
-          <small *ngIf="!idError" id="id-help" class="p-error block">Id niedostępne.</small>
+          <small *ngIf="!validate" id="id-help" class="p-error block">Id niedostępne.</small>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-5" for="pwd">Tytuł</label>
         <div class="col-sm-2">
           <input type="text" class="form-control" name="title" placeholder="tytuł" [(ngModel)]="book.title" />
-          <small *ngIf="!titleError" id="title-help" class="p-error block">Tytuł nieprawidłowy.</small>
+          <small *ngIf="!validate" id="title-help" class="p-error block">Tytuł nieprawidłowy.</small>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-5" for="pwd">Autor</label>
         <div class="col-sm-2">
           <input type="text" class="form-control" name="author" placeholder="autor" [(ngModel)]="book.author" />
-          <small *ngIf="!authorError" id="author-help" class="p-error block">Autor nieprawidłowy.</small>
+          <small *ngIf="!validate" id="author-help" class="p-error block">Autor nieprawidłowy.</small>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-5" for="pwd">Gatunek</label>
         <div class="col-sm-2">
           <input type="text" class="form-control" name="type" placeholder="gatunek" [(ngModel)]="book.type" />
-          <small *ngIf="!typeError" id="type-help" class="p-error block">Gatunek niepoprawny</small>
+          <small *ngIf="!validate" id="type-help" class="p-error block">Gatunek niepoprawny</small>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-5" for="pwd">Data Wydania</label>
         <div class="col-sm-2">
             <input type="date" class="form-control" name="releaseDate" placeholder="data" [(ngModel)]="date" />
-            <small *ngIf="!dateError" id="id-help" class="p-error block">Nie wybrano daty.</small> 
+            <small *ngIf="!validate" id="id-help" class="p-error block">Nie wybrano daty.</small> 
         </div>
       </div>
       <div class="form-group">

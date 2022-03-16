@@ -10,38 +10,32 @@ import { BookValidatorService } from 'src/app/books/services/validation/book-val
   templateUrl: './book-form-add.component.html',
 })
 export class BookFormAddComponent implements OnInit {
-
-  constructor(readonly bookUtilSrv: BookUtilityService,
-              readonly bookValidateSrv: BookValidatorService,
-              private confirmationService: ConfirmationService,
-              private _router: Router
+  constructor(
+    private readonly utilSrv: BookUtilityService,
+    private readonly validateSrv: BookValidatorService,
+    private readonly confirmationSrv: ConfirmationService,
+    private readonly _router: Router
   ) {}
 
-  idError: boolean = true;
-  titleError: boolean = true;
-  authorError: boolean = true;
-  typeError: boolean = true;
-  dateError: boolean = true;
+  validate: boolean = true;
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit(data: Book): void {
-    this.idError = this.bookValidateSrv.idValidation(data.id);
-    this.titleError = this.bookValidateSrv.dataValidation(data.title);
-    this.authorError = this.bookValidateSrv.dataValidation(data.author);
-    this.typeError = this.bookValidateSrv.dataValidation(data.type);
-    this.dateError = this.bookValidateSrv.dateValidation(data.releaseDate);
+    this.validate = this.validateSrv.idValidation(data.id);
+    this.validate = this.validateSrv.dataValidation(data.title);
+    this.validate = this.validateSrv.dataValidation(data.author);
+    this.validate = this.validateSrv.dataValidation(data.type);
+    this.validate = this.validateSrv.dateValidation(data.releaseDate);
 
-    if(this.idError && this.titleError && this.authorError && this.typeError && this.dateError) {
-      this.bookUtilSrv.addBook(data);
-      this.confirmationService.confirm({
+    if (this.validate) {
+      this.utilSrv.addBook(data);
+      this.confirmationSrv.confirm({
         message: `Dodano książkę`,
         accept: () => {
-          this._router.navigate(['/books'])
-        }
-    }); 
-
-    }    
+          this._router.navigate(['/books']);
+        },
+      });
+    }
   }
 }

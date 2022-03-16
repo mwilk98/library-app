@@ -1,11 +1,7 @@
+import { BaseStudentDataModel } from '../../shared/base-student-data.model';
+
 //model klasy ucznia
-export interface Student {
-  id: string;
-  name: string;
-  surname: string;
-  age: number;
-  class: string;
-}
+export interface Student extends Pick<BaseStudentDataModel, 'id' | 'name' | 'surname' | 'age' | 'class'> {}
 
 export interface StudentStore {
   [key: string]: Student;

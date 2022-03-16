@@ -1,20 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Book } from '../books/domain-model/book.model';
 
 @Component({
   selector: 'app-table-book',
-  templateUrl: './table-book.component.html'
+  templateUrl: './table-book.component.html',
 })
-export class TableBookComponent implements OnInit {
-
-  @Input() books: Array<Book> = []
+export class TableBookComponent {
+  @Input() books: Array<Book> = [];
   @Output() deleteBookEvent = new EventEmitter<string>();
   @Output() editBookEvent = new EventEmitter<string>();
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
   deleteBook(bookId: string) {
     this.deleteBookEvent.emit(bookId);
@@ -23,5 +17,4 @@ export class TableBookComponent implements OnInit {
   editBook(bookId: string) {
     this.editBookEvent.emit(bookId);
   }
-
 }

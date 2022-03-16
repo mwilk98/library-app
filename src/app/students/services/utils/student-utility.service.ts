@@ -1,20 +1,21 @@
-import { Injectable } from "@angular/core";
-import { StudentStoreService } from "src/app/stores/student-store.service";
-import { Student } from "../../domain-models/student.model";
+import { Injectable } from '@angular/core';
+import { StudentStoreService } from 'src/app/stores/student-store.service';
+import { Student } from '../../domain-models/student.model';
 
+/* serwis do obsługi edycji danych ucznia */
 @Injectable({ providedIn: 'root' })
 export class StudentUtilityService {
-    constructor(private studentStoreSrv: StudentStoreService) { }
-    
-    deleteStudent(studentId:string): void {
-        this.studentStoreSrv.deleteStudent(studentId);   
-    }
-  
-    addStudent(newStudent: Student): void {
-        this.studentStoreSrv.addStudent(newStudent);
-    }
+  constructor(private readonly storeSrv: StudentStoreService) {}
 
-    updateStudent(idStudent: string, newStudent: Student): void {
-        this.studentStoreSrv.updateStudent(idStudent,newStudent);
-    }
+  deleteStudent(studentId: string): void {
+    this.storeSrv.deleteStudent(studentId);
+  }
+
+  addStudent(newStudent: Student): void {
+    this.storeSrv.addStudent(newStudent);
+  }
+
+  updateStudent(idStudent: string, newStudent: Student): void {
+    this.storeSrv.updateStudent(idStudent, newStudent);
+  }
 }
