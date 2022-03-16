@@ -3,7 +3,8 @@ import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { Book } from 'src/app/books/domain-model/book.model';
-import { BookService } from 'src/app/books/services/book.service';
+import { BookFindService } from 'src/app/books/services/finder/book-find.service';
+import { BookUtilityService } from 'src/app/books/services/utils/book-utility.service';
 import { BookValidatorService } from 'src/app/books/services/validation/book-validator.service';
 
 @Component({
@@ -12,8 +13,9 @@ import { BookValidatorService } from 'src/app/books/services/validation/book-val
 })
 export class BookFormEditComponent implements OnInit {
 
-  constructor(readonly bookSrv: BookService,
-              readonly bookValidateSrv: BookValidatorService,
+  constructor(private bookFindSrv: BookFindService,
+              private bookUtilSrv: BookUtilityService,
+              private bookValidateSrv: BookValidatorService,
               private confirmationService: ConfirmationService,
               private _route: ActivatedRoute,
               private _router: Router,
@@ -31,7 +33,7 @@ export class BookFormEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this._route.snapshot.params['id'];
-    this.book = this.bookSrv.getBook(this.id);
+    this.book = this.bookFindSrv.getBook(this.id);
     this.date = formatDate(this.book.releaseDate,'yyyy-MM-dd',this.locale);
   }
 
@@ -43,7 +45,7 @@ export class BookFormEditComponent implements OnInit {
     this.dateError = this.bookValidateSrv.dateValidation(data.releaseDate);
     
     if(this.idError && this.titleError && this.authorError && this.typeError && this.dateError) {
-      this.bookSrv.updateBook(data.id,data);
+      this.bookUtilSrv.updateBook(data.id,data);
       this.confirmationService.confirm({
         message: `Zaktualizowano książkę`,
         accept: () => {

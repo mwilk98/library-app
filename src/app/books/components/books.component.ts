@@ -1,8 +1,9 @@
 import { Component} from '@angular/core';
 import { Book } from '../domain-model/book.model';
-import { BookService } from '../services/book.service';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
+import { BookFindService } from '../services/finder/book-find.service';
+import { BookUtilityService } from '../services/utils/book-utility.service';
 
 @Component({
   selector: 'app-books',
@@ -10,7 +11,8 @@ import { ConfirmationService } from 'primeng/api';
 })
 export class BooksComponent{
   constructor(
-    readonly bookSrv:BookService,
+    readonly bookFindSrv: BookFindService,
+    readonly bookUtilSrv: BookUtilityService,
     private confirmationService: ConfirmationService,
     private _router: Router
   ) {
@@ -18,11 +20,10 @@ export class BooksComponent{
 
   books: Array<Book> = []
   displayFail: boolean = false;
-
   errorMessage: string = ''
   
   ngOnInit(): void {
-    this.books = this.bookSrv.getBooks();    
+    this.books = this.bookFindSrv.getBooks();    
   }
   
   closeAlert(alert: boolean) {
@@ -33,16 +34,17 @@ export class BooksComponent{
     this.confirmationService.confirm({
       message: `Czy na pewno chcesz usunąć książke o id: ${bookId}?`,
       accept: () => {
-        this.displayFail = this.bookSrv.deleteBook(bookId)
+        this.displayFail = this.bookUtilSrv.deleteBook(bookId)
         this.errorMessage = 'Nie można usunąć książki - istnieje wypożyczenie';
         if(!this.displayFail){
-          this.books = this.bookSrv.getBooks();
+          this.books = this.bookFindSrv.getBooks();
           this.displayFail = true;
           this.errorMessage = 'Usunięto książkę'; 
         } 
       }
     }); 
   }
+  
   editBook(bookId: string) {
     this._router.navigate(['/edit-book',bookId])
   }

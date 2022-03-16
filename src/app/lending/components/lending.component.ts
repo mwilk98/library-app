@@ -4,9 +4,9 @@ import { Lending } from '../domain-model/lending.model';
 import { Router } from '@angular/router';
 import { Student } from 'src/app/students/domain-models/student.model';
 import { Book } from 'src/app/books/domain-model/book.model';
-import { BookService } from 'src/app/books/services/book.service';
 import { ConfirmationService } from 'primeng/api';
 import { StudentFindService } from 'src/app/students/services/finder/student-find.service';
+import { BookFindService } from 'src/app/books/services/finder/book-find.service';
 
 @Component({
   selector: 'app-books',
@@ -15,7 +15,7 @@ import { StudentFindService } from 'src/app/students/services/finder/student-fin
 export class LendingComponent implements OnInit{
   constructor(
     readonly lendingSrv: LendingService,
-    private bookSrv: BookService,
+    private bookFindSrv: BookFindService,
     readonly studentFindSrv: StudentFindService,
     private confirmationService: ConfirmationService,
     private _router: Router
@@ -30,7 +30,7 @@ export class LendingComponent implements OnInit{
   ngOnInit(): void {
     this.lendings = this.lendingSrv.getLendings();
     this.students = this.studentFindSrv.getStudents();    
-    this.books = this.bookSrv.getBooks();  
+    this.books = this.bookFindSrv.getBooks();  
   }
 
   changeLendingStatus(lendingId: string) {

@@ -11,8 +11,8 @@ import { StudentFormAddComponent } from './forms/student-form-add/student-form-a
 import { StudentFormEditComponent } from './forms/student-form-edit/student-form-edit.component';
 import { BookFormAddComponent } from './forms/book-form-add/book-form-add.component';
 import { BookFormEditComponent } from './forms/book-form-edit/book-form-edit.component';
-import { LendingFormEditComponent } from './lending/ui/forms/lending-form-edit/lending-form-edit.component';
-import { LendingFormAddComponent } from './lending/ui/forms/lending-form-add/lending-form-add.component';
+import { LendingFormEditComponent } from './forms/lending-form-edit/lending-form-edit.component';
+import { LendingFormAddComponent } from './forms/lending-form-add/lending-form-add.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

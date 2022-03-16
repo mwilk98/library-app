@@ -7,8 +7,8 @@ import { LendingComponent } from './lending/components/lending.component';
 import { StudentsComponent } from './students/components/students.component';
 import { BookFormAddComponent } from './forms/book-form-add/book-form-add.component';
 import { BookFormEditComponent } from './forms/book-form-edit/book-form-edit.component';
-import { LendingFormAddComponent } from './lending/ui/forms/lending-form-add/lending-form-add.component';
-import { LendingFormEditComponent } from './lending/ui/forms/lending-form-edit/lending-form-edit.component';
+import { LendingFormAddComponent } from './forms/lending-form-add/lending-form-add.component';
+import { LendingFormEditComponent } from './forms/lending-form-edit/lending-form-edit.component';
 
 const routes: Routes = [
   { path: 'books', component: BooksComponent },

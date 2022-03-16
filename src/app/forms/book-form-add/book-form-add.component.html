@@ -1,5 +1,7 @@
 <h1 style="margin-left: 41%;">Dodaj książkę</h1>
-<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text" acceptLabel="Ok" [rejectVisible]="false"></p-confirmDialog>
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text" acceptLabel="Ok" 
+[rejectVisible]="false">
+</p-confirmDialog>
 <div>
   <form class="form-horizontal" #bookAddForm="ngForm" (ngSubmit)="onSubmit(bookAddForm.value)" ngNativeValidate>
     <div class="form-group">
@@ -12,28 +14,32 @@
     <div class="form-group">
       <label class="control-label col-sm-5" for="pwd">Tytuł</label>
       <div class="col-sm-2">
-        <input id="title" type="title" aria-describedby="title-help" class="ng-invalid ng-dirty" pInputText name="title" placeholder="tytuł" ngModel/>
+        <input id="title" type="title" aria-describedby="title-help" class="ng-invalid ng-dirty" pInputText name="title" 
+        placeholder="tytuł" ngModel/>
         <small *ngIf="!titleError" id="title-help" class="p-error block">Tytuł nieprawidłowy.</small>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-5" for="pwd">Autor</label>
       <div class="col-sm-2">
-        <input id="author" type="author" aria-describedby="author-help" class="ng-invalid ng-dirty" pInputText name="author" placeholder="autor" ngModel/>
+        <input id="author" type="author" aria-describedby="author-help" class="ng-invalid ng-dirty" pInputText name="author"
+        placeholder="autor" ngModel/>
         <small *ngIf="!authorError" id="author-help" class="p-error block">Autor nieprawidłowy.</small>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-5" for="pwd">Typ</label>
       <div class="col-sm-2">
-        <input id="type" type="text" aria-describedby="type-help" class="ng-invalid ng-dirty" pInputText name="type" placeholder="type" ngModel/>
+        <input id="type" type="text" aria-describedby="type-help" class="ng-invalid ng-dirty" pInputText name="type"
+        placeholder="type" ngModel/>
         <small *ngIf="!typeError" id="type-help" class="p-error block">Gatunek niepoprawny</small>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-5" for="pwd">Data Wydania</label>
       <div class="col-sm-2">
-        <input id="releaseDate" type="date" aria-describedby="releaseDate-help" class="ng-invalid ng-dirty" pInputText name="releaseDate" placeholder="data" ngModel/>
+        <input id="releaseDate" type="date" aria-describedby="releaseDate-help" class="ng-invalid ng-dirty" pInputText name="releaseDate" 
+        placeholder="data" ngModel/>
         <small *ngIf="!dateError" id="id-help" class="p-error block">Nie wybrano daty.</small> 
       </div>
     </div>

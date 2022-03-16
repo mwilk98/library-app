@@ -4,8 +4,7 @@ import { Student } from "../../domain-models/student.model";
 
 @Injectable({ providedIn: 'root' })
 export class StudentUtilityService {
-    constructor(private studentStoreSrv: StudentStoreService,
-    ) { }
+    constructor(private studentStoreSrv: StudentStoreService) { }
     
     deleteStudent(studentId:string): void {
         this.studentStoreSrv.deleteStudent(studentId);   

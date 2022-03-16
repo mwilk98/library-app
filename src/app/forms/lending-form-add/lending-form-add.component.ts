@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { Book } from 'src/app/books/domain-model/book.model';
-import { BookService } from 'src/app/books/services/book.service';
+import { BookFindService } from 'src/app/books/services/finder/book-find.service';
 import { Lending } from 'src/app/lending/domain-model/lending.model';
 import { LendingService } from 'src/app/lending/services/lending.service';
 import { LendingValidatorService } from 'src/app/lending/services/validation/lendings-validator.service';
@@ -19,7 +19,7 @@ export class LendingFormAddComponent implements OnInit {
 
   constructor(readonly lendingSrv: LendingService,
     readonly lendingValidationSrv: LendingValidatorService,
-    private bookSrv: BookService,
+    private bookFindSrv: BookFindService,
     private studentFindSrv: StudentFindService,
     private confirmationService: ConfirmationService,
     private _router: Router
@@ -30,7 +30,7 @@ export class LendingFormAddComponent implements OnInit {
   validate: boolean = true;
 
   ngOnInit(): void {
-    this.books = this.bookSrv.getBooks();  
+    this.books = this.bookFindSrv.getBooks();  
     this.students = this.studentFindSrv.getStudents();  
   }
 

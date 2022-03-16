@@ -4,8 +4,7 @@ import { Student } from "../../domain-models/student.model";
 
 @Injectable({ providedIn: 'root' })
 export class StudentValidatorService {
-    constructor(private studentStoreSrv: StudentStoreService) {
-    }
+    constructor(private studentStoreSrv: StudentStoreService) {}
 
     /* Sprawdza czy wartość nie jest undefined */
     baseValidation<TValue>(value: TValue): boolean {

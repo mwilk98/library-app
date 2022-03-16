@@ -5,8 +5,7 @@ import { Book } from "../../domain-model/book.model";
 
 @Injectable({ providedIn: 'root' })
 export class BookValidatorService {
-    constructor(private readonly bookStoreSrv: BookStoreService) {
-    }
+    constructor(private readonly bookStoreSrv: BookStoreService) {}
 
     baseValidation<TValue>(value: TValue): boolean {
         if (value === undefined) { return false; }
@@ -25,11 +24,13 @@ export class BookValidatorService {
         return true;
     }
 
+    /* Sprawdza poprawność daty dla książki*/
     dateValidation(value: Date): boolean {
         if (Object.keys(value).length === 0) { return false; }
         return true;
     }
 
+    /* Sprawdza poprawność danych dla książki*/
     dataValidation(book: string): boolean {
         const baseValidation: boolean = this.baseValidation<string>(book);
         const nameValidation = new RegExp("^[a-zA-Z][a-zA-Z .,'-]*$");

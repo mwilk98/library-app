@@ -16,7 +16,7 @@ export class StudentsComponent implements OnInit {
     private studentFindSrv: StudentFindService,
     private confirmationService: ConfirmationService,
     private _router: Router
-  ) { }
+  ) {}
 
   students: Array<Student> = [];
   displayFail: boolean = false;

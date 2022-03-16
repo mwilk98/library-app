@@ -3,7 +3,7 @@ import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { Book } from 'src/app/books/domain-model/book.model';
-import { BookService } from 'src/app/books/services/book.service';
+import { BookFindService } from 'src/app/books/services/finder/book-find.service';
 import { Lending } from 'src/app/lending/domain-model/lending.model';
 import { LendingService } from 'src/app/lending/services/lending.service';
 import { LendingValidatorService } from 'src/app/lending/services/validation/lendings-validator.service';
@@ -18,7 +18,7 @@ export class LendingFormEditComponent implements OnInit {
 
   constructor(readonly lendingSrv: LendingService,
               readonly lendingValidationSrv: LendingValidatorService,
-              private bookSrv: BookService,
+              private bookFindSrv: BookFindService,
               private studentFindSrv: StudentFindService,
               private confirmationService: ConfirmationService,
               private _route: ActivatedRoute,
@@ -41,12 +41,12 @@ export class LendingFormEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this._route.snapshot.params['id'];
-    this.books = this.bookSrv.getBooks();  
+    this.books = this.bookFindSrv.getBooks();  
     this.students = this.studentFindSrv.getStudents();   
     this.lending = this.lendingSrv.getLending(this.id);
     this.date = formatDate(this.lending.lendingDate,'yyyy-MM-dd',this.locale);
     this.student = this.studentFindSrv.getStudent(this.lending.idStudent);
-    this.book = this.bookSrv.getBook(this.lending.idBook);
+    this.book = this.bookFindSrv.getBook(this.lending.idBook);
     this.bookStatus = this.lendingSrv.bookStatusName(this.lending.status);
   }
 

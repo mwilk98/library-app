@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { Book } from 'src/app/books/domain-model/book.model';
-import { BookService } from 'src/app/books/services/book.service';
+import { BookUtilityService } from 'src/app/books/services/utils/book-utility.service';
 import { BookValidatorService } from 'src/app/books/services/validation/book-validator.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { BookValidatorService } from 'src/app/books/services/validation/book-val
 })
 export class BookFormAddComponent implements OnInit {
 
-  constructor(readonly bookSrv: BookService,
+  constructor(readonly bookUtilSrv: BookUtilityService,
               readonly bookValidateSrv: BookValidatorService,
               private confirmationService: ConfirmationService,
               private _router: Router
@@ -34,7 +34,7 @@ export class BookFormAddComponent implements OnInit {
     this.dateError = this.bookValidateSrv.dateValidation(data.releaseDate);
 
     if(this.idError && this.titleError && this.authorError && this.typeError && this.dateError) {
-      this.bookSrv.addBook(data);
+      this.bookUtilSrv.addBook(data);
       this.confirmationService.confirm({
         message: `Dodano książkę`,
         accept: () => {
