@@ -3,21 +3,31 @@ import { Book, BooksStore } from '../books/domain-model/book.model';
 @Injectable({ providedIn: 'root' })
 export class BookStoreService {
   private books: BooksStore = {
-    '0': { id: '0', title: 'title 1', author: 'author 1', type: 'gatunek 1', releaseDate: new Date() },
-    '1': { id: '1', title: 'title 2', author: 'author 2', type: 'gatunek 2', releaseDate: new Date() },
-    '2': { id: '2', title: 'title 3', author: 'author 3', type: 'gatunek 3', releaseDate: new Date() },
-    '3': { id: '3', title: 'title 4', author: 'author 4', type: 'gatunek 4', releaseDate: new Date() },
-    '4': { id: '4', title: 'title 5', author: 'author 5', type: 'gatunek 5', releaseDate: new Date() }
-  };
+    '1': { id: '1', title: 'title 1', author: 'author 1', type: 'gatunek 1', releaseDate: new Date() },
+    '2': { id: '2', title: 'title 2', author: 'author 2', type: 'gatunek 2', releaseDate: new Date() },
+    '3': { id: '3', title: 'title 3', author: 'author 3', type: 'gatunek 3', releaseDate: new Date() },
+    '4': { id: '4', title: 'title 4', author: 'author 4', type: 'gatunek 4', releaseDate: new Date() },
+    '5': { id: '5', title: 'title 5', author: 'author 5', type: 'gatunek 5', releaseDate: new Date() }
+};
 
   getBook(bookId: string): Book {
-    const bookObj = Object.values(this.books).find(
-      (book) => book.id === bookId
-    );
-    if (bookObj === undefined) {
-      throw new Error(`Nie znaleziono wypożyczenia o podanym id: ${bookId}`);
+    if (bookId === '0'){
+        const bookObj = {
+            id: '',
+            title: '',
+            author: '',
+            type: '',
+            releaseDate: new Date(0)
+        }
+        return bookObj;
     }
-    return bookObj;
+    else{
+        const bookObj = Object.values(this.books).find((book) => book.id === bookId);
+        if(bookObj === undefined){
+            throw new Error(`Nie znaleziono wypożyczenia o podanym id: ${bookId}`);
+        }
+        return bookObj;
+    }   
   }
 
   getBooks(): Array<Book> {
@@ -30,7 +40,6 @@ export class BookStoreService {
   }
 
   updateBook(idBook: string, newBook: Book): Book {
-    newBook.id = idBook;
     this.books[idBook] = newBook;
     return newBook;
   }

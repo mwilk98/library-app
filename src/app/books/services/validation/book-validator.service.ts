@@ -13,14 +13,16 @@ export class BookValidatorService {
     }
 
     /* Sprawdza poprawność i unikalność podanego id dla studentów */
+    idUniqueValidation(idBook: string): boolean {
+        const baseValidation: boolean = this.baseValidation<string>(idBook);
+        const books: Array<Book> = this.storeSrv.getBooks().filter(book => book.id === idBook);
+        if (!baseValidation) { return false; }
+        if (books.length !== 0 ) { return false; }
+        return true;
+    }
     idValidation(idBook: string): boolean {
         const baseValidation: boolean = this.baseValidation<string>(idBook);
-        const students: Array<Book> = this.storeSrv.getBooks().filter(book => book.id === idBook);
-        
-        if (!baseValidation) { return false; }
         if (idBook === '') { return false; }
-        if (students.length !== 0 ) { return false; }
-
         return true;
     }
 

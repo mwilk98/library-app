@@ -13,4 +13,11 @@ export interface BaseDataModel {
   surname: string;
   age: number;
   class: string;
+  idError: boolean;
+  titleError: boolean;
+  authorError: boolean;
+  typeError: boolean;
+  dateError: boolean;
+  idBookError: boolean;
+  idStudentError: boolean;
 }

@@ -5,10 +5,10 @@ import { StudentFormAddComponent } from './forms/student-form-add/student-form-a
 import { StudentFormEditComponent } from './forms/student-form-edit/student-form-edit.component';
 import { LendingComponent } from './lending/ui/lending.component';
 import { StudentsComponent } from './students/ui/students.component';
-import { BookFormAddComponent } from './forms/book-form-add/book-form-add.component';
-import { BookFormEditComponent } from './forms/book-form-edit/book-form-edit.component';
-import { LendingFormAddComponent } from './forms/lending-form-add/lending-form-add.component';
-import { LendingFormEditComponent } from './forms/lending-form-edit/lending-form-edit.component';
+import { BookAddComponent } from './forms/book-form/book-add.component';
+import { BookEditComponent } from './forms/book-form/book-edit.component';
+import { LendingAddComponent } from './forms/lending-form/lending-add.component';
+import { LendingEditComponent } from './forms/lending-form/lending-edit.component';
 
 const routes: Routes = [
   { path: 'books', component: BooksComponent },
@@ -16,10 +16,10 @@ const routes: Routes = [
   { path: 'lendings', component: LendingComponent },
   { path: 'add-student', component: StudentFormAddComponent },
   { path: 'edit-student/:id', component: StudentFormEditComponent },
-  { path: 'add-book', component: BookFormEditComponent },
-  { path: 'edit-book/:id', component: BookFormEditComponent },
-  { path: 'add-lending', component: LendingFormAddComponent },
-  { path: 'edit-lending/:id', component: LendingFormEditComponent }
+  { path: 'add-book', component: BookAddComponent },
+  { path: 'edit-book/:id', component: BookEditComponent },
+  { path: 'add-lending', component: LendingAddComponent },
+  { path: 'edit-lending/:id', component: LendingEditComponent }
 ];
 
 @NgModule({

@@ -1,6 +1,6 @@
 <div class="container h-100 d-flex justify-content-center ">
   <app-messages [displayFail]="displayFail" [errorMessage]="errorMessage" (closeAlertEvent)="closeAlert($event)"></app-messages>
   <h1 class="text-center">Książki</h1>
-  <p-button [routerLink]="'/edit-book/0'" icon="pi pi-plus"></p-button>
+  <p-button [routerLink]="'/add-book'" icon="pi pi-plus"></p-button>
   <app-table-book [books]="books" (deleteBookEvent)="deleteBook($event)" (editBookEvent)="editBook($event)"></app-table-book>
 </div>

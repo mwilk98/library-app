@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { Book } from 'src/app/books/domain-model/book.model';
 import { BookFindService } from 'src/app/books/services/finder/book-find.service';
+import { LendingError } from 'src/app/lending/domain-model/lending-validate.model';
 import { Lending } from 'src/app/lending/domain-model/lending.model';
 import { LendingFindService } from 'src/app/lending/services/finder/lending-find.service';
 import { LendingUtilityService } from 'src/app/lending/services/utils/lending-utility.service';
@@ -12,10 +13,11 @@ import { Student } from 'src/app/students/domain-models/student.model';
 import { StudentFindService } from 'src/app/students/services/finder/student-find.service';
 
 @Component({
-  selector: 'app-student-form-edit',
-  templateUrl: './lending-form-edit.component.html',
+  selector: 'app-lending-edit',
+  templateUrl: './lending-edit.component.html',
 })
-export class LendingFormEditComponent implements OnInit {
+export class LendingEditComponent implements OnInit {
+  lendingError: LendingError;
   constructor(
     private readonly lendingFindSrv: LendingFindService,
     private readonly lendingUtilSrv: LendingUtilityService,
@@ -26,7 +28,14 @@ export class LendingFormEditComponent implements OnInit {
     private readonly _route: ActivatedRoute,
     private readonly _router: Router,
     @Inject(LOCALE_ID) private readonly locale: string
-  ) {}
+  ) {
+    this.lendingError = {
+      idError: true,
+      idBookError: true,
+      idStudentError: true,
+      dateError: true,
+    };
+  }
 
   id: string = '';
   lending!: Lending;
@@ -50,11 +59,18 @@ export class LendingFormEditComponent implements OnInit {
   }
 
   onSubmit(data: Lending): void {
-    this.validate = this.validationSrv.emptyStringValidation(data.idBook);
-    this.validate = this.validationSrv.emptyStringValidation(data.idStudent);
-    this.validate = this.validationSrv.dateValidation(data.lendingDate);
+    this.lendingError.idBookError  = this.validationSrv.emptyStringValidation(data.idBook);
+    this.lendingError.idStudentError = this.validationSrv.emptyStringValidation(data.idStudent);
+    this.lendingError.dateError = this.validationSrv.dateValidation(data.lendingDate);
 
-    if (this.validate) {
+    if (
+      this.lendingError.idError &&
+      this.lendingError.idBookError &&
+      this.lendingError.idStudentError &&
+      this.lendingError.dateError
+      ) {
+        console.log('error');
+        
       this.lendingUtilSrv.updateLending(data.id, data);
       this.confirmationService.confirm({
         message: `Zaktualizowano wypożyczenie`,
