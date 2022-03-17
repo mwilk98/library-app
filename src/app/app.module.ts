@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { LendingComponent } from './lending/components/lending.component';
+import { LendingComponent } from './lending/ui/lending.component';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { StudentFormAddComponent } from './forms/student-form-add/student-form-add.component';

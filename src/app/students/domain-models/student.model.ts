@@ -1,7 +1,7 @@
-import { BaseStudentDataModel } from '../../shared/base-student-data.model';
+import { BaseDataModel } from 'src/app/shared/base-data.model';
 
 //model klasy ucznia
-export interface Student extends Pick<BaseStudentDataModel, 'id' | 'name' | 'surname' | 'age' | 'class'> {}
+export interface Student extends Pick<BaseDataModel, 'id' | 'name' | 'surname' | 'age' | 'class'> {}
 
 export interface StudentStore {
   [key: string]: Student;
