@@ -2,5 +2,5 @@
   <app-messages [displayFail]="displayFail" [errorMessage]="errorMessage" (closeAlertEvent)="closeAlert($event)"></app-messages>
   <h1 class="text-center">Wypożyczenia</h1>
   <p-button [routerLink]="'/add-lending'" icon="pi pi-plus"></p-button>
-  <app-table-lending [lendings]="lendings" [students]="students" [books]="books" (deleteLendingEvent)="deleteLending($event)" (editLendingEvent)="editLending($event)"></app-table-lending>
+  <app-table-lending [lendings]="lendings" [students]="students" [books]="books" (deleteLendingEvent)="deleteLending($event)" (editLendingEvent)="editLending($event)" (editLendingStatusEvent)="changeLendingStatus($event)" ></app-table-lending>
 </div>

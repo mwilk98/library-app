@@ -44,7 +44,7 @@ export class LendingComponent implements OnInit {
     this.confirmationSrv.confirm({
       message: `Czy na pewno chcesz zmienić status wypożyczenia o id: ${lendingId}?`,
       accept: () => {
-        this.lendingUtilSrv.changeLendingStatus(lendingId, false);
+        this.lendingUtilSrv.changeLendingStatus(lendingId);
         this.displayStatusChange = true;
       },
     });

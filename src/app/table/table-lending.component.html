@@ -19,7 +19,9 @@
         <td *ngIf="lending.status; else elseBlock">
           <button pButton class="p-button-success" (click)="changeLendingStatus(lending.id)">Oddaj</button>
         </td>
-        <ng-template #elseBlock> <td>Oddano</td></ng-template>
+        <ng-template #elseBlock> 
+          <td><button pButton class="p-button-success" (click)="changeLendingStatus(lending.id)">Cofnij Oddanie</button></td>
+        </ng-template>
         <td>
           <button pButton type="button" class="p-button-danger" icon="pi pi-ban" (click)="deleteLending(lending.id)"></button>
           <p-button icon="pi pi-user-edit" (click)="editLending(lending.id)"></p-button>

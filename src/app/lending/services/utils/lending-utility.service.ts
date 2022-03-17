@@ -18,9 +18,9 @@ export class LendingUtilityService {
     this.storeSrv.deleteLending(idLending);
   }
 
-  changeLendingStatus(lendingId: string, statusValue: boolean): void {
+  changeLendingStatus(lendingId: string): void {
     const lendingObj = this.storeSrv.getLending(lendingId);
-    lendingObj.status = statusValue;
+    lendingObj.status = !lendingObj.status;
     this.storeSrv.updateLending(lendingId, lendingObj);
   }
 
