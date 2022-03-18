@@ -42,10 +42,37 @@ export class LendingComponent implements OnInit {
     this.lendings = this.lendingFindSrv.getLendings();
     this.students = this.studentFindSrv.getStudents();
     this.books = this.bookFindSrv.getBooks();
+    this.books.forEach(book => {
+      this.refactorBookData(book.id,book);
+    });
+    this.students.forEach(student => {
+      this.refactorStudentData(student.id,student);
+    });
   }
+
+  refactorBookData(id: string, book : Book) {
+    this.lendings.forEach(lending => {
+      if (lending.idBook === id){
+        lending.idBook = `${book.title} ${book.author}`;
+      }
+    })
+  }
+
+  refactorStudentData(id: string, student : Student) {
+    this.lendings.forEach(lending => {
+      if (lending.idStudent === id){
+        lending.idStudent = `${student.name} ${student.surname}`;
+      }
+    })
+  }
+
 
   closeAlert(alert: boolean) {
     this.displayFail = alert;
+    let currentUrl = this._router.url;
+    this._router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+    this._router.navigate([currentUrl]);
+  });
   }
 
   changeLendingStatus(lendingId: string) {

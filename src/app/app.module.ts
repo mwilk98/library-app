@@ -24,7 +24,6 @@ import { BookFormComponent } from './books/util/ui/book-form.component';
 import { LendingFormComponent } from './forms/lending-form/lending-form.component';
 import { DropdownModule } from 'primeng/dropdown';
 import { StudentFormComponent } from './forms/student-form/student-form.component';
-import { TableBookComponent } from './books/grid/ui/table-book.component';
 import { UiTableComponent } from './table/ui/ui-table.component'
 import { TableComponent } from './table/controller/table.component';
 
@@ -42,7 +41,6 @@ import { TableComponent } from './table/controller/table.component';
     LendingEditComponent, 
     LendingAddComponent,
     MessagesComponent,
-    TableBookComponent,
     TableStudentComponent,
     TableLendingComponent,
     BookFormComponent,
