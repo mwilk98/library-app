@@ -68,7 +68,6 @@ export class LendingComponent implements OnInit {
     })
   }
 
-
   closeAlert(alert: boolean) {
     this.displayFail = alert;
     let currentUrl = this._router.url;
