@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Student, StudentStore } from '../students/domain-models/student.model';
+import { Student, StudentStore } from '../feat-students/model/student.model';
+
 @Injectable({ providedIn: 'root' })
 export class StudentStoreService {
   private students: StudentStore = {

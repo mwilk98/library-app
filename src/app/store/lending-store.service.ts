@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Lending, LendingStore } from '../lending/domain-model/lending.model';
+import { Lending, LendingStore } from '../feat-lending/model/lending.model';
+
 @Injectable({ providedIn: 'root' })
 export class LendingStoreService {
   private lendings: LendingStore = {
