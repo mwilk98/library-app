@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { LendingUtilityService } from "src/app/lending/services/utils/lending-utility.service";
-import { BookStoreService } from "src/app/stores/book-store.service";
+import { BookStoreService } from "src/app/store/book-store.service";
 import { Book } from "../../domain-model/book.model";
 
 /* serwis do obsługi edycji danych książki */

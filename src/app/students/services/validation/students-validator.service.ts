@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { StudentStoreService } from '../../../stores/student-store.service';
+import { StudentStoreService } from '../../../store/student-store.service';
 import { Student } from '../../domain-models/student.model';
 
 /* serwis do walidacji danych ucznia */

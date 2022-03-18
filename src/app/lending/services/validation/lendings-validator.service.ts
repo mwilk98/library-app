@@ -1,5 +1,5 @@
 import { Inject, Injectable, LOCALE_ID } from '@angular/core';
-import { LendingStoreService } from '../../../stores/lending-store.service';
+import { LendingStoreService } from '../../../store/lending-store.service';
 import { Lending } from '../../domain-model/lending.model';
 
 /* serwis do walidacji danych wypożyczeń */
