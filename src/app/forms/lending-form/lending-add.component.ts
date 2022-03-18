@@ -51,6 +51,7 @@ export class LendingAddComponent implements OnInit {
 
   onSubmit(data: Lending): void {
     this.lendingError.idError = this.validationSrv.idValidation(data.id);
+    this.lendingError.idError = this.validationSrv.idUniqueValidation(data.id);
     this.lendingError.idBookError = this.validationSrv.emptyStringValidation(data.idBook);
     this.lendingError.idStudentError = this.validationSrv.emptyStringValidation(data.idStudent);
     this.lendingError.dateError = this.validationSrv.dateValidation(data.lendingDate);

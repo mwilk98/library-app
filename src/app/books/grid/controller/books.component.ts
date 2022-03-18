@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { Book } from '../domain-model/book.model';
+import { Book } from '../../domain-model/book.model';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
-import { BookFindService } from '../services/finder/book-find.service';
-import { BookUtilityService } from '../services/utils/book-utility.service';
+import { BookFindService } from '../../services/finder/book-find.service';
+import { BookUtilityService } from '../../services/utils/book-utility.service';
 
 @Component({
   selector: 'app-books',
-  templateUrl: '../ui/books.component.html',
+  templateUrl: './books.component.html',
 })
 export class BooksComponent {
   constructor(
@@ -20,6 +20,14 @@ export class BooksComponent {
   books: Array<Book> = [];
   displayFail: boolean = false;
   errorMessage: string = '';
+  header: Array<string> = [
+    '#',
+    'Tytuł',
+    'Autor',
+    'Gatunek',
+    'Data Wydania',
+    'Opcje'
+  ]
 
   ngOnInit(): void {
     this.books = this.findSrv.getBooks();
@@ -27,6 +35,10 @@ export class BooksComponent {
 
   closeAlert(alert: boolean) {
     this.displayFail = alert;
+    let currentUrl = this._router.url;
+    this._router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+    this._router.navigate([currentUrl]);
+  });
   }
 
   deleteBook(bookId: string): void {

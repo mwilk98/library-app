@@ -18,15 +18,16 @@ export class StudentValidatorService {
   /* Sprawdza poprawność i unikalność podanego id dla studentów */
   idValidation(idStudent: string): boolean {
     const baseValidation: boolean = this.baseValidation<string>(idStudent);
-    const students: Array<Student> = this.studentStoreSrv
-      .getStudents()
-      .filter((student: Student) => student.id === idStudent);
-    if (!baseValidation) {
-      return false;
-    }
+
     if (idStudent === '') {
       return false;
     }
+    return true;
+  }
+  idUniqueValidation(idStudent: string): boolean {
+    const students: Array<Student> = this.studentStoreSrv
+      .getStudents()
+      .filter((student: Student) => student.id === idStudent);
     if (students.length !== 0) {
       return false;
     }

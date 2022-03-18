@@ -7,23 +7,26 @@ import { HeaderComponent } from './header/header.component';
 import { LendingComponent } from './lending/ui/lending.component';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
-import { StudentFormAddComponent } from './forms/student-form-add/student-form-add.component';
-import { StudentFormEditComponent } from './forms/student-form-edit/student-form-edit.component';
-import { BookAddComponent } from './forms/book-form/book-add.component';
-import { BookEditComponent } from './forms/book-form/book-edit.component';
+import { StudentAddComponent } from './forms/student-form/student-add.component';
+import { StudentEditComponent} from './forms/student-form/student-edit.component';
+import { BookAddComponent } from './books/util/add/controller/book-add.component';
+import { BookEditComponent } from './books/util/edit/controller/book-edit.component';
 import { LendingEditComponent } from './forms/lending-form/lending-edit.component';
 import { LendingAddComponent  } from './forms/lending-form/lending-add.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {DialogModule} from 'primeng/dialog';
+import { DialogModule } from 'primeng/dialog';
 import { MessagesComponent } from './messages/messages.component';
-import { TableBookComponent } from './table/table-book.component';
 import { TableStudentComponent } from './table/table-student.component';
 import { TableLendingComponent } from './table/table-lending.component';
-import { BookFormComponent } from './forms/book-form/book-form.component';
+import { BookFormComponent } from './books/util/ui/book-form.component';
 import { LendingFormComponent } from './forms/lending-form/lending-form.component';
-import {DropdownModule} from 'primeng/dropdown';
+import { DropdownModule } from 'primeng/dropdown';
+import { StudentFormComponent } from './forms/student-form/student-form.component';
+import { TableBookComponent } from './books/grid/ui/table-book.component';
+import { UiTableComponent } from './table/ui/ui-table.component'
+import { TableComponent } from './table/controller/table.component';
 
 
 @NgModule({
@@ -32,8 +35,8 @@ import {DropdownModule} from 'primeng/dropdown';
     HeaderComponent, 
     routingComponents, 
     LendingComponent, 
-    StudentFormAddComponent, 
-    StudentFormEditComponent, 
+    StudentAddComponent, 
+    StudentEditComponent, 
     BookAddComponent, 
     BookEditComponent, 
     LendingEditComponent, 
@@ -43,7 +46,10 @@ import {DropdownModule} from 'primeng/dropdown';
     TableStudentComponent,
     TableLendingComponent,
     BookFormComponent,
-    LendingFormComponent
+    LendingFormComponent,
+    StudentFormComponent,
+    UiTableComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule, 

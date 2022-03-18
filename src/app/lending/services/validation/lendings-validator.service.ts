@@ -27,7 +27,7 @@ export class LendingValidatorService {
   dateValidation(value: Date): boolean {
     if (Object.keys(value).length === 0) { return false; }
     return true;
-}
+  }
 
   /* Sprawdza poprawność i unikalność podanego id dla wypożyczenia */
   idValidation(idLending: string): boolean {
@@ -42,6 +42,15 @@ export class LendingValidatorService {
     if (idLending === '') {
       return false;
     }
+    if (lendings.length !== 0) {
+      return false;
+    }
+    return true;
+  }
+  idUniqueValidation(idLending: string): boolean {
+    const lendings: Array<Lending> = this.lendingStoreSrv
+      .getLendings()
+      .filter((lending) => lending.id === idLending);
     if (lendings.length !== 0) {
       return false;
     }

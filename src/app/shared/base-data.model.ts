@@ -20,4 +20,8 @@ export interface BaseDataModel {
   dateError: boolean;
   idBookError: boolean;
   idStudentError: boolean;
+  nameError: boolean;
+  surnameError: boolean;
+  ageError: boolean;
+  classError: boolean;
 }

@@ -46,6 +46,8 @@ export class LendingComponent implements OnInit {
       accept: () => {
         this.lendingUtilSrv.changeLendingStatus(lendingId);
         this.displayStatusChange = true;
+        this.displayFail = true;
+        this.errorMessage = 'Zmieniono status wypożyczenia';
       },
     });
   }

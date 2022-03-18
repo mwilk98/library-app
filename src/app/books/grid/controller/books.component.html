@@ -2,5 +2,5 @@
   <app-messages [displayFail]="displayFail" [errorMessage]="errorMessage" (closeAlertEvent)="closeAlert($event)"></app-messages>
   <h1 class="text-center">Książki</h1>
   <p-button [routerLink]="'/add-book'" icon="pi pi-plus"></p-button>
-  <app-table-book [books]="books" (deleteBookEvent)="deleteBook($event)" (editBookEvent)="editBook($event)"></app-table-book>
+  <app-table [data]="books" [header]="header" (deleteEvent)="deleteBook($event)" (editEvent)="editBook($event)"></app-table>
 </div>

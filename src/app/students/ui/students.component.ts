@@ -20,6 +20,14 @@ export class StudentsComponent implements OnInit {
   students: Array<Student> = [];
   displayFail: boolean = false;
   errorMessage: string = '';
+  header: Array<string> = [
+    '#',
+    'Imie',
+    'Nazwisko',
+    'Wiek',
+    'Klasa',
+    'Opcje'
+  ]
 
   ngOnInit(): void {
     this.students = this.studentFindSrv.getStudents();
@@ -27,6 +35,10 @@ export class StudentsComponent implements OnInit {
 
   closeAlert(alert: boolean): void {
     this.displayFail = alert;
+    let currentUrl = this._router.url;
+    this._router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+    this._router.navigate([currentUrl]);
+  });
   }
 
   deleteStudent(studentId: string): void {
@@ -37,6 +49,7 @@ export class StudentsComponent implements OnInit {
         this.students = this.studentFindSrv.getStudents();
         this.displayFail = true;
         this.errorMessage = 'Usunięto ucznia';
+
       },
     });
   }
