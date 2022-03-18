@@ -29,6 +29,14 @@ export class LendingComponent implements OnInit {
   displayFail: boolean = false;
   displayStatusChange: boolean = false;
   errorMessage: string = '';
+  header: Array<string> = [
+    '#',
+    'Książka',
+    'Uczeń',
+    'Data Wypożyczenia',
+    'Status',
+    'Opcje'
+  ]
 
   ngOnInit(): void {
     this.lendings = this.lendingFindSrv.getLendings();

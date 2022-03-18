@@ -9,8 +9,10 @@ export class TableComponent {
   constructor(private readonly getSrv: GetPropertyFromObjectService) {}
   @Input() header: Array<string> = [];
   @Input() data: Array<object> = [];
+  @Input() showStatus: boolean = false;
   @Output() deleteEvent = new EventEmitter<string>();
   @Output() editEvent = new EventEmitter<string>();
+  @Output() editStatusEvent = new EventEmitter<string>();
   dataString:  Array<Array<string>> = [];
 
   ngOnInit() {
@@ -23,5 +25,9 @@ export class TableComponent {
 
   edit(id: string) {
     this.editEvent.emit(id);
+  }
+
+  editStatus(id: string) {
+    this.editStatusEvent.emit(id);
   }
 }
