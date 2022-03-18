@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BooksComponent } from './books/grid/controller/books.component';
-import { StudentAddComponent } from './forms/student-form/student-add.component';
-import { StudentEditComponent } from './forms/student-form/student-edit.component';
-import { LendingComponent } from './lending/ui/lending.component';
-import { StudentsComponent } from './students/ui/students.component';
+import { StudentAddComponent } from './students/utils/add/student-add.component';
+import { StudentEditComponent } from './students/utils/edit/student-edit.component';
+import { StudentsComponent } from './students/grid/controller/students.component';
 import { BookAddComponent } from './books/util/add/controller/book-add.component';
 import { BookEditComponent } from './books/util/edit/controller/book-edit.component';
-import { LendingAddComponent } from './forms/lending-form/lending-add.component';
-import { LendingEditComponent } from './forms/lending-form/lending-edit.component';
+import { LendingAddComponent } from './lending/util/add/lending-add.component';
+import { LendingEditComponent } from './lending/util/edit/lending-edit.component';
+import { LendingComponent } from './lending/grid/controller/lending.component';
 
 const routes: Routes = [
   { path: 'books', component: BooksComponent },

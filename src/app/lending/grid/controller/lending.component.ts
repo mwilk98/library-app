@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { Lending } from '../domain-model/lending.model';
 import { Router } from '@angular/router';
 import { Student } from 'src/app/students/domain-models/student.model';
 import { Book } from 'src/app/books/domain-model/book.model';
 import { ConfirmationService } from 'primeng/api';
 import { StudentFindService } from 'src/app/students/services/finder/student-find.service';
 import { BookFindService } from 'src/app/books/services/finder/book-find.service';
-import { LendingFindService } from '../services/finder/lending-find.service';
-import { LendingUtilityService } from '../services/utils/lending-utility.service';
+import { LendingUtilityService } from '../../services/utils/lending-utility.service';
+import { LendingFindService } from '../../services/finder/lending-find.service';
+import { Lending } from '../../domain-model/lending.model';
 
 @Component({
   selector: 'app-books',
-  templateUrl: '../ui/lending.component.html',
+  templateUrl: 'lending.component.html',
 })
 export class LendingComponent implements OnInit {
   constructor(

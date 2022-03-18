@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
-import { Student } from '../domain-models/student.model';
-import { StudentFindService } from '../services/finder/student-find.service';
-import { StudentUtilityService } from '../services/utils/student-utility.service';
+import { Student } from '../../domain-models/student.model';
+import { StudentFindService } from '../../services/finder/student-find.service';
+import { StudentUtilityService } from '../../services/utils/student-utility.service';
 
 @Component({
   selector: 'app-students',
-  templateUrl: '../ui/students.component.html',
+  templateUrl: 'students.component.html',
 })
 export class StudentsComponent implements OnInit {
   constructor(
