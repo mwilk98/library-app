@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs/internal/Observable";
 import { BookStoreService } from "src/app/store/book-store.service";
-import { Book } from "../../model/book.model";
+import { Book, BooksStore } from "../../model/book.model";
 
 
 /* serwis do obsługi pobrania danych książki */
@@ -12,7 +13,8 @@ export class BookFindService{
         return this.storeSrv.getBook(bookId);
     }
 
-    getBooks(): Array<Book>  {     
-        return this.storeSrv.getBooks();
+    getBooks(): Observable<BooksStore> {     
+
+        return this.storeSrv.getBooks()
     }
 }

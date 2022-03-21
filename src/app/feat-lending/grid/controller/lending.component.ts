@@ -43,7 +43,7 @@ export class LendingComponent implements OnInit {
   ngOnInit(): void {
     this.lendings = this.lendingFindSrv.getLendings();
     this.students = this.studentFindSrv.getStudents();
-    this.books = this.bookFindSrv.getBooks();
+    this.bookFindSrv.getBooks().subscribe(bookList => this.books = Object.values(bookList));
     this.books.forEach(book => {
       this.refactorBookData(book.id,book);
     });

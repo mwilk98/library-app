@@ -19,8 +19,6 @@ import { BookEditComponent } from './feat-books/util/edit/controller/book-edit.c
 import { LendingEditComponent } from './feat-lending/util/edit/lending-edit.component';
 import { LendingAddComponent } from './feat-lending/util/add/lending-add.component';
 import { MessagesComponent } from './feat-messages/ui/messages.component';
-import { TableStudentComponent } from './feat-table/table-student.component';
-import { TableLendingComponent } from './feat-table/table-lending.component';
 import { BookFormComponent } from './feat-books/util/ui/book-form.component';
 import { LendingFormComponent } from './feat-lending/util/ui/lending-form.component';
 import { StudentFormComponent } from './feat-students/utils/ui/student-form.component';
@@ -42,8 +40,6 @@ import { TableComponent } from './feat-table/controller/table.component';
     LendingEditComponent, 
     LendingAddComponent,
     MessagesComponent,
-    TableStudentComponent,
-    TableLendingComponent,
     BookFormComponent,
     LendingFormComponent,
     StudentFormComponent,

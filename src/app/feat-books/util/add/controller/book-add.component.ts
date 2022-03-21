@@ -39,7 +39,6 @@ export class BookAddComponent {
 
   onSubmit(data: Book): void {
     this.bookError.idError = this.validateSrv.idUniqueValidation(data.id);
-    this.bookError.idError = this.validateSrv.idValidation(data.id);
     this.bookError.titleError = this.validateSrv.dataValidation(data.title);
     this.bookError.authorError = this.validateSrv.dataValidation(data.author);
     this.bookError.typeError = this.validateSrv.dataValidation(data.type);

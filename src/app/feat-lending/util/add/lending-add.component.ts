@@ -46,7 +46,7 @@ export class LendingAddComponent implements OnInit {
   validate: boolean = true;
 
   ngOnInit(): void {
-    this.books = this.bookFindSrv.getBooks();
+    this.bookFindSrv.getBooks().subscribe(bookList => this.books = Object.values(bookList));
     this.students = this.studentFindSrv.getStudents();
   }
 

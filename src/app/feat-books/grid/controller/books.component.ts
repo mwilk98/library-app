@@ -30,11 +30,12 @@ export class BooksComponent {
   ]
 
   ngOnInit(): void {
-    this.books = this.findSrv.getBooks();
+    this.findSrv.getBooks().subscribe(bookList => this.books = Object.values(bookList));
   }
 
   closeAlert(alert: boolean) {
     this.displayFail = alert;
+    this.ngOnInit();
     let currentUrl = this._router.url;
     this._router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
     this._router.navigate([currentUrl]);
@@ -48,7 +49,6 @@ export class BooksComponent {
         this.displayFail = this.utilSrv.deleteBook(bookId);
         this.errorMessage = 'Nie można usunąć książki - istnieje wypożyczenie';
         if (!this.displayFail) {
-          this.books = this.findSrv.getBooks();
           this.displayFail = true;
           this.errorMessage = 'Usunięto książkę';
         }
