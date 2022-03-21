@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { StudentStoreService } from 'src/app/store/student-store.service';
-import { Student } from '../../model/student.model';
+import { Student, StudentStore } from '../../model/student.model';
 
 
 /* serwis do obsługi pobrania danych ucznia */
@@ -12,7 +13,7 @@ export class StudentFindService {
     return this.storeSrv.getStudent(studentId);
   }
 
-  getStudents(): Array<Student> {
+  getStudents(): Observable<StudentStore> {
     return this.storeSrv.getStudents();
   }
 }

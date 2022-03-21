@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs';
 import { LendingStoreService } from '../../../store/lending-store.service';
 import { Lending } from '../../model/lending.model';
+import { LendingFindService } from '../finder/lending-find.service';
 
 
 /* serwis do walidacji danych wypożyczeń */
 @Injectable({ providedIn: 'root' })
 export class LendingValidatorService {
-  constructor(private readonly lendingStoreSrv: LendingStoreService) {}
+  constructor(private readonly lendingFindSrv: LendingFindService) {}
 
   /* serwis do walidacji danych wypożyczenia */
   baseValidation<TValue>(value: TValue): boolean {
@@ -33,28 +35,22 @@ export class LendingValidatorService {
   /* Sprawdza poprawność i unikalność podanego id dla wypożyczenia */
   idValidation(idLending: string): boolean {
     const baseValidation: boolean = this.baseValidation<string>(idLending);
-    const lendings: Array<Lending> = this.lendingStoreSrv
-      .getLendings()
-      .filter((lending) => lending.id === idLending);
-
-    if (!baseValidation) {
-      return false;
-    }
-    if (idLending === '') {
-      return false;
-    }
-    if (lendings.length !== 0) {
-      return false;
-    }
+    if (idLending === '') { return false; }
+    if (!baseValidation) { return false; }
     return true;
   }
+
   idUniqueValidation(idLending: string): boolean {
-    const lendings: Array<Lending> = this.lendingStoreSrv
-      .getLendings()
-      .filter((lending) => lending.id === idLending);
-    if (lendings.length !== 0) {
-      return false;
-    }
-    return true;
+    const baseValidation: boolean = this.baseValidation<string>(idLending);
+    let lendings: Array<Lending> = [];
+    this.lendingFindSrv.getLendings()
+            .pipe(
+                map(books => Object.values(books)
+                    .filter(book => book.id === idLending))
+            ).subscribe(bookList => lendings = Object.values(bookList));
+    if (idLending === '') { return false; }
+    if (!baseValidation) { return false; }
+    if (lendings.length !== 0 ) { return false; }
+      return true;
   }
 }

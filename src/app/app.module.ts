@@ -24,8 +24,7 @@ import { LendingFormComponent } from './feat-lending/util/ui/lending-form.compon
 import { StudentFormComponent } from './feat-students/utils/ui/student-form.component';
 import { UiTableComponent } from './feat-table/ui/ui-table.component';
 import { TableComponent } from './feat-table/controller/table.component';
-
-
+import { FrontPageComponent } from './feat-front-page/grid/controller/front-page.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +43,8 @@ import { TableComponent } from './feat-table/controller/table.component';
     LendingFormComponent,
     StudentFormComponent,
     UiTableComponent,
-    TableComponent
+    TableComponent,
+    FrontPageComponent
   ],
   imports: [
     BrowserModule, 

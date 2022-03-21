@@ -22,7 +22,6 @@ export class BookValidatorService {
                 map(books => Object.values(books)
                     .filter(book => book.id === idBook))
             ).subscribe(bookList => books = Object.values(bookList));
-        console.log(books);
         const baseValidation: boolean = this.baseValidation<string>(idBook);
         if (idBook === '') { return false; }
         if (!baseValidation) { return false; }

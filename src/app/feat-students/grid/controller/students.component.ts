@@ -31,7 +31,7 @@ export class StudentsComponent implements OnInit {
   ]
 
   ngOnInit(): void {
-    this.students = this.studentFindSrv.getStudents();
+    this.studentFindSrv.getStudents().subscribe(bookList => this.students = Object.values(bookList));
   }
 
   closeAlert(alert: boolean): void {
@@ -47,10 +47,8 @@ export class StudentsComponent implements OnInit {
       message: `Czy na pewno chcesz usunąć studenta o id: ${studentId}?`,
       accept: () => {
         this.studentUtilSrv.deleteStudent(studentId);
-        this.students = this.studentFindSrv.getStudents();
         this.displayFail = true;
         this.errorMessage = 'Usunięto ucznia';
-
       },
     });
   }

@@ -39,7 +39,6 @@ export class StudentAddComponent{
 
   onSubmit(data: Student): void {
     this.studentError.idError = this.validateSrv.idUniqueValidation(data.id);
-    this.studentError.idError = this.validateSrv.idValidation(data.id);
     this.studentError.nameError = this.validateSrv.nameValidation(data.name);
     this.studentError.surnameError = this.validateSrv.surnameValidation(data.surname);
     this.studentError.ageError = this.validateSrv.ageValidation(data.age);

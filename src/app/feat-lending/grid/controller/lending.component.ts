@@ -41,8 +41,8 @@ export class LendingComponent implements OnInit {
   ]
 
   ngOnInit(): void {
-    this.lendings = this.lendingFindSrv.getLendings();
-    this.students = this.studentFindSrv.getStudents();
+    this.lendingFindSrv.getLendings().subscribe(lendingList => this.lendings = Object.values(lendingList));
+    this.studentFindSrv.getStudents().subscribe(studentList => this.students = Object.values(studentList));
     this.bookFindSrv.getBooks().subscribe(bookList => this.books = Object.values(bookList));
     this.books.forEach(book => {
       this.refactorBookData(book.id,book);
@@ -93,7 +93,6 @@ export class LendingComponent implements OnInit {
       message: `Czy na pewno chcesz usunąć wypożyczenie o id: ${lendingId}?`,
       accept: () => {
         this.lendingUtilSrv.deleteLending(lendingId);
-        this.lendings = this.lendingFindSrv.getLendings();
         this.displayFail = true;
         this.errorMessage = 'Usunięto książkę';
       },

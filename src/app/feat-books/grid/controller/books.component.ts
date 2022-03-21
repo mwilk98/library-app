@@ -30,7 +30,7 @@ export class BooksComponent {
   ]
 
   ngOnInit(): void {
-    this.findSrv.getBooks().subscribe(bookList => this.books = Object.values(bookList));
+    this.findSrv.getBooks().subscribe(bookList => this.books = Object.values(bookList));   
   }
 
   closeAlert(alert: boolean) {

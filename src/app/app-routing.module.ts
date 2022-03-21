@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BooksComponent } from './feat-books/grid/controller/books.component';
 import { BookAddComponent } from './feat-books/util/add/controller/book-add.component';
 import { BookEditComponent } from './feat-books/util/edit/controller/book-edit.component';
+import { FrontPageComponent } from './feat-front-page/grid/controller/front-page.component';
 import { LendingComponent } from './feat-lending/grid/controller/lending.component';
 import { LendingAddComponent } from './feat-lending/util/add/lending-add.component';
 import { LendingEditComponent } from './feat-lending/util/edit/lending-edit.component';
@@ -12,6 +13,7 @@ import { StudentEditComponent } from './feat-students/utils/edit/student-edit.co
 
 
 const routes: Routes = [
+  { path: '', component: FrontPageComponent },
   { path: 'books', component: BooksComponent },
   { path: 'students', component: StudentsComponent },
   { path: 'lendings', component: LendingComponent },

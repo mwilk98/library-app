@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { map } from "rxjs";
 import { LendingStoreService } from "src/app/store/lending-store.service";
 import { Lending } from "../../model/lending.model";
 
@@ -30,9 +31,15 @@ export class LendingUtilityService {
   }
 
   checkBookIfLent(bookId: string): boolean {
-    return this.storeSrv
-      .getLendings()
-      .filter((lending) => lending.idBook === bookId)
-      .some((lend) => lend.status);
+    let lendings = [];
+    this.storeSrv.getLendings()
+            .pipe(
+                map(books => Object.values(books)
+                    .filter(book => book.id === bookId))
+            ).subscribe(bookList => lendings = Object.values(bookList));
+    if (lendings.length === 0){
+      return false
+    }
+    return true;
   }
 }

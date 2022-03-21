@@ -47,7 +47,7 @@ export class LendingAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookFindSrv.getBooks().subscribe(bookList => this.books = Object.values(bookList));
-    this.students = this.studentFindSrv.getStudents();
+    this.studentFindSrv.getStudents().subscribe(bookList => this.students = Object.values(bookList));
   }
 
   onSubmit(data: Lending): void {

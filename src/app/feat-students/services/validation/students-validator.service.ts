@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs';
 import { StudentStoreService } from '../../../store/student-store.service';
 import { Student } from '../../model/student.model';
+import { StudentFindService } from '../finder/student-find.service';
 
 
 /* serwis do walidacji danych ucznia */
 @Injectable({ providedIn: 'root' })
 export class StudentValidatorService {
-  constructor(private studentStoreSrv: StudentStoreService) {}
+  constructor(private findSrv: StudentFindService) {}
 
   /* Sprawdza czy wartość nie jest undefined */
   baseValidation<TValue>(value: TValue): boolean {
@@ -18,19 +20,22 @@ export class StudentValidatorService {
 
   /* Sprawdza poprawność i unikalność podanego id dla studentów */
   idValidation(idStudent: string): boolean {
-
-    if (idStudent === '') {
-      return false;
-    }
+    const baseValidation: boolean = this.baseValidation<string>(idStudent);
+    if (idStudent === '') { return false; }
+    if (!baseValidation) { return false; }
     return true;
   }
   idUniqueValidation(idStudent: string): boolean {
-    const students: Array<Student> = this.studentStoreSrv
-      .getStudents()
-      .filter((student: Student) => student.id === idStudent);
-    if (students.length !== 0) {
-      return false;
-    }
+    let students: Array<Student> = [];
+    this.findSrv.getStudents()
+    .pipe(
+        map(books => Object.values(books)
+            .filter(book => book.id === idStudent))
+    ).subscribe(bookList => students = Object.values(bookList));
+    const baseValidation: boolean = this.baseValidation<string>(idStudent);
+    if (idStudent === '') { return false; }
+    if (!baseValidation) { return false; }
+    if (students.length !== 0 ) { return false; }
     return true;
   }
 
