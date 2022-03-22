@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BooksComponent } from './feat-books/grid/controller/books.component';
-import { BookAddComponent } from './feat-books/util/add/controller/book-add.component';
-import { BookEditComponent } from './feat-books/util/edit/controller/book-edit.component';
+import { BooksComponent } from './feat-books/controller/books.component';
+import { BookAddComponent } from './feat-books/util/add/book-add.component';
+import { BookEditComponent } from './feat-books/util/edit/book-edit.component';
 import { FrontPageComponent } from './feat-front-page/grid/controller/front-page.component';
 import { LendingComponent } from './feat-lending/grid/controller/lending.component';
 import { LendingAddComponent } from './feat-lending/util/add/lending-add.component';

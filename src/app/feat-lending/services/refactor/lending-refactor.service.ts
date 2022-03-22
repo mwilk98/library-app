@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
-import { Book } from "src/app/feat-books/model/book.model";
+import { BaseBookModel } from "src/app/feat-books/model/book.model";
 import { Student } from "src/app/feat-students/model/student.model";
 import { Lending } from "../../model/lending.model";
 
 @Injectable({ providedIn: 'root' })
 export class LendingRefactorService {
   
-  refactorBookData(id: string, book : Book, lendings: Array<Lending>) {
+  refactorBookData(id: string, book : BaseBookModel, lendings: Array<Lending>) {
     lendings.forEach(lending => {
       if (lending.idBook === id){
         lending.idBook = `${book.title} ${book.author}`;
@@ -14,7 +14,7 @@ export class LendingRefactorService {
     })
   }
 
-  refactorBackBookData(book : Book, lendings: Array<Lending>) {
+  refactorBackBookData(book : BaseBookModel, lendings: Array<Lending>) {
     lendings.forEach(lending => {
       if (lending.idBook === `${book.title} ${book.author}`){
         lending.idBook = `${book.id}`;

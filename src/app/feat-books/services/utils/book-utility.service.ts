@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { LendingUtilityService } from "src/app/feat-lending/services/utils/lending-utility.service";
 import { BookStoreService } from "src/app/store/book-store.service";
-import { Book } from "../../model/book.model";
+import { BaseBookModel } from "../../model/book.model";
 
-/* serwis do obsługi edycji danych książki */
 @Injectable({ providedIn: 'root' })
+/* serwis do obsługi edycji danych książki */
 export class BookUtilityService{
     constructor(
         private readonly storeSrv: BookStoreService,
@@ -12,19 +12,16 @@ export class BookUtilityService{
     ) {}
 
     deleteBook(bookId:string): boolean {
-        if (this.lendingUtilSrv.checkBookIfLent(bookId)) {
-            return true;
-        }
-          this.storeSrv.deleteBook(bookId);
-          return false;
+        if (this.lendingUtilSrv.checkBookIfLent(bookId)) { return false; }
+        this.storeSrv.deleteBook(bookId);
+        return true;
     }
     
-    addBook(newBook: Book): void {
+    addBook(newBook: BaseBookModel): void {
         this.storeSrv.addBook(newBook);
     }
 
-    updateBook(bookId: string, newBook: Book): void {
-        this.storeSrv.updateBook(bookId,newBook);
+    updateBook(bookId: string, newBook: BaseBookModel): void {
+        this.storeSrv.updateBook(bookId, newBook);
     }
-    
 }

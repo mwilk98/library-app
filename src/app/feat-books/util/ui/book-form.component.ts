@@ -1,20 +1,19 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { BookError } from '../../model/book-validate.model';
-import { Book } from '../../model/book.model';
-
+import { BookErrorModel } from '../../model/book-validate.model';
+import { BaseBookModel } from '../../model/book.model';
 
 @Component({
   selector: 'app-book-form',
   templateUrl: 'book-form.component.html',
 })
 export class BookFormComponent {
-  @Input() book!: Book;
+  @Input() book!: BaseBookModel;
   @Input() header: string = '';
   @Input() date: string = '';
-  @Input() error!: BookError;
-  @Output() submitEvent = new EventEmitter<Book>();
+  @Input() error!: BookErrorModel;
+  @Output() submitEvent = new EventEmitter<BaseBookModel>();
 
-  onSubmit(book: Book) {
+  onSubmit(book: BaseBookModel) {
     this.submitEvent.emit(book);
   }
 }

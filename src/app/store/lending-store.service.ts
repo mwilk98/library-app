@@ -8,8 +8,7 @@ export class LendingStoreService {
     '1': { id: '1', idBook: '1', idStudent: '1', lendingDate: '2022-03-12' , status: true },
     '2': { id: '2', idBook: '2', idStudent: '2', lendingDate: '2022-03-12' , status: true },
     '3': { id: '3', idBook: '3', idStudent: '3', lendingDate: '2022-03-12' , status: false },
-    '4': { id: '4', idBook: '4', idStudent: '4', lendingDate: '2022-03-12' , status: false },
-    '5': { id: '5', idBook: '5', idStudent: '5', lendingDate: '2022-03-12' , status: true }
+    '4': { id: '4', idBook: '4', idStudent: '4', lendingDate: '2022-03-12' , status: false }
   };
 
   getLending(lendingId: string): Lending {

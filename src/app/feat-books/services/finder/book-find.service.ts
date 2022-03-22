@@ -1,20 +1,20 @@
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs/internal/Observable";
-import { BookStoreService } from "src/app/store/book-store.service";
-import { Book, BooksStore } from "../../model/book.model";
+import { BooksStoreModel } from "../../../store/model/base-store.model";
+import { BookStoreService } from "../../../store/book-store.service";
+import { BaseBookModel } from "../../model/book.model";
+import { Observable } from "rxjs";
 
-
-/* serwis do obsługi pobrania danych książki */
 @Injectable({ providedIn: 'root' })
-export class BookFindService{
+/* serwis do obsługi pobrania danych książki */
+export class BookFindService {
     constructor(private readonly storeSrv: BookStoreService) {}
 
-    getBook(bookId: string): Book {
+    // todo: przerobić na obserwowalnie
+    getBook(bookId: string): BaseBookModel {
         return this.storeSrv.getBook(bookId);
     }
 
-    getBooks(): Observable<BooksStore> {     
-
-        return this.storeSrv.getBooks()
+    getBooks(): Observable<BooksStoreModel> {     
+        return this.storeSrv.getBookList();
     }
 }

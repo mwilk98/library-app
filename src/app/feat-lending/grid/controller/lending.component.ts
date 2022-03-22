@@ -7,7 +7,7 @@ import { BookFindService } from 'src/app/feat-books/services/finder/book-find.se
 import { StudentFindService } from 'src/app/feat-students/services/finder/student-find.service';
 import { Lending } from '../../model/lending.model';
 import { Student } from 'src/app/feat-students/model/student.model';
-import { Book } from 'src/app/feat-books/model/book.model';
+import { BaseBookModel } from 'src/app/feat-books/model/book.model';
 import { LendingRefactorService } from '../../services/refactor/lending-refactor.service';
 
 @Component({
@@ -27,7 +27,7 @@ export class LendingComponent implements OnInit {
 
   lendings: Array<Lending> = [];
   students: Array<Student> = [];
-  books: Array<Book> = [];
+  books: Array<BaseBookModel> = [];
   displayFail: boolean = false;
   displayStatusChange: boolean = false;
   errorMessage: string = '';

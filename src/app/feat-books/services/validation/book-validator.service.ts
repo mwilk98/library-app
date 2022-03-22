@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { map } from "rxjs";
-import { Book } from "../../model/book.model";
 import { BookFindService } from "../finder/book-find.service";
 
 
@@ -16,16 +15,16 @@ export class BookValidatorService {
 
     /* Sprawdza poprawność i unikalność podanego id dla studentów */
     idUniqueValidation(idBook: string): boolean {
-        let books: Array<Book> = []
-        this.findSrv.getBooks()
-            .pipe(
-                map(books => Object.values(books)
-                    .filter(book => book.id === idBook))
-            ).subscribe(bookList => books = Object.values(bookList));
-        const baseValidation: boolean = this.baseValidation<string>(idBook);
-        if (idBook === '') { return false; }
-        if (!baseValidation) { return false; }
-        if (books.length !== 0 ) { return false; }
+        // let books: Array<BaseBookModel> = []
+        // this.findSrv.getBooks()
+        //     .pipe(
+        //         map(books => Object.values(books)
+        //             .filter(book => book.id === idBook))
+        //     ).subscribe(bookList => books = Object.values(bookList));
+        // const baseValidation: boolean = this.baseValidation<string>(idBook);
+        // if (idBook === '') { return false; }
+        // if (!baseValidation) { return false; }
+        // if (books.length !== 0 ) { return false; }
         return true;
     }
     idValidation(idBook: string): boolean {
@@ -45,11 +44,9 @@ export class BookValidatorService {
     dataValidation(book: string): boolean {
         const baseValidation: boolean = this.baseValidation<string>(book);
         const nameValidation = new RegExp("^[a-zA-Z][a-zA-Z .,'-]*$");
-        
         if (!baseValidation) { return false; }
         if (book === '') { return false; }
         if (!nameValidation.test(book)) { return false; }
-        
         return true;
     }
 }

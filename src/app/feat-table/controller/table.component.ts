@@ -1,21 +1,21 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
 import { GetPropertyFromObjectService } from "../service/get-property-from-object.service";
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
 })
-export class TableComponent {
+export class TableComponent implements OnChanges {
   constructor(private readonly getSrv: GetPropertyFromObjectService) {}
   @Input() header: Array<string> = [];
-  @Input() data: Array<object> = [];
+  @Input() data: Array<any> = [];
   @Input() showStatus: boolean = false;
   @Output() deleteEvent = new EventEmitter<string>();
   @Output() editEvent = new EventEmitter<string>();
   @Output() editStatusEvent = new EventEmitter<string>();
   dataString:  Array<Array<string>> = [];
 
-  ngOnInit() {
+  ngOnChanges(changes: SimpleChanges): void {
     this.dataString = this.getSrv.getPropertyArray(this.data);
   }
 

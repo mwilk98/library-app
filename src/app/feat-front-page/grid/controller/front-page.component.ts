@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { find } from 'rxjs';
-import { Book } from 'src/app/feat-books/model/book.model';
 import { BookFindService } from 'src/app/feat-books/services/finder/book-find.service';
 import { LendingFindService } from 'src/app/feat-lending/services/finder/lending-find.service';
 import { StudentFindService } from 'src/app/feat-students/services/finder/student-find.service';

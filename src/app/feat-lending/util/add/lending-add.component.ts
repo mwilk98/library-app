@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
-import { Book } from 'src/app/feat-books/model/book.model';
+import { BaseBookModel } from 'src/app/feat-books/model/book.model';
 import { BookFindService } from 'src/app/feat-books/services/finder/book-find.service';
 import { Student } from 'src/app/feat-students/model/student.model';
 import { StudentFindService } from 'src/app/feat-students/services/finder/student-find.service';
@@ -41,7 +41,7 @@ export class LendingAddComponent implements OnInit {
     };
   }
 
-  books: Array<Book> = [];
+  books: Array<BaseBookModel> = [];
   students: Array<Student> = [];
   validate: boolean = true;
 
