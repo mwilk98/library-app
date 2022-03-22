@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, filter, map, Observable, of, tap } from 'rxjs';
-import { BaseBookModel } from '../feat-books/model/book.model';
-import { BooksStoreModel } from './model/base-store.model';
+import { BaseBookModel } from '../../feat-books/model/book.model';
+import { BooksStoreModel } from '../model/base-store.model';
 
 @Injectable({ providedIn: 'root' })
 export class BookStoreService {

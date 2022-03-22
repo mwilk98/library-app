@@ -25,6 +25,7 @@ import { StudentFormComponent } from './feat-students/utils/ui/student-form.comp
 import { UiTableComponent } from './feat-table/ui/ui-table.component';
 import { TableComponent } from './feat-table/controller/table.component';
 import { FrontPageComponent } from './feat-front-page/grid/controller/front-page.component';
+import {ChartModule} from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { FrontPageComponent } from './feat-front-page/grid/controller/front-page
     ConfirmDialogModule, 
     BrowserAnimationsModule,
     DialogModule,
-    DropdownModule
+    DropdownModule,
+    ChartModule
   ],
   providers: [ConfirmationService, MessageService],
   bootstrap: [AppComponent],

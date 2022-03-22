@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { StudentStoreService } from 'src/app/store/student-store.service';
-import { Student } from '../../model/student.model';
+import { StudentStoreService } from 'src/app/store/service/student-store.service';
+import { BaseStudentModel } from '../../model/student.model';
 
 
 /* serwis do obsługi edycji danych ucznia */
@@ -12,11 +12,11 @@ export class StudentUtilityService {
     this.storeSrv.deleteStudent(studentId);
   }
 
-  addStudent(newStudent: Student): void {
+  addStudent(newStudent: BaseStudentModel): void {
     this.storeSrv.addStudent(newStudent);
   }
 
-  updateStudent(idStudent: string, newStudent: Student): void {
+  updateStudent(idStudent: string, newStudent: BaseStudentModel): void {
     this.storeSrv.updateStudent(idStudent, newStudent);
   }
 }

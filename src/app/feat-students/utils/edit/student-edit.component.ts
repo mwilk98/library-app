@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
-import { StudentError } from '../../model/student-validate.model';
-import { Student } from '../../model/student.model';
+import { StudentErrorModel } from '../../model/student-validate.model';
+import { BaseStudentModel } from '../../model/student.model';
 import { StudentFindService } from '../../services/finder/student-find.service';
 import { StudentUtilityService } from '../../services/utils/student-utility.service';
 import { StudentValidatorService } from '../../services/validation/students-validator.service';
@@ -13,7 +13,7 @@ import { StudentValidatorService } from '../../services/validation/students-vali
   templateUrl: './student-edit.component.html',
 })
 export class StudentEditComponent implements OnInit {
-  studentError: StudentError;
+  studentError: StudentErrorModel;
   
   constructor(
     private readonly findSrv: StudentFindService,
@@ -33,7 +33,7 @@ export class StudentEditComponent implements OnInit {
   }
 
   id: string = '';
-  student!: Student;
+  student!: BaseStudentModel;
   validate: boolean = true;
 
   ngOnInit(): void {
@@ -41,7 +41,7 @@ export class StudentEditComponent implements OnInit {
     this.student = this.findSrv.getStudent(this.id);
   }
 
-  onSubmit(data: Student): void {
+  onSubmit(data: BaseStudentModel): void {
     this.studentError.idError = this.validateSrv.idValidation(data.name);
     this.studentError.nameError = this.validateSrv.nameValidation(data.name);
     this.studentError.surnameError = this.validateSrv.surnameValidation(data.surname);

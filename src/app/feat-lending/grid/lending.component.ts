@@ -3,12 +3,12 @@ import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { BookFindService } from 'src/app/feat-books/services/finder/book-find.service';
 import { StudentFindService } from 'src/app/feat-students/services/finder/student-find.service';
-import { Student } from 'src/app/feat-students/model/student.model';
+import { BaseStudentModel } from 'src/app/feat-students/model/student.model';
 import { BaseBookModel } from 'src/app/feat-books/model/book.model';
 import { LendingFindService } from '../services/finder/lending-find.service';
 import { LendingUtilityService } from '../services/utils/lending-utility.service';
 import { LendingRefactorService } from '../services/refactor/lending-refactor.service';
-import { Lending } from '../model/lending.model';
+import { BaseLendingModel } from '../model/lending.model';
 
 
 @Component({
@@ -26,8 +26,8 @@ export class LendingComponent implements OnInit {
     private readonly _router: Router
   ) {}
 
-  lendings: Array<Lending> = [];
-  students: Array<Student> = [];
+  lendings: Array<BaseLendingModel> = [];
+  students: Array<BaseStudentModel> = [];
   books: Array<BaseBookModel> = [];
   displayFail: boolean = false;
   displayStatusChange: boolean = false;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
-import { Student } from '../../model/student.model';
+import { BaseStudentModel } from '../../model/student.model';
 
 import { StudentFindService } from '../../services/finder/student-find.service';
 import { StudentUtilityService } from '../../services/utils/student-utility.service';
@@ -18,7 +18,7 @@ export class StudentsComponent implements OnInit {
     private _router: Router
   ) {}
 
-  students: Array<Student> = [];
+  students: Array<BaseStudentModel> = [];
   displayFail: boolean = false;
   errorMessage: string = '';
   header: Array<string> = [

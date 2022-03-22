@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { BaseBookModel } from "src/app/feat-books/model/book.model";
-import { Student } from "src/app/feat-students/model/student.model";
-import { Lending } from "../../model/lending.model";
+import { BaseStudentModel } from "src/app/feat-students/model/student.model";
+import { BaseLendingModel } from "../../model/lending.model";
 
 @Injectable({ providedIn: 'root' })
 export class LendingRefactorService {
   
-  refactorBookData(id: string, book : BaseBookModel, lendings: Array<Lending>) {
+  refactorBookData(id: string, book : BaseBookModel, lendings: Array<BaseLendingModel>) {
     lendings.forEach(lending => {
       if (lending.idBook === id){
         lending.idBook = `${book.title} ${book.author}`;
@@ -14,7 +14,7 @@ export class LendingRefactorService {
     })
   }
 
-  refactorBackBookData(book : BaseBookModel, lendings: Array<Lending>) {
+  refactorBackBookData(book : BaseBookModel, lendings: Array<BaseLendingModel>) {
     lendings.forEach(lending => {
       if (lending.idBook === `${book.title} ${book.author}`){
         lending.idBook = `${book.id}`;
@@ -22,7 +22,7 @@ export class LendingRefactorService {
     })
   }
 
-  refactorStudentData(id: string, student : Student, lendings: Array<Lending>) {
+  refactorStudentData(id: string, student : BaseStudentModel, lendings: Array<BaseLendingModel>) {
     lendings.forEach(lending => {
       if (lending.idStudent === id){
         lending.idStudent = `${student.name} ${student.surname}`;
@@ -30,7 +30,7 @@ export class LendingRefactorService {
     })
   }
 
-  refactorBackStudentData(student : Student, lendings: Array<Lending>) {
+  refactorBackStudentData(student : BaseStudentModel, lendings: Array<BaseLendingModel>) {
     lendings.forEach(lending => {
       if (lending.idStudent === `${student.name} ${student.surname}`){
         lending.idStudent = `${student.id}`;

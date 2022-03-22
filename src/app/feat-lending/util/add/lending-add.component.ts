@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { BaseBookModel } from 'src/app/feat-books/model/book.model';
 import { BookFindService } from 'src/app/feat-books/services/finder/book-find.service';
-import { Student } from 'src/app/feat-students/model/student.model';
+import { BaseStudentModel } from 'src/app/feat-students/model/student.model';
 import { StudentFindService } from 'src/app/feat-students/services/finder/student-find.service';
-import { LendingError } from '../../model/lending-validate.model';
-import { Lending } from '../../model/lending.model';
+import { LendingErrorModel } from '../../model/lending-validate.model';
+import { BaseLendingModel } from '../../model/lending.model';
 import { LendingUtilityService } from '../../services/utils/lending-utility.service';
 import { LendingValidatorService } from '../../services/validation/lendings-validator.service';
 
@@ -16,8 +16,8 @@ import { LendingValidatorService } from '../../services/validation/lendings-vali
   templateUrl: './lending-add.component.html',
 })
 export class LendingAddComponent implements OnInit {
-  lending: Lending;
-  lendingError: LendingError;
+  lending: BaseLendingModel;
+  lendingError: LendingErrorModel;
   constructor(
     private readonly lendingUtilSrv: LendingUtilityService,
     private readonly validationSrv: LendingValidatorService,
@@ -42,7 +42,7 @@ export class LendingAddComponent implements OnInit {
   }
 
   books: Array<BaseBookModel> = [];
-  students: Array<Student> = [];
+  students: Array<BaseStudentModel> = [];
   validate: boolean = true;
 
   ngOnInit(): void {
@@ -50,8 +50,7 @@ export class LendingAddComponent implements OnInit {
     this.studentFindSrv.getStudents().subscribe(bookList => this.students = Object.values(bookList));
   }
 
-  onSubmit(data: Lending): void {
-    this.lendingError.idError = this.validationSrv.idValidation(data.id);
+  onSubmit(data: BaseLendingModel): void {
     this.lendingError.idError = this.validationSrv.idUniqueValidation(data.id);
     this.lendingError.idBookError = this.validationSrv.emptyStringValidation(data.idBook);
     this.lendingError.idStudentError = this.validationSrv.emptyStringValidation(data.idStudent);

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { LendingUtilityService } from "src/app/feat-lending/services/utils/lending-utility.service";
-import { BookStoreService } from "src/app/store/book-store.service";
+import { BookStoreService } from "src/app/store/service/book-store.service";
 import { BaseBookModel } from "../../model/book.model";
 
 @Injectable({ providedIn: 'root' })

@@ -17,10 +17,32 @@ export class FrontPageComponent implements OnInit {
   bookCounter: number = 0;
   studentCounter: number = 0;
   lendingCounter: number = 0;
+  data: any;
+  chartOptions: any;
+
+
 
   ngOnInit(): void {
     this.findBookSrv.getBooks().subscribe(books => this.bookCounter = Object.values(books).length);
     this.findStudentSrv.getStudents().subscribe(students => this.studentCounter = Object.values(students).length);
     this.lendingFindSrv.getLendings().subscribe(lendingList => this.lendingCounter = Object.values(lendingList).length);
+    this.data = {
+      labels: ['Książki','uczniowie','Wypożyczenia'],
+      datasets: [
+          {
+              data: [this.bookCounter, this.studentCounter, this.lendingCounter],
+              backgroundColor: [
+                  "#42A5F5",
+                  "#66BB6A",
+                  "#FFA726"
+              ],
+              hoverBackgroundColor: [
+                  "#64B5F6",
+                  "#81C784",
+                  "#FFB74D"
+              ]
+          }
+      ]
+  };
   }
 }

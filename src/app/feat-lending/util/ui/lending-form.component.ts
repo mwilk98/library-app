@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { BaseBookModel } from 'src/app/feat-books/model/book.model';
-import { Student } from 'src/app/feat-students/model/student.model';
-import { LendingError } from '../../model/lending-validate.model';
-import { Lending } from '../../model/lending.model';
+import { BaseStudentModel } from 'src/app/feat-students/model/student.model';
+import { LendingErrorModel } from '../../model/lending-validate.model';
+import { BaseLendingModel } from '../../model/lending.model';
 
 
 @Component({
@@ -10,15 +10,15 @@ import { Lending } from '../../model/lending.model';
   templateUrl: 'lending-form.component.html',
 })
 export class LendingFormComponent {
-  @Input() lending!: Lending;
+  @Input() lending!: BaseLendingModel;
   @Input() header: string = '';
   @Input() date: string = '';
-  @Input() error!: LendingError;
+  @Input() error!: LendingErrorModel;
   @Input() books = Array<BaseBookModel>();
-  @Input() students = Array<Student>();
-  @Output() submitEvent = new EventEmitter<Lending>();
+  @Input() students = Array<BaseStudentModel>();
+  @Output() submitEvent = new EventEmitter<BaseLendingModel>();
 
-  onSubmit(lending: Lending) {
+  onSubmit(lending: BaseLendingModel) {
     this.submitEvent.emit(lending);
   }
 }

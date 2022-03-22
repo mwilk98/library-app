@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
-import { StudentError } from '../../model/student-validate.model';
-import { Student } from '../../model/student.model';
+import { StudentErrorModel } from '../../model/student-validate.model';
+import { BaseStudentModel } from '../../model/student.model';
 import { StudentUtilityService } from '../../services/utils/student-utility.service';
 import { StudentValidatorService } from '../../services/validation/students-validator.service';
 
@@ -12,8 +12,8 @@ import { StudentValidatorService } from '../../services/validation/students-vali
   templateUrl: './student-add.component.html',
 })
 export class StudentAddComponent{
-  student: Student;
-  studentError: StudentError;
+  student: BaseStudentModel;
+  studentError: StudentErrorModel;
 
   constructor(
     private readonly utilSrv: StudentUtilityService,
@@ -37,7 +37,7 @@ export class StudentAddComponent{
     };
   }
 
-  onSubmit(data: Student): void {
+  onSubmit(data: BaseStudentModel): void {
     this.studentError.idError = this.validateSrv.idUniqueValidation(data.id);
     this.studentError.nameError = this.validateSrv.nameValidation(data.name);
     this.studentError.surnameError = this.validateSrv.surnameValidation(data.surname);

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { StudentError } from '../../model/student-validate.model';
-import { Student } from '../../model/student.model';
+import { StudentErrorModel } from '../../model/student-validate.model';
+import { BaseStudentModel } from '../../model/student.model';
 
 
 @Component({
@@ -8,13 +8,13 @@ import { Student } from '../../model/student.model';
   templateUrl: 'student-form.component.html',
 })
 export class StudentFormComponent {
-  @Input() student!: Student;
+  @Input() student!: BaseStudentModel;
   @Input() header: string = '';
   @Input() date: string = '';
-  @Input() error!: StudentError;
-  @Output() submitEvent = new EventEmitter<Student>();
+  @Input() error!: StudentErrorModel;
+  @Output() submitEvent = new EventEmitter<BaseStudentModel>();
 
-  onSubmit(student: Student) {
+  onSubmit(student: BaseStudentModel) {
     this.submitEvent.emit(student);
   }
 }

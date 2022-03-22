@@ -4,10 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { BaseBookModel } from 'src/app/feat-books/model/book.model';
 import { BookFindService } from 'src/app/feat-books/services/finder/book-find.service';
-import { Student } from 'src/app/feat-students/model/student.model';
+import { BaseStudentModel } from 'src/app/feat-students/model/student.model';
 import { StudentFindService } from 'src/app/feat-students/services/finder/student-find.service';
-import { LendingError } from '../../model/lending-validate.model';
-import { Lending } from '../../model/lending.model';
+import { LendingErrorModel } from '../../model/lending-validate.model';
+import { BaseLendingModel } from '../../model/lending.model';
 import { LendingFindService } from '../../services/finder/lending-find.service';
 import { LendingUtilityService } from '../../services/utils/lending-utility.service';
 import { LendingValidatorService } from '../../services/validation/lendings-validator.service';
@@ -18,7 +18,7 @@ import { LendingValidatorService } from '../../services/validation/lendings-vali
   templateUrl: './lending-edit.component.html',
 })
 export class LendingEditComponent implements OnInit {
-  lendingError: LendingError;
+  lendingError: LendingErrorModel;
   constructor(
     private readonly lendingFindSrv: LendingFindService,
     private readonly lendingUtilSrv: LendingUtilityService,
@@ -39,11 +39,11 @@ export class LendingEditComponent implements OnInit {
   }
 
   id: string = '';
-  lending!: Lending;
-  student!: Student;
+  lending!: BaseLendingModel;
+  student!: BaseStudentModel;
   book!: BaseBookModel;
   books: Array<BaseBookModel> = [];
-  students: Array<Student> = [];
+  students: Array<BaseStudentModel> = [];
   date: string = '';
   bookStatus: string = '';
   validate: boolean = true;
@@ -58,7 +58,7 @@ export class LendingEditComponent implements OnInit {
     this.book = this.bookFindSrv.getBook(this.lending.idBook);
   }
 
-  onSubmit(data: Lending): void {
+  onSubmit(data: BaseLendingModel): void {
     this.lendingError.idBookError  = this.validationSrv.emptyStringValidation(data.idBook);
     this.lendingError.idStudentError = this.validationSrv.emptyStringValidation(data.idStudent);
     this.lendingError.dateError = this.validationSrv.dateValidation(data.lendingDate);
