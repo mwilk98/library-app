@@ -4,7 +4,7 @@ import { BooksComponent } from './feat-books/controller/books.component';
 import { BookAddComponent } from './feat-books/util/add/book-add.component';
 import { BookEditComponent } from './feat-books/util/edit/book-edit.component';
 import { FrontPageComponent } from './feat-front-page/grid/controller/front-page.component';
-import { LendingComponent } from './feat-lending/grid/controller/lending.component';
+import { LendingComponent } from './feat-lending/grid/lending.component';
 import { LendingAddComponent } from './feat-lending/util/add/lending-add.component';
 import { LendingEditComponent } from './feat-lending/util/edit/lending-edit.component';
 import { StudentsComponent } from './feat-students/grid/controller/students.component';

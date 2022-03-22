@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
-import { LendingUtilityService } from '../../services/utils/lending-utility.service';
-import { LendingFindService } from '../../services/finder/lending-find.service';
 import { BookFindService } from 'src/app/feat-books/services/finder/book-find.service';
 import { StudentFindService } from 'src/app/feat-students/services/finder/student-find.service';
-import { Lending } from '../../model/lending.model';
 import { Student } from 'src/app/feat-students/model/student.model';
 import { BaseBookModel } from 'src/app/feat-books/model/book.model';
-import { LendingRefactorService } from '../../services/refactor/lending-refactor.service';
+import { LendingFindService } from '../services/finder/lending-find.service';
+import { LendingUtilityService } from '../services/utils/lending-utility.service';
+import { LendingRefactorService } from '../services/refactor/lending-refactor.service';
+import { Lending } from '../model/lending.model';
+
 
 @Component({
   selector: 'app-books',

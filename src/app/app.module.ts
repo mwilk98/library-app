@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { HeaderComponent } from './feat-header/header.component';
-import { LendingComponent } from './feat-lending/grid/controller/lending.component';
+import { LendingComponent } from './feat-lending/grid/lending.component';
 import { StudentAddComponent } from './feat-students/utils/add/student-add.component';
 import { StudentEditComponent } from './feat-students/utils/edit/student-edit.component';
 import { BookAddComponent } from './feat-books/util/add/book-add.component';

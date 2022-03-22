@@ -9,7 +9,6 @@ import { Observable } from "rxjs";
 export class BookFindService {
     constructor(private readonly storeSrv: BookStoreService) {}
 
-    // todo: przerobić na obserwowalnie
     getBook(bookId: string): BaseBookModel {
         return this.storeSrv.getBook(bookId);
     }

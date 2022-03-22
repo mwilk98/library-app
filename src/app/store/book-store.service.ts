@@ -19,25 +19,62 @@ export class BookStoreService {
     ); 
   }
 
-  getBook(bookId: string): BaseBookModel {
-    const bookObj = Object.values(this.books).find((book) => book.id === bookId);
-    if(bookObj === undefined){
-      throw new Error(`Nie znaleziono wypożyczenia o podanym id: ${bookId}`);
-    }
+  getBook(idBook: string): BaseBookModel {
+    let bookObj! :BaseBookModel;
+    this.books.pipe(
+      map((books: BooksStoreModel) => Object.values(books)),
+      map((books: Array<BaseBookModel>) => {
+        const newBooks: BooksStoreModel = {};
+        books.forEach((book: BaseBookModel) => {
+          if (book.id === idBook) {
+            bookObj = book;
+          }
+        });
+        return newBooks;
+      })
+    )
+    .subscribe(() => {})
+    .unsubscribe();
+    
     return bookObj;  
   }
 
-  getBooks(): Observable<BooksStoreModel> {
-    return this.books;
-  }
-
   addBook(newBook: BaseBookModel): BaseBookModel {
-    //this.books[this.generateKey(newBook)] = newBook;
+    this.books.pipe(
+      map((books: BooksStoreModel) => Object.values(books)),
+      map((books: Array<BaseBookModel>) => {
+        const newBooks: BooksStoreModel = {};
+        books.forEach((book: BaseBookModel) => {
+            newBooks[this.generateKey(book)] = book;
+        });
+        newBooks[this.generateKey(newBook)] = newBook;
+        return newBooks;
+      }),
+      tap((newBooks: BooksStoreModel) => this.books.next(newBooks))
+    )
+    .subscribe(() => {})
+    .unsubscribe();
     return newBook;
   }
 
   updateBook(idBook: string, newBook: BaseBookModel): BaseBookModel {
-    //this.books[idBook] = newBook;
+    this.books.pipe(
+      map((books: BooksStoreModel) => Object.values(books)),
+      map((books: Array<BaseBookModel>) => {
+        const newBooks: BooksStoreModel = {};
+        books.forEach((book: BaseBookModel) => {
+          if (book.id !== idBook) {
+            newBooks[this.generateKey(book)] = book;
+          } else {
+            newBooks[this.generateKey(book)] = newBook;
+          }
+        });
+        return newBooks;
+      }),
+      tap((newBooks: BooksStoreModel) => this.books.next(newBooks))
+    )
+    .subscribe(() => {})
+    .unsubscribe();
     return newBook;
   }
 

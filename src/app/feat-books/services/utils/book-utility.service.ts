@@ -5,7 +5,7 @@ import { BaseBookModel } from "../../model/book.model";
 
 @Injectable({ providedIn: 'root' })
 /* serwis do obsługi edycji danych książki */
-export class BookUtilityService{
+export class BookUtilityService {
     constructor(
         private readonly storeSrv: BookStoreService,
         private readonly lendingUtilSrv: LendingUtilityService
