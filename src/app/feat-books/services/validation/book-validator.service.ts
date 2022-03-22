@@ -36,7 +36,7 @@ export class BookValidatorService {
     }
 
     /* Sprawdza poprawność daty dla książki*/
-    dateValidation(value: Date): boolean {
+    dateValidation(value: string): boolean {
         if (Object.keys(value).length === 0) { return false; }
         return true;
     }

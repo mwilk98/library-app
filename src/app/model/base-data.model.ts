@@ -4,10 +4,10 @@ export interface BaseDataModel {
   title: string;
   author: string;
   type: string;
-  releaseDate: Date;
+  releaseDate: string;
   idBook: string;
   idStudent: string;
-  lendingDate: Date;
+  lendingDate: string;
   status: boolean;
   name: string;
   surname: string;

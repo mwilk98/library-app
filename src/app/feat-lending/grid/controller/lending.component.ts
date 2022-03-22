@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { ConfirmationService } from 'primeng/api';
-
 import { LendingUtilityService } from '../../services/utils/lending-utility.service';
 import { LendingFindService } from '../../services/finder/lending-find.service';
 import { BookFindService } from 'src/app/feat-books/services/finder/book-find.service';
@@ -10,6 +8,7 @@ import { StudentFindService } from 'src/app/feat-students/services/finder/studen
 import { Lending } from '../../model/lending.model';
 import { Student } from 'src/app/feat-students/model/student.model';
 import { Book } from 'src/app/feat-books/model/book.model';
+import { LendingRefactorService } from '../../services/refactor/lending-refactor.service';
 
 @Component({
   selector: 'app-books',
@@ -22,6 +21,7 @@ export class LendingComponent implements OnInit {
     private readonly bookFindSrv: BookFindService,
     private readonly studentFindSrv: StudentFindService,
     private readonly confirmationSrv: ConfirmationService,
+    private readonly refactorSrv: LendingRefactorService,
     private readonly _router: Router
   ) {}
 
@@ -45,27 +45,11 @@ export class LendingComponent implements OnInit {
     this.studentFindSrv.getStudents().subscribe(studentList => this.students = Object.values(studentList));
     this.bookFindSrv.getBooks().subscribe(bookList => this.books = Object.values(bookList));
     this.books.forEach(book => {
-      this.refactorBookData(book.id,book);
+      this.refactorSrv.refactorBookData(book.id,book,this.lendings);
     });
     this.students.forEach(student => {
-      this.refactorStudentData(student.id,student);
+      this.refactorSrv.refactorStudentData(student.id,student,this.lendings);
     });
-  }
-
-  refactorBookData(id: string, book : Book) {
-    this.lendings.forEach(lending => {
-      if (lending.idBook === id){
-        lending.idBook = `${book.title} ${book.author}`;
-      }
-    })
-  }
-
-  refactorStudentData(id: string, student : Student) {
-    this.lendings.forEach(lending => {
-      if (lending.idStudent === id){
-        lending.idStudent = `${student.name} ${student.surname}`;
-      }
-    })
   }
 
   closeAlert(alert: boolean) {
@@ -94,12 +78,18 @@ export class LendingComponent implements OnInit {
       accept: () => {
         this.lendingUtilSrv.deleteLending(lendingId);
         this.displayFail = true;
-        this.errorMessage = 'Usunięto książkę';
+        this.errorMessage = 'Usunięto wypożyczenie';
       },
     });
   }
 
   editLending(lendingId: string) {
+    this.books.forEach(book => {
+      this.refactorSrv.refactorBackBookData(book,this.lendings);
+    });
+    this.students.forEach(student => {
+      this.refactorSrv.refactorBackStudentData(student,this.lendings);
+    });
     this._router.navigate(['/edit-lending', lendingId]);
   }
 }

@@ -26,7 +26,7 @@ export class BookAddComponent {
       title: '',
       author: '',
       type: '',
-      releaseDate: new Date(),
+      releaseDate: '' ,
     };
     this.bookError = {
       idError: true,
@@ -43,6 +43,7 @@ export class BookAddComponent {
     this.bookError.authorError = this.validateSrv.dataValidation(data.author);
     this.bookError.typeError = this.validateSrv.dataValidation(data.type);
     this.bookError.dateError = this.validateSrv.dateValidation(data.releaseDate);
+
     if (
       this.bookError.idError &&
       this.bookError.titleError &&

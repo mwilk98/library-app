@@ -10,20 +10,20 @@
         <td *ngFor="let element of dataElement">{{ element }}</td>
         <td *ngIf="showStatus; else elseBlock">
           <p *ngIf="dataElement[4]; else elseButtonBlock">
-            <button pButton class="p-button-success" (click)="editStatus(dataElement[0])">Oddaj</button>
-            <button pButton type="button"class="p-button-danger" icon="pi pi-ban"(click)="delete(dataElement[0])"></button>
+            <button style="margin-right: 1%;" pButton class="p-button-success" (click)="editStatus(dataElement[0])">Oddaj</button>
+            <button style="margin-right: 1%;" pButton type="button"class="p-button-danger" icon="pi pi-ban"(click)="delete(dataElement[0])"></button>
             <p-button icon="pi pi-user-edit" (click)="edit(dataElement[0])"></p-button>
           </p>
         </td>
         <ng-template #elseBlock> 
           <td>
-            <button pButton type="button"class="p-button-danger" icon="pi pi-ban"(click)="delete(dataElement[0])"></button>
+            <button style="margin-right: 1%;" pButton type="button"class="p-button-danger" icon="pi pi-ban"(click)="delete(dataElement[0])"></button>
             <p-button icon="pi pi-user-edit" (click)="edit(dataElement[0])"></p-button>
         </td>
         </ng-template>
         <ng-template #elseButtonBlock> 
-          <button pButton class="p-button-success" (click)="editStatus(dataElement[0])">Cofnij</button>
-          <button pButton type="button"class="p-button-danger" icon="pi pi-ban"(click)="delete(dataElement[0])"></button>
+          <button style="margin-right: 1%;" pButton class="p-button-success" (click)="editStatus(dataElement[0])">Cofnij</button>
+          <button style="margin-right: 1%;" pButton type="button"class="p-button-danger" icon="pi pi-ban"(click)="delete(dataElement[0])"></button>
           <p-button icon="pi pi-user-edit" (click)="edit(dataElement[0])"></p-button>
         </ng-template>
       </tr>

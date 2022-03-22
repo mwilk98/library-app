@@ -30,7 +30,7 @@ export class LendingAddComponent implements OnInit {
       id: '',
       idBook: '',
       idStudent: '',
-      lendingDate: new Date(),
+      lendingDate: '' ,
       status: true,
     };
     this.lendingError = {

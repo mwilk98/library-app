@@ -4,11 +4,11 @@ import { Book, BooksStore } from '../feat-books/model/book.model';
 @Injectable({ providedIn: 'root' })
 export class BookStoreService {
   private books: BooksStore = {
-    '1': { id: '1', title: 'title 1', author: 'author 1', type: 'gatunek 1', releaseDate: new Date() },
-    '2': { id: '2', title: 'title 2', author: 'author 2', type: 'gatunek 2', releaseDate: new Date() },
-    '3': { id: '3', title: 'title 3', author: 'author 3', type: 'gatunek 3', releaseDate: new Date() },
-    '4': { id: '4', title: 'title 4', author: 'author 4', type: 'gatunek 4', releaseDate: new Date() },
-    '5': { id: '5', title: 'title 5', author: 'author 5', type: 'gatunek 5', releaseDate: new Date() }
+    '1': { id: '1', title: 'title 1', author: 'author 1', type: 'gatunek 1', releaseDate: '2022-03-12' },
+    '2': { id: '2', title: 'title 2', author: 'author 2', type: 'gatunek 2', releaseDate: '2022-03-12'  },
+    '3': { id: '3', title: 'title 3', author: 'author 3', type: 'gatunek 3', releaseDate: '2022-03-12'  },
+    '4': { id: '4', title: 'title 4', author: 'author 4', type: 'gatunek 4', releaseDate: '2022-03-12'  },
+    '5': { id: '5', title: 'title 5', author: 'author 5', type: 'gatunek 5', releaseDate: '2022-03-12'  }
   };
 
   getBook(bookId: string): Book {

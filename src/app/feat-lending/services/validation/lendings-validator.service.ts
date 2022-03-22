@@ -27,7 +27,7 @@ export class LendingValidatorService {
   }
 
   /* Sprawdza poprawność wprowadzonej daty dla wypożyczenia */
-  dateValidation(value: Date): boolean {
+  dateValidation(value: string): boolean {
     if (Object.keys(value).length === 0) { return false; }
     return true;
   }
