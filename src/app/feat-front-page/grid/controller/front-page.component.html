@@ -1,10 +1,2 @@
-<div class="fp">
-  <h1><i class="pi pi-chart-line" style="font-size:2rem "></i> Statystyki</h1>
-  <h2><i class="pi pi-book" style="font-size: 2rem"></i> Książki: {{bookCounter}}</h2>
-  <h2><i class="pi pi-users" style="font-size: 2rem"></i> Uczniowie: {{studentCounter}}</h2>
-  <h2><i class="pi pi-bookmark" style="font-size: 2rem"></i> Wypożyczenia: {{lendingCounter}}</h2>
-  <div class="fpc">
-    <p-chart type="pie" [data]="data" [options]="chartOptions"  [style]="{'width': '40px'}"></p-chart>
-  </div>
 
-</div>
+<app-ui-front-page [bookCounter]="bookCounter" [studentCounter]="studentCounter" [lendingCounter]="lendingCounter" [data]="data" [chartOptions]="chartOptions" ></app-ui-front-page>

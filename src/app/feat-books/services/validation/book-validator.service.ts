@@ -20,7 +20,6 @@ export class BookValidatorService {
     idUniqueValidation(idBook: string): boolean {
         this.books = [];
         this.findSrv.getBooks().pipe(
-            map((books: BooksStoreModel) => Object.values(books)),
             map((books: Array<BaseBookModel>) => {  
                 books.forEach((book: BaseBookModel) => {
                     if (book.id === idBook) {

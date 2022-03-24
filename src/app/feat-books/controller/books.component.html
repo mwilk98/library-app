@@ -4,5 +4,5 @@
     <h1>Książki</h1>
   </header>
   <p-button [routerLink]="'/add-book'" icon="pi pi-plus"></p-button>
-  <app-table [data]="books" [header]="header" (deleteEvent)="deleteBook($event)" (editEvent)="editBook($event)"></app-table>
+  <app-ui-table [data]="data$ | async" [header]="header$ | async" (deleteEvent)="deleteBook($event)" (editEvent)="editBook($event)"></app-ui-table>
 </div>

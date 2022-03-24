@@ -23,9 +23,11 @@ import { BookFormComponent } from './feat-books/util/ui/book-form.component';
 import { LendingFormComponent } from './feat-lending/util/ui/lending-form.component';
 import { StudentFormComponent } from './feat-students/utils/ui/student-form.component';
 import { UiTableComponent } from './feat-table/ui/ui-table.component';
-import { TableComponent } from './feat-table/controller/table.component';
 import { FrontPageComponent } from './feat-front-page/grid/controller/front-page.component';
-import {ChartModule} from 'primeng/chart';
+import { ChartModule } from 'primeng/chart';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { UiFrontPageComponent } from './feat-front-page/ui/ui-front-page.component';
 
 @NgModule({
   declarations: [
@@ -44,8 +46,8 @@ import {ChartModule} from 'primeng/chart';
     LendingFormComponent,
     StudentFormComponent,
     UiTableComponent,
-    TableComponent,
-    FrontPageComponent
+    FrontPageComponent,
+    UiFrontPageComponent
   ],
   imports: [
     BrowserModule, 
@@ -57,7 +59,9 @@ import {ChartModule} from 'primeng/chart';
     BrowserAnimationsModule,
     DialogModule,
     DropdownModule,
-    ChartModule
+    ChartModule,
+    MessageModule,
+    MessagesModule
   ],
   providers: [ConfirmationService, MessageService],
   bootstrap: [AppComponent],
