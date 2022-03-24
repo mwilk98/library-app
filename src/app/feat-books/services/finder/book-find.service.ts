@@ -13,13 +13,14 @@ export class BookFindService {
         return this.storeSrv.getBook(bookId);
     }
 
-    getBooks(): Observable<Array<BaseBookModel>> {     
+    getBooks(): Observable<Array<Array<string>>> {     
         return this.storeSrv.getBookList().pipe(
-            map(books => Object.values(books))
+            map(books => Object.values(books)),
+            map(books => books.map(books => Object.values(books)))
         );
     }
 
     getBookHeaders(): Observable<Array<string>> {
-        return of(['#', 'Tytuł', 'Autor', 'Gatunek', 'Data Wydania', 'Opcje']);
+        return of(['#', 'Tytuł', 'Autor', 'Gatunek', 'Data Wydania', 'Opcje'])
     }
 }

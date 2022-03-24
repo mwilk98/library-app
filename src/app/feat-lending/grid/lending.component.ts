@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
-import { BookFindService } from 'src/app/feat-books/services/finder/book-find.service';
-import { StudentFindService } from 'src/app/feat-students/services/finder/student-find.service';
-import { BaseStudentModel } from 'src/app/feat-students/model/student.model';
-import { BaseBookModel } from 'src/app/feat-books/model/book.model';
 import { LendingFindService } from '../services/finder/lending-find.service';
 import { LendingUtilityService } from '../services/utils/lending-utility.service';
-import { LendingRefactorService } from '../services/refactor/lending-refactor.service';
 import { BaseLendingModel } from '../model/lending.model';
+import { map, Observable } from 'rxjs';
+import { ArrayUtilsService } from 'src/app/shared/utils/array-utils.service';
 
 
 @Component({
@@ -16,49 +13,27 @@ import { BaseLendingModel } from '../model/lending.model';
   templateUrl: 'lending.component.html',
 })
 export class LendingComponent implements OnInit {
+  data$: Observable<Array<Array<string>>>;
+  
   constructor(
-    private readonly lendingFindSrv: LendingFindService,
+    private readonly findSrv: LendingFindService,
     private readonly lendingUtilSrv: LendingUtilityService,
-    private readonly bookFindSrv: BookFindService,
-    private readonly studentFindSrv: StudentFindService,
     private readonly confirmationSrv: ConfirmationService,
-    private readonly refactorSrv: LendingRefactorService,
-    private readonly _router: Router
+    private readonly router: Router
   ) {}
 
-  lendings: Array<BaseLendingModel> = [];
-  students: Array<BaseStudentModel> = [];
-  books: Array<BaseBookModel> = [];
   displayFail: boolean = false;
   displayStatusChange: boolean = false;
   errorMessage: string = '';
-  header: Array<string> = [
-    '#',
-    'Książka',
-    'Uczeń',
-    'Data Wypożyczenia',
-    'Status',
-    'Opcje'
-  ]
+  header$: Observable<Array<string>>;
 
   ngOnInit(): void {
-    this.lendingFindSrv.getLendings().subscribe(lendingList => this.lendings = Object.values(lendingList));
-    this.studentFindSrv.getStudents().subscribe(studentList => this.students = Object.values(studentList));
-    this.bookFindSrv.getBooks().subscribe(bookList => this.books = Object.values(bookList));
-    this.books.forEach(book => {
-      this.refactorSrv.refactorBookData(book.id,book,this.lendings);
-    });
-    this.students.forEach(student => {
-      this.refactorSrv.refactorStudentData(student.id,student,this.lendings);
-    });
+    this.data$ = this.findSrv.getLendings();
+    this.header$ = this.findSrv.getLendingHeader();
   }
 
   closeAlert(alert: boolean) {
     this.displayFail = alert;
-    let currentUrl = this._router.url;
-    this._router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-    this._router.navigate([currentUrl]);
-  });
   }
 
   changeLendingStatus(lendingId: string) {
@@ -85,12 +60,6 @@ export class LendingComponent implements OnInit {
   }
 
   editLending(lendingId: string) {
-    this.books.forEach(book => {
-      this.refactorSrv.refactorBackBookData(book,this.lendings);
-    });
-    this.students.forEach(student => {
-      this.refactorSrv.refactorBackStudentData(student,this.lendings);
-    });
-    this._router.navigate(['/edit-lending', lendingId]);
+    this.router.navigate(['/edit-lending', lendingId]);
   }
 }

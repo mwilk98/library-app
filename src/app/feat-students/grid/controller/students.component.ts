@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
+import { map, Observable } from 'rxjs';
+import { ArrayUtilsService } from 'src/app/shared/utils/array-utils.service';
 import { BaseStudentModel } from '../../model/student.model';
-
 import { StudentFindService } from '../../services/finder/student-find.service';
 import { StudentUtilityService } from '../../services/utils/student-utility.service';
 
@@ -11,35 +12,27 @@ import { StudentUtilityService } from '../../services/utils/student-utility.serv
   templateUrl: 'students.component.html',
 })
 export class StudentsComponent implements OnInit {
+  data$: Observable<Array<Array<string>>>;
+
   constructor(
     private readonly studentUtilSrv: StudentUtilityService,
-    private studentFindSrv: StudentFindService,
+    private readonly findSrv: StudentFindService,
     private confirmationService: ConfirmationService,
-    private _router: Router
+    private router: Router,
+    private readonly arrayUtilsSrv: ArrayUtilsService,
   ) {}
 
-  students: Array<BaseStudentModel> = [];
   displayFail: boolean = false;
   errorMessage: string = '';
-  header: Array<string> = [
-    '#',
-    'Imie',
-    'Nazwisko',
-    'Wiek',
-    'Klasa',
-    'Opcje'
-  ]
+  header$: Observable<Array<string>>;
 
   ngOnInit(): void {
-    this.studentFindSrv.getStudents().subscribe(bookList => this.students = Object.values(bookList));
+    this.data$ = this.findSrv.getStudents();
+    this.header$ = this.findSrv.getStudentHeaders();
   }
 
   closeAlert(alert: boolean): void {
     this.displayFail = alert;
-    let currentUrl = this._router.url;
-    this._router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-    this._router.navigate([currentUrl]);
-  });
   }
 
   deleteStudent(studentId: string): void {
@@ -54,6 +47,6 @@ export class StudentsComponent implements OnInit {
   }
 
   editStudent(studentId: string) {
-    this._router.navigate(['/edit-student', studentId]);
+    this.router.navigate(['/edit-student', studentId]);
   }
 }

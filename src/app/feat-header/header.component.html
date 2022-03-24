@@ -14,6 +14,9 @@
         <li>
           <a routerLink="/lendings" routerLinkActive="active">Wypożyczenia</a>
         </li>
+        <li>
+          <a>Książki: {{bookCounter$ | async}} Uczniowie: {{studentCounter$ | async}} Wypożyczenia: {{lendingCounter$ | async}}</a>
+        </li>
       </ul>
     </div>
   </div>

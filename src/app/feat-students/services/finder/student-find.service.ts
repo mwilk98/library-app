@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { StudentStoreModel } from 'src/app/store/model/base-store.model';
 import { StudentStoreService } from 'src/app/store/service/student-store.service';
 import { BaseStudentModel } from '../../model/student.model';
@@ -14,7 +14,14 @@ export class StudentFindService {
     return this.storeSrv.getStudent(studentId);
   }
 
-  getStudents(): Observable<StudentStoreModel> {
-    return this.storeSrv.getStudents();
+  getStudents(): Observable<Array<Array<string>>> {     
+    return this.storeSrv.getStudentList().pipe(
+      map(books => Object.values(books)),
+      map(books => books.map(books => Object.values(books)))
+    );
+  }
+
+  getStudentHeaders(): Observable<Array<string>> {
+    return of(['#', 'Imie', 'Nazwisko', 'Wiek', 'Klasa', 'Opcje']);
   }
 }

@@ -46,8 +46,8 @@ export class LendingAddComponent implements OnInit {
   validate: boolean = true;
 
   ngOnInit(): void {
-    this.bookFindSrv.getBooks().subscribe(bookList => this.books = Object.values(bookList));
-    this.studentFindSrv.getStudents().subscribe(bookList => this.students = Object.values(bookList));
+    //this.bookFindSrv.getBooks().subscribe(bookList => this.books = Object.values(bookList));
+    //this.studentFindSrv.getStudents().subscribe(bookList => this.students = Object.values(bookList));
   }
 
   onSubmit(data: BaseLendingModel): void {

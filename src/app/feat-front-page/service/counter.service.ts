@@ -1,7 +1,12 @@
 import { Injectable } from "@angular/core";
+import { map, Observable } from "rxjs";
+import { BaseBookModel } from "src/app/feat-books/model/book.model";
 import { BookFindService } from "src/app/feat-books/services/finder/book-find.service";
+import { BaseLendingModel } from "src/app/feat-lending/model/lending.model";
 import { LendingFindService } from "src/app/feat-lending/services/finder/lending-find.service";
+import { BaseStudentModel } from "src/app/feat-students/model/student.model";
 import { StudentFindService } from "src/app/feat-students/services/finder/student-find.service";
+import { ArrayUtilsService } from "src/app/shared/utils/array-utils.service";
 
 @Injectable({ providedIn: 'root' })
 /* serwis do obsługi pobrania danych książki */
@@ -9,25 +14,26 @@ export class CounterService {
   constructor(
     private readonly findBookSrv: BookFindService,
     private readonly findStudentSrv: StudentFindService,
-    private readonly lendingFindSrv: LendingFindService
+    private readonly findLendingSrv: LendingFindService,
   ) {}
-  
-  private bookCounter: number = 0;
-  private studentCounter: number = 0;
-  private lendingCounter: number = 0;
-
   getBookCount() {
-    this.findBookSrv.getBooks().subscribe((books : any) => this.bookCounter = Object.values(books).length);
-    return this.bookCounter;
+    return this.findBookSrv.getBooks().pipe(
+      map(books => Object.values(books)),
+      map(books => books.map(books => Object.values(books)).length)
+    );
   }
 
   getStudentCount() {
-    this.findStudentSrv.getStudents().subscribe(students => this.studentCounter = Object.values(students).length);
-    return this.studentCounter;
+    return this.findStudentSrv.getStudents().pipe(
+      map(books => Object.values(books)),
+      map(books => books.map(books => Object.values(books)).length)
+    );
   }
 
   getLendingCount() {
-    this.lendingFindSrv.getLendings().subscribe(lendingList => this.lendingCounter = Object.values(lendingList).length);
-    return this.lendingCounter;
+    return this.findLendingSrv.getLendings().pipe(
+      map(books => Object.values(books)),
+      map(books => books.map(books => Object.values(books)).length)
+    );
   }
 }

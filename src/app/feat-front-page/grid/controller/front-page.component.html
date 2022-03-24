@@ -1,2 +1,2 @@
 
-<app-ui-front-page [bookCounter]="bookCounter" [studentCounter]="studentCounter" [lendingCounter]="lendingCounter" [data]="data" [chartOptions]="chartOptions" ></app-ui-front-page>
+<app-ui-front-page [bookCounter]="bookCounter$ | async" [studentCounter]="studentCounter$ | async" [lendingCounter]="lendingCounter$ | async" [data]="data" [chartOptions]="chartOptions" ></app-ui-front-page>

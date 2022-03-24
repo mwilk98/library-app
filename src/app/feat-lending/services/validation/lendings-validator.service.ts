@@ -48,21 +48,6 @@ export class LendingValidatorService {
   }
 
   idUniqueValidation(idLending: string): boolean {
-    this.lendings = [];
-    this.findSrv
-      .getLendings()
-      .pipe(
-        map((lendings: LendingStoreModel) => Object.values(lendings)),
-        map((lendings: Array<BaseLendingModel>) => {
-          lendings.forEach((lending: BaseLendingModel) => {
-            if (lending.id === idLending) {
-              this.lendings = lendings;
-            }
-          });
-        })
-      )
-      .subscribe(() => {})
-      .unsubscribe();
     const baseValidation: boolean = this.baseValidation<string>(idLending);
     if (idLending === '') {
       return false;

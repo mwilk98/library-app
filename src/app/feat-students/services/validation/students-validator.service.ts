@@ -27,18 +27,6 @@ export class StudentValidatorService {
     return true;
   }
   idUniqueValidation(idStudent: string): boolean {
-    this.students = [];
-    this.findSrv.getStudents().pipe(
-        map((students: StudentStoreModel) => Object.values(students)),
-        map((students: Array<BaseStudentModel>) => {  
-            students.forEach((student: BaseStudentModel) => {
-                if (student.id === idStudent) {
-                    this.students = students;   
-                } 
-            });
-        })
-      ).subscribe(() => {})
-      .unsubscribe();
     const baseValidation: boolean = this.baseValidation<string>(idStudent);
     if (idStudent === '') { return false; }
     if (!baseValidation) { return false; }

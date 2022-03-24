@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { map, Observable, of } from "rxjs";
 import { LendingStoreService } from "src/app/store/service/lending-store.service";
 import { BaseLendingModel } from "../../model/lending.model";
 
@@ -11,7 +12,14 @@ export class LendingFindService {
     return this.storeSrv.getLending(lendingId);
   }
 
-  getLendings() {
-    return this.storeSrv.getLendingList();
+  getLendings(): Observable<Array<Array<string>>>  {     
+    return this.storeSrv.getLendingList().pipe(
+      map(books => Object.values(books)),
+      map(books => books.map(books => Object.values(books)))
+    );
+  }
+
+  getLendingHeader(): Observable<Array<string>> {
+    return of(['#', 'Książka','Uczeń', 'Data Wypożyczenia', 'Status', 'Opcje']);
   }
 }

@@ -50,8 +50,8 @@ export class LendingEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this._route.snapshot.params['id'];
-    this.bookFindSrv.getBooks().subscribe(bookList => this.books = Object.values(bookList));
-    this.studentFindSrv.getStudents().subscribe(bookList => this.students = Object.values(bookList));
+    //this.bookFindSrv.getBooks().subscribe(bookList => this.books = Object.values(bookList));
+    //this.studentFindSrv.getStudents().subscribe(bookList => this.students = Object.values(bookList));
     this.lending = this.lendingFindSrv.getLending(this.id);
     this.date = formatDate(this.lending.lendingDate, 'yyyy-MM-dd', this.locale);
     this.student = this.studentFindSrv.getStudent(this.lending.idStudent);

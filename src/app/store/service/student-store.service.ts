@@ -14,7 +14,7 @@ export class StudentStoreService {
     '5': { id: '5', name: 'name 5', surname: 'surname 5', age: 14, class: '1e' }
   });
 
-  getStudents(): Observable<StudentStoreModel> {
+  getStudentList(): Observable<StudentStoreModel> {
     return this.students.pipe(
       map((students: StudentStoreModel) => students)
     ); 

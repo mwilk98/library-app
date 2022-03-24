@@ -15,14 +15,13 @@ import { BookUtilityService } from '../services/utils/book-utility.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BooksComponent implements OnInit {
-  data$: Observable<Array<BaseBookModel>>;
+  data$: Observable<Array<Array<string>>>;
 
   constructor(
     private readonly findSrv: BookFindService,
     private readonly utilSrv: BookUtilityService,
     private readonly confirmationSrv: ConfirmationService,
     private readonly router: Router,
-    private readonly arrayUtilsSrv: ArrayUtilsService,
   ) {}
 
   displayFail: boolean = false;

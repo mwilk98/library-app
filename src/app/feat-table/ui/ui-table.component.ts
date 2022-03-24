@@ -7,7 +7,7 @@ import { BaseBookModel } from 'src/app/feat-books/model/book.model';
 })
 export class UiTableComponent {
   @Input() header: Array<string> = [];
-  @Input() data: Array<BaseBookModel>;
+  @Input() data: Array<Array<string>>;
   @Input() showStatus: boolean = false;
   @Output() deleteEvent = new EventEmitter<string>();
   @Output() editEvent = new EventEmitter<string>();

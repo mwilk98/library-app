@@ -17,18 +17,7 @@ export class BookValidatorService {
     }
 
     /* Sprawdza poprawność i unikalność podanego id dla studentów */
-    idUniqueValidation(idBook: string): boolean {
-        this.books = [];
-        this.findSrv.getBooks().pipe(
-            map((books: Array<BaseBookModel>) => {  
-                books.forEach((book: BaseBookModel) => {
-                    if (book.id === idBook) {
-                        this.books = books;
-                    } 
-                });
-            })
-          ).subscribe(() => {})
-          .unsubscribe();
+    idUniqueValidation(idBook: string): boolean {    
         const baseValidation: boolean = this.baseValidation<string>(idBook);
         if (idBook === '') { return false; }
         if (!baseValidation) { return false; }
