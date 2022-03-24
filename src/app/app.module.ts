@@ -28,6 +28,7 @@ import { ChartModule } from 'primeng/chart';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { UiFrontPageComponent } from './feat-front-page/ui/ui-front-page.component';
+import { TransformPipePipe } from './shared/utils/transform-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { UiFrontPageComponent } from './feat-front-page/ui/ui-front-page.compone
     StudentFormComponent,
     UiTableComponent,
     FrontPageComponent,
-    UiFrontPageComponent
+    UiFrontPageComponent,
+    TransformPipePipe
   ],
   imports: [
     BrowserModule, 

@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { BaseLendingModel } from 'src/app/feat-lending/model/lending.model';
 import { LendingStoreModel } from '../model/base-store.model';
-
 
 @Injectable({ providedIn: 'root' })
 export class LendingStoreService {
@@ -53,6 +52,7 @@ export class LendingStoreService {
     )
     .subscribe(() => {})
     .unsubscribe();
+
     return newLending;
   }
 
@@ -75,6 +75,7 @@ export class LendingStoreService {
     )
     .subscribe(() => {})
     .unsubscribe();
+
     return newLending;
   }
 

@@ -15,7 +15,7 @@ import { BookUtilityService } from '../services/utils/book-utility.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BooksComponent implements OnInit {
-  data$: Observable<Array<Array<string>>>;
+  data$: Observable<Array<BaseBookModel>>;
 
   constructor(
     private readonly findSrv: BookFindService,

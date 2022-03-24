@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
-import { map, Observable } from 'rxjs';
-import { ArrayUtilsService } from 'src/app/shared/utils/array-utils.service';
+import { Observable } from 'rxjs';
 import { BaseStudentModel } from '../../model/student.model';
 import { StudentFindService } from '../../services/finder/student-find.service';
 import { StudentUtilityService } from '../../services/utils/student-utility.service';
@@ -12,14 +11,13 @@ import { StudentUtilityService } from '../../services/utils/student-utility.serv
   templateUrl: 'students.component.html',
 })
 export class StudentsComponent implements OnInit {
-  data$: Observable<Array<Array<string>>>;
+  data$: Observable<Array<BaseStudentModel>>;
 
   constructor(
     private readonly studentUtilSrv: StudentUtilityService,
     private readonly findSrv: StudentFindService,
     private confirmationService: ConfirmationService,
-    private router: Router,
-    private readonly arrayUtilsSrv: ArrayUtilsService,
+    private router: Router
   ) {}
 
   displayFail: boolean = false;

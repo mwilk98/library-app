@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { StudentErrorModel } from '../../model/student-validate.model';
 import { BaseStudentModel } from '../../model/student.model';
 
-
 @Component({
   selector: 'app-student-form',
   templateUrl: 'student-form.component.html',
@@ -18,4 +17,3 @@ export class StudentFormComponent {
     this.submitEvent.emit(student);
   }
 }
-

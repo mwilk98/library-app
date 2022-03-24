@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, filter, map, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, tap } from 'rxjs';
 import { BaseBookModel } from '../../feat-books/model/book.model';
 import { BooksStoreModel } from '../model/base-store.model';
 
@@ -54,6 +54,7 @@ export class BookStoreService {
     )
     .subscribe(() => {})
     .unsubscribe();
+
     return newBook;
   }
 
@@ -75,6 +76,7 @@ export class BookStoreService {
     )
     .subscribe(() => {})
     .unsubscribe();
+
     return newBook;
   }
 

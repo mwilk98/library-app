@@ -14,10 +14,9 @@ export class StudentFindService {
     return this.storeSrv.getStudent(studentId);
   }
 
-  getStudents(): Observable<Array<Array<string>>> {     
+  getStudents(): Observable<Array<BaseStudentModel>> {     
     return this.storeSrv.getStudentList().pipe(
-      map(books => Object.values(books)),
-      map(books => books.map(books => Object.values(books)))
+        map(students => Object.values(students))
     );
   }
 

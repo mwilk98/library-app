@@ -12,10 +12,9 @@ export class LendingFindService {
     return this.storeSrv.getLending(lendingId);
   }
 
-  getLendings(): Observable<Array<Array<string>>>  {     
+  getLendings(): Observable<Array<BaseLendingModel>>  {     
     return this.storeSrv.getLendingList().pipe(
-      map(books => Object.values(books)),
-      map(books => books.map(books => Object.values(books)))
+      map(books => Object.values(books))
     );
   }
 

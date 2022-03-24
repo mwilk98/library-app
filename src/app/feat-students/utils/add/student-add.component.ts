@@ -6,7 +6,6 @@ import { BaseStudentModel } from '../../model/student.model';
 import { StudentUtilityService } from '../../services/utils/student-utility.service';
 import { StudentValidatorService } from '../../services/validation/students-validator.service';
 
-
 @Component({
   selector: 'app-student-add',
   templateUrl: './student-add.component.html',

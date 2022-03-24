@@ -13,7 +13,7 @@ import { ArrayUtilsService } from 'src/app/shared/utils/array-utils.service';
   templateUrl: 'lending.component.html',
 })
 export class LendingComponent implements OnInit {
-  data$: Observable<Array<Array<string>>>;
+  data$: Observable<Array<BaseLendingModel>>;
   
   constructor(
     private readonly findSrv: LendingFindService,

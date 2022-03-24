@@ -13,10 +13,9 @@ export class BookFindService {
         return this.storeSrv.getBook(bookId);
     }
 
-    getBooks(): Observable<Array<Array<string>>> {     
+    getBooks(): Observable<Array<BaseBookModel>> {     
         return this.storeSrv.getBookList().pipe(
-            map(books => Object.values(books)),
-            map(books => books.map(books => Object.values(books)))
+            map(books => Object.values(books))
         );
     }
 

@@ -1,5 +1,5 @@
 <div class="table-responsive">
-  <p-table [value]="data" styleClass="p-datatable-lg" responsiveLayout="scroll">
+  <p-table [value]="data | transformPipe" styleClass="p-datatable-lg" responsiveLayout="scroll">
     <ng-template pTemplate="header">
       <tr>
         <th *ngFor="let item of header">{{ item }}</th>
@@ -30,4 +30,3 @@
     </ng-template>
   </p-table>
 </div>
-

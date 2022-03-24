@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { BaseBookModel } from 'src/app/feat-books/model/book.model';
+import { BaseStudentModel } from 'src/app/feat-students/model/student.model';
 
 @Component({
   selector: 'app-ui-table',
@@ -7,7 +7,7 @@ import { BaseBookModel } from 'src/app/feat-books/model/book.model';
 })
 export class UiTableComponent {
   @Input() header: Array<string> = [];
-  @Input() data: Array<Array<string>>;
+  @Input() data: Array<any>;
   @Input() showStatus: boolean = false;
   @Output() deleteEvent = new EventEmitter<string>();
   @Output() editEvent = new EventEmitter<string>();

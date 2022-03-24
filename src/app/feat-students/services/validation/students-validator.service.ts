@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
-import { StudentStoreModel } from 'src/app/store/model/base-store.model';
 import { BaseStudentModel } from '../../model/student.model';
 import { StudentFindService } from '../finder/student-find.service';
 
@@ -8,8 +6,6 @@ import { StudentFindService } from '../finder/student-find.service';
 @Injectable({ providedIn: 'root' })
 export class StudentValidatorService {
   constructor(private findSrv: StudentFindService) {}
-
-  students: Array<BaseStudentModel> = []; 
 
   /* Sprawdza czy wartość nie jest undefined */
   baseValidation<TValue>(value: TValue): boolean {
@@ -30,7 +26,7 @@ export class StudentValidatorService {
     const baseValidation: boolean = this.baseValidation<string>(idStudent);
     if (idStudent === '') { return false; }
     if (!baseValidation) { return false; }
-    if (this.students.length !== 0 ) { return false; }
+    if (this.findSrv.getStudent(idStudent)) { return false; }
     return true;
   }
 
