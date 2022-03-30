@@ -1,0 +1,32 @@
+<div class="table-responsive">
+  <p-table [value]="data | transformPipe" styleClass="p-datatable-lg" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+        <th *ngFor="let item of header">{{ item }}</th>
+      </tr>
+    </ng-template>
+     <ng-template pTemplate="body" let-dataElement>
+      <tr>
+        <td *ngFor="let element of dataElement">{{ element }}</td>
+        <td *ngIf="showStatus; else elseBlock">
+          <div *ngIf="dataElement[4]; else elseButtonBlock">
+            <button pButton class="p-button-success" (click)="editStatus(dataElement[0])">Oddaj</button>
+            <button pButton type="button" class="p-button-danger" icon="pi pi-ban" (click)="delete(dataElement[0])"></button>
+            <p-button icon="pi pi-user-edit" (click)="edit(dataElement[0])"></p-button>
+          </div>
+        </td>
+        <ng-template #elseBlock> 
+          <td>
+            <button pButton type="button" class="p-button-danger" icon="pi pi-ban"(click)="delete(dataElement[0])"></button>
+            <p-button icon="pi pi-user-edit" (click)="edit(dataElement[0])"></p-button>
+          </td>
+        </ng-template>
+        <ng-template #elseButtonBlock> 
+          <button pButton class="p-button-success" (click)="editStatus(dataElement[0])">Cofnij</button>
+          <button pButton type="button"class="p-button-danger" icon="pi pi-ban"(click)="delete(dataElement[0])"></button>
+          <p-button icon="pi pi-user-edit" (click)="edit(dataElement[0])"></p-button>
+        </ng-template>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

@@ -1,0 +1,8 @@
+<div class="container h-100 d-flex justify-content-center">
+  <app-messages [displayFail]="displayFail" [errorMessage]="errorMessage" (closeAlertEvent)="closeAlert()"></app-messages>
+  <header>
+    <h1>Książki</h1>
+  </header>
+  <p-button [routerLink]="'/add-book'" icon="pi pi-plus"></p-button>
+  <app-ui-table [data]="data$ | async" [header]="header$ | async" (deleteEvent)="deleteBook($event)" (editEvent)="editBook($event)"></app-ui-table>
+</div>

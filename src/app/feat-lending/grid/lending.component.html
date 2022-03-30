@@ -1,0 +1,6 @@
+<div class="container h-100 d-flex justify-content-center">
+  <app-messages [displayFail]="displayFail" [errorMessage]="errorMessage" (closeAlertEvent)="closeAlert($event)"></app-messages>
+  <h1 class="text-center">Wypożyczenia</h1>
+  <p-button [routerLink]="'/add-lending'" icon="pi pi-plus"></p-button>
+  <app-ui-table [data]="data$ | async" [header]="header$ | async" (deleteEvent)="deleteLending($event)" (editEvent)="editLending($event)" [showStatus]="true" (editStatusEvent)="changeLendingStatus($event)"></app-ui-table>
+</div>

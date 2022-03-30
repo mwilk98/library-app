@@ -1,0 +1,23 @@
+<nav class="navbar navbar-default">
+  <div class="containter-fluid">
+    <div class="navbar-header">
+      <a routerLink="/" routerLinkActive="active" class="navbar-brand">Biblioteka</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <a routerLink="/students" routerLinkActive="active">Uczniowie</a>
+        </li>
+        <li>
+          <a routerLink="/books" routerLinkActive="active">Książki</a>
+        </li>
+        <li>
+          <a routerLink="/lendings" routerLinkActive="active">Wypożyczenia</a>
+        </li>
+        <li>
+          <a>Książki: {{bookCounter$ | async}} Uczniowie: {{studentCounter$ | async}} Wypożyczenia: {{lendingCounter$ | async}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
+header > h1 {
+  text-align: center;
+}
+.fp{
+  text-align: center;
+}
+.fpc{
+  text-align: center;
+  margin-left: 40%;
+  width: 400px;
+}
+button{
+  margin-right: 1% !important;
+}
